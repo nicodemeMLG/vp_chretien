@@ -8,7 +8,6 @@ import 'package:vp_chretien/pages/MyHomePage.dart';
 import 'package:vp_chretien/pages/contacts_page.dart';
 import 'package:vp_chretien/pages/page_compte*/connexion.dart';
 import 'package:vp_chretien/pages/profile_page.dart';
-import 'package:vp_chretien/pages/programme.dart';
 import 'package:vp_chretien/pages/programme_lecture.dart';
 import 'package:vp_chretien/pages/programme_page.dart';
 import 'package:vp_chretien/pages/statistique_page.dart';
@@ -20,7 +19,7 @@ import '../models/programme_model.dart';
 
 const Color _mainColor= Color(0xFF446600);
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({super.key,});
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -100,7 +99,7 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-  final PageController _pageController= PageController(initialPage: 0);
+
 
   Future<List<ProgrammeModel>> getProgrammes() async{
     String cycle="ancien";
@@ -125,10 +124,11 @@ class _HomePageState extends State<HomePage> {
   }
 
 
+  final PageController _pageController= PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
-
+    // final PageController _pageController= PageController(initialPage: _currentIndex);
     String now=DateFormat("dd-MM-yyyy").format(DateTime.now());
     programmeDuJour(now);
     getUser();
@@ -138,8 +138,13 @@ class _HomePageState extends State<HomePage> {
     void dateNull() {
       laDate=null;
     }
+    // if(widget.cycle!=null){
+    //   _currentIndex=3;
+    // }
+
     Map<String,DateTime?>? date = {'date':laDate};
     List<Widget> tabs =[
+
       MyHomePage(programmejour: programmeJour,anneeActif:idAnnee),
       StatistiquePage(progression:noteParCycle),
       ProfilePage(userModel: userModel,),
@@ -150,6 +155,7 @@ class _HomePageState extends State<HomePage> {
         });
       }),
     ];
+
 
     List<Widget> btnActions=[
       // IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
@@ -407,6 +413,7 @@ class _HomePageState extends State<HomePage> {
 
         onTap: (index){
           setState(() {
+
             _currentIndex = index;
 
             _pageController.jumpToPage(_currentIndex);

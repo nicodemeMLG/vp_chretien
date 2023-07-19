@@ -58,57 +58,55 @@ class _NoteParLivreState extends State<NoteParLivre> {
       backgroundColor: Colors.grey[100],
 
       body: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Text("Cliquez sur un livre pour voir votre progression générale"),
-              ),
-              const SizedBox(height: 10.0,),
+        children: [
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Text("Cliquez sur un livre pour voir votre progression générale"),
+          ),
+          const SizedBox(height: 10.0,),
 
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0,right: 20.0,left: 15.0, bottom: 10.0),
-                child: TextField(
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0,right: 20.0,left: 15.0, bottom: 10.0),
+            child: TextField(
 
-                  onChanged: (val){
-                    searchListProgrammes(widget.livres, val);
-                  },
+              onChanged: (val){
+                searchListProgrammes(widget.livres, val);
+              },
 
-                  decoration: const InputDecoration(
-                    hintText: "Recherchez ici",
-                    suffixIcon: Icon(Icons.close , size: 40,),
-                    focusColor: Colors.blue,
-                    fillColor: Colors.blue,
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.blue, width: 2.0) ,
-                    ),
-                  ),
-                  cursorColor: Colors.blue,
-                ),
-
-              ),
-
-              Flexible(
-                child: FutureBuilder(
-
-                  builder: (context , snapshot){
-                    if(snapshot.connectionState==ConnectionState.waiting){
-                      return const Center(
-                        child: CircularProgressIndicator(color: Colors.green,),
-                      );
-                    } else{
-                      return ListView(
-                        children: searchResult.map((e){
-                          return ListeStatistiqueLivreWidget(element: e,idAnnee: widget.idAnnee);
-                        }).toList(),
-                      );
-                    }
-                  },
+              decoration: const InputDecoration(
+                hintText: "Recherchez ici",
+                suffixIcon: Icon(Icons.close , size: 40,),
+                focusColor: Colors.blue,
+                fillColor: Colors.blue,
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue, width: 2.0) ,
                 ),
               ),
-            ],
+              cursorColor: Colors.blue,
+            ),
+
           ),
 
+          Flexible(
+            child: FutureBuilder(
 
+              builder: (context , snapshot){
+                if(snapshot.connectionState==ConnectionState.waiting){
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.green,),
+                  );
+                } else{
+                  return ListView(
+                    children: searchResult.map((e){
+                      return ListeStatistiqueLivreWidget(element: e,idAnnee: widget.idAnnee);
+                    }).toList(),
+                  );
+                }
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

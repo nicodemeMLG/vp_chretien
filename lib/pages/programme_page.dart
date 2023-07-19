@@ -8,7 +8,8 @@ late DateTime? maDate;
 class ProgrammePage extends StatefulWidget {
   final Map<String,DateTime?>? date;
   final VoidCallback funcNull;
-  const ProgrammePage({super.key, this.date, required this.funcNull});
+  final String? cycle;
+  const ProgrammePage({super.key, this.date, required this.funcNull, this.cycle});
 
   @override
   State<ProgrammePage> createState() => _ProgrammePageState();
@@ -19,8 +20,8 @@ class _ProgrammePageState extends State<ProgrammePage> {
   List<ProgrammeModel> listeProgramme=[];
   List<ProgrammeModel> listeProgrammeDate=[];
   void getProgrammes() async{
-    String cycle="ancien";
     List<ProgrammeModel> programmes=[];
+    String? cycle="";
     final ref = FirebaseDatabase.instance.ref().child("actifb");
     await ref.once().then((val) {
       Map value =val.snapshot.value as Map;
@@ -35,7 +36,7 @@ class _ProgrammePageState extends State<ProgrammePage> {
         // print(a.uid);
         programmes.add(a);
       }
-      // print(programmes);
+
     });
     listeProgramme = programmes;
   }
@@ -50,7 +51,9 @@ class _ProgrammePageState extends State<ProgrammePage> {
         .then((event){
       for ( var val in event.snapshot.children){
         ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+
         programmes.add(a);
+
       }
     });
     listeProgrammeDate=programmes;

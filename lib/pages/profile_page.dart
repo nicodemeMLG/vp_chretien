@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vp_chretien/controlleurs/function.dart';
 import 'package:vp_chretien/models/user_model.dart';
 import 'package:vp_chretien/pages/MyHomePage.dart';
+import 'package:vp_chretien/pages/homePage.dart';
 import 'package:vp_chretien/pages/modifier_informations_page.dart';
 import 'package:vp_chretien/pages/page_compte*/connexion.dart';
 import 'package:vp_chretien/pages/politique_page.dart';
@@ -84,7 +85,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   ElevatedButton(
                     onPressed: (){
-                      Navigator.pop(context);
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){
+                        return const HomePage();
+                      }), (route) => false);
                       // Navigator.
                     },
                     style: ElevatedButton.styleFrom(

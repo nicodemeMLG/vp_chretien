@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vp_chretien/pages/programme.dart';
 
 
 Color _mainColor= const Color(0xFF446600);
@@ -9,7 +10,6 @@ class ProgrammeLecture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         backgroundColor: Colors.white,
         title: Text(
           "Lecture de la bible",
@@ -20,12 +20,6 @@ class ProgrammeLecture extends StatelessWidget {
             color: _mainColor,
           ),
         ),
-
-        // actions: [
-        //
-        //
-        //   IconButton(onPressed: (){}, icon: const FaIcon(FontAwesomeIcons.ellipsisVertical , color: Colors.green,))
-        // ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -45,7 +39,11 @@ class ProgrammeLecture extends StatelessWidget {
             const SizedBox(height: 20.0,),
 
             ElevatedButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return const ProgrammePage2(cycle: 'nouveau');
+                }));
+              },
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(double.maxFinite, 80.0),
                 backgroundColor: _mainColor,
@@ -60,7 +58,13 @@ class ProgrammeLecture extends StatelessWidget {
             const SizedBox(height: 20.0,),
 
             ElevatedButton(
-              onPressed: (){},
+
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return const ProgrammePage2(cycle: 'ancien');
+                }));
+              },
+
               style: ElevatedButton.styleFrom(
                 fixedSize: const Size(double.maxFinite, 80.0),
                 backgroundColor: _mainColor,
