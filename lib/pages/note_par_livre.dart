@@ -79,7 +79,6 @@ class _NoteParLivreState extends State<NoteParLivre> {
               const Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Text("Cliquez sur un livre pour voir votre progression générale"),
-
               ),
               const SizedBox(height: 10.0,),
 

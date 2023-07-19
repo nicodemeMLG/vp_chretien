@@ -7,71 +7,18 @@ import 'package:vp_chretien/models/programme_model.dart';
 late DateTime? maDate;
 class ProgrammePage extends StatefulWidget {
   final Map<String,DateTime?>? date;
-
-  const ProgrammePage({super.key, this.date});
+  final VoidCallback funcNull;
+  const ProgrammePage({super.key, this.date, required this.funcNull});
 
   @override
   State<ProgrammePage> createState() => _ProgrammePageState();
+
 }
 
 class _ProgrammePageState extends State<ProgrammePage> {
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    // widget.date?['date']=null;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // maDate=!;
-    // setState(() {});
-    String date="";
-    if(widget.date!['date']!=null){
-      maDate=widget.date!['date']!;
-      date = DateFormat("dd-MM-yy").format(maDate!);
-    }
-
-    return Scaffold(
-      body: widget.date?['date']==null ? const ContenuBody():
-          Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Les textes du $date"),
-                      ElevatedButton(
-                          onPressed: (){
-
-
-
-                              setState(() {
-                                widget.date?['date']=null;
-                                maDate=null;
-                              });
-                          },
-                          child: const Text("Fermer")
-                      ),
-                    ],
-
-                  ),
-                ),
-                const Flexible(child: ContenuParDateBody(),)
-
-              ],
-            ),
-    );
-  }
-}
-
-class ContenuBody extends StatelessWidget{
-  const ContenuBody({super.key});
-
-
-  Future<List<ProgrammeModel>> getProgrammes() async{
+  List<ProgrammeModel> listeProgramme=[];
+  List<ProgrammeModel> listeProgrammeDate=[];
+  void getProgrammes() async{
     String cycle="ancien";
     List<ProgrammeModel> programmes=[];
     final ref = FirebaseDatabase.instance.ref().child("actifb");
@@ -90,14 +37,73 @@ class ContenuBody extends StatelessWidget{
       }
       // print(programmes);
     });
-    return programmes;
+    listeProgramme = programmes;
   }
+
+  void getProgrammesParDate() async{
+    List<ProgrammeModel> programmes=[];
+
+    String date = DateFormat("dd-MM-yyyy").format(maDate!);
+
+
+    await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/lectures").once()
+        .then((event){
+      for ( var val in event.snapshot.children){
+        ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+        programmes.add(a);
+      }
+    });
+    listeProgrammeDate=programmes;
+
+  }
+  @override
+  Widget build(BuildContext context) {
+    String date="";
+    if(widget.date!['date']!=null){
+      maDate=widget.date!['date']!;
+      date = DateFormat("dd-MM-yy").format(maDate!);
+      getProgrammesParDate();
+    }
+    getProgrammes();
+    return Scaffold(
+      body: Container(
+          child : widget.date!['date']==null ? Programme(elements: listeProgramme) :
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Les textes du $date"),
+                    ElevatedButton(
+                        onPressed:
+                            widget.funcNull
+                        ,
+                        child: const Text("Fermer")
+                    ),
+                  ],
+                ),
+              ),
+              Flexible(child: Programme(elements: listeProgrammeDate),)
+            ],
+          )
+      ),
+    );
+  }
+}
+
+class ContenuBody extends StatelessWidget{
+  const ContenuBody({super.key});
+
+
+
 
   @override
   Widget build(BuildContext context){
 
     return FutureBuilder(
-        future: getProgrammes(),
+        // future: getProgrammes(),
         builder: (context , snapshot){
           if(snapshot.connectionState==ConnectionState.waiting){
             return const Center(
@@ -116,39 +122,26 @@ class ContenuBody extends StatelessWidget{
 
 class ContenuParDateBody extends StatelessWidget{
 
-
   const ContenuParDateBody({super.key,});
 
-
-
   Future<List<ProgrammeModel>> getProgrammes() async{
-    // String cycle="ancien";
     List<ProgrammeModel> programmes=[];
-    // final ref = FirebaseDatabase.instance.ref().child("actifb");
-    // await ref.once().then((val) {
-    //   Map value =val.snapshot.value as Map;
-    //   cycle = value['actif'];
-    // });
 
     String date = DateFormat("dd-MM-yyyy").format(maDate!);
-    // print(date);
+
 
     await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/lectures").once()
         .then((event){
-
       for ( var val in event.snapshot.children){
         ProgrammeModel a=ProgrammeModel.fromMap(val.value);
-        // print(a.uid);
         programmes.add(a);
       }
-      // print(programmes);
     });
     return programmes;
   }
 
   @override
   Widget build(BuildContext context){
-
     return FutureBuilder(
             future: getProgrammes(),
             builder: (context , snapshot){
@@ -164,7 +157,6 @@ class ContenuParDateBody extends StatelessWidget{
               }
             }
         );
-
   }
 }
 
@@ -176,7 +168,6 @@ class Programme extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    // print(elements.length);
     return ListView(
       children: elements.map((e){
         return ListeProgrammeWidget(element: e);

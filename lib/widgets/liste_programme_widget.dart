@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
 import 'package:vp_chretien/controlleurs/function_programme.dart';
 import 'package:vp_chretien/pages/lecture_page.dart';
 import 'package:vp_chretien/models/programme_model.dart';
@@ -24,14 +23,7 @@ class ListeProgrammeWidget extends StatefulWidget {
 class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
   bool isValid=false;
 
-
-  // DatabaseReference refannee = FirebaseDatabase.instance.ref();
-  // void getAnneeActif() async{
-  //   final event = await refannee.child('Parcours/AnneeActif/id').once();
-  //   anneeActif =event.snapshot.value as String;
-  // }
-
-  void LectureValid() async{
+  void lectureValid() async{
     String anneeActif="";
     final ref = FirebaseDatabase.instance.ref();
     final event = await ref.child('Parcours/AnneeActif/id').once();
@@ -50,8 +42,8 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
     bool status = dateValide(widget.element.disponible.toString());
 
     // getAnneeActif();
-    LectureValid();
-    print(isValid);
+    lectureValid();
+    // print(isValid);
 
     return Container(
       height: 70.0,

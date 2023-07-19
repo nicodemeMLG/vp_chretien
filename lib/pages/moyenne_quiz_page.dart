@@ -81,7 +81,7 @@ class _MoyenneQuizPageState extends State<MoyenneQuizPage> {
                         return Text(snapshot.data??"0", style: const TextStyle( fontSize: 50.0,color: Colors.green , fontWeight: FontWeight.w800),);
 
                       }else {
-                        return const SizedBox();
+                        return const Text("0", style: TextStyle( fontSize: 50.0,color: Colors.green , fontWeight: FontWeight.w800),);
                       }
                     }
                 ),

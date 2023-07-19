@@ -8,6 +8,7 @@ import 'package:vp_chretien/pages/MyHomePage.dart';
 import 'package:vp_chretien/pages/contacts_page.dart';
 import 'package:vp_chretien/pages/page_compte*/connexion.dart';
 import 'package:vp_chretien/pages/profile_page.dart';
+import 'package:vp_chretien/pages/programme.dart';
 import 'package:vp_chretien/pages/programme_lecture.dart';
 import 'package:vp_chretien/pages/programme_page.dart';
 import 'package:vp_chretien/pages/statistique_page.dart';
@@ -101,6 +102,27 @@ class _HomePageState extends State<HomePage> {
 
   final PageController _pageController= PageController(initialPage: 0);
 
+  Future<List<ProgrammeModel>> getProgrammes() async{
+    String cycle="ancien";
+    List<ProgrammeModel> programmes=[];
+    final ref = FirebaseDatabase.instance.ref().child("actifb");
+    await ref.once().then((val) {
+      Map value =val.snapshot.value as Map;
+      cycle = value['actif'];
+    });
+
+    await FirebaseDatabase.instance.ref().child("lecturesParCycle/$cycle/lecture").once()
+        .then((event){
+      // print(event.snapshot.children);
+      for ( var val in event.snapshot.children){
+        ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+        // print(a.uid);
+        programmes.add(a);
+      }
+      // print(programmes);
+    });
+    return programmes;
+  }
 
 
 
@@ -113,30 +135,36 @@ class _HomePageState extends State<HomePage> {
     anneeActif();
     getCycle();
     getNoteParCycle();
+    void dateNull() {
+      laDate=null;
+    }
     Map<String,DateTime?>? date = {'date':laDate};
     List<Widget> tabs =[
       MyHomePage(programmejour: programmeJour,anneeActif:idAnnee),
       StatistiquePage(progression:noteParCycle),
       ProfilePage(userModel: userModel,),
-      ProgrammePage(date: date),
+      ProgrammePage(date: date,funcNull:(){
+        setState(() {
+          laDate=null;
+          date=null;
+        });
+      }),
     ];
+
     List<Widget> btnActions=[
-      IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
+      // IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
       IconButton(
           onPressed: (){
         _showDatePicker();
       }, icon: const Icon(Icons.calendar_month_outlined))
     ];
 
-
-
-
     return Scaffold(
-      appBar: _currentIndex==0 ?  AppBarWidget(title: "VP-CHRETIEN DE BERE",) :
-      _currentIndex==1 ? AppBarWidget(title: "Statistiques",) :
-      _currentIndex==2 ? AppBarWidget(title: "Profile",) :
+      appBar: _currentIndex==0 ?  const AppBarWidget(title: "VP-CHRETIEN DE BERE",) :
+      _currentIndex==1 ? const AppBarWidget(title: "Statistiques",) :
+      _currentIndex==2 ? const AppBarWidget(title: "Profile",) :
       _currentIndex==3 ? AppBarWidget(title: "Programme",btnAction: btnActions):
-      _currentIndex==4 ? AppBarWidget(title: "Lecture de la Bible") : AppBar(),
+      _currentIndex==4 ? const AppBarWidget(title: "Lecture de la Bible") : AppBar(),
       drawer: Drawer(
         child: ListView(
           children: [

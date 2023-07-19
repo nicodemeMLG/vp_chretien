@@ -14,8 +14,8 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize{
     return const Size.fromHeight(50.0);
   }
-  
-  AppBarWidget({super.key, required this.title, this.btnAction});
+
+  const AppBarWidget({super.key, required this.title, this.btnAction});
 
   @override
   Widget build(BuildContext context) {
