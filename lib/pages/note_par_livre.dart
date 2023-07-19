@@ -1,4 +1,3 @@
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:vp_chretien/models/livre_model.dart';
 import 'package:vp_chretien/widgets/liste_statistique_livre_widget.dart';
@@ -16,29 +15,15 @@ class NoteParLivre extends StatefulWidget {
 
 class _NoteParLivreState extends State<NoteParLivre> {
 
-
-  // List<LivreModel> livres=[];
-  // void getLivres() async{
-  //   List<LivreModel> meslivres=[];
-  //   final ref=FirebaseDatabase.instance.ref();
-  //   final snapshot = await ref.child("livres").get();
-  //
-  //   for(var s in snapshot.children){
-  //     LivreModel livre=LivreModel.fromMap(s.value as Map);
-  //     // print(s.value);
-  //     meslivres.add(livre);
-  //   }
-  //   livres=meslivres;
-  // }
-
   List<LivreModel> searchResult=[];
 
   @override
   void initState() {
     // TODO: implement initState
     // getLivres();
-    searchResult=widget.livres;
     super.initState();
+    searchResult=widget.livres;
+
   }
   @override
   Widget build(BuildContext context) {
@@ -58,8 +43,6 @@ class _NoteParLivreState extends State<NoteParLivre> {
 
     }
 
-
-    // print(livres);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -113,7 +96,6 @@ class _NoteParLivreState extends State<NoteParLivre> {
                         child: CircularProgressIndicator(color: Colors.green,),
                       );
                     } else{
-
                       return ListView(
                         children: searchResult.map((e){
                           return ListeStatistiqueLivreWidget(element: e,idAnnee: widget.idAnnee);

@@ -6,12 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
-import 'package:vp_chretien/pages/homePage.dart';
+
 import 'package:vp_chretien/pages/page_compte*/inscription_phone_completion.dart';
 import 'package:vp_chretien/pages/switch_page.dart';
 
 import '../../controlleurs/function.dart';
-import '../../models/user_model.dart';
+
 
 
 Color _mainColor= Color(0xFF446600);

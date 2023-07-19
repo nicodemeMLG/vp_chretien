@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:vp_chretien/pages/homePage.dart';
 
 Color _mainColor= const Color(0xFF446600);
 class QuizPage extends StatefulWidget {
@@ -72,6 +73,7 @@ class _QuizPageState extends State<QuizPage> {
                           }
                         }
                         enrregistrerResult(widget.nomQuiz , note);
+                        showAlertDialog(context, note.toStringAsFixed(2));
                     },
                       style: ElevatedButton.styleFrom(
                         shape: const RoundedRectangleBorder(
@@ -225,4 +227,35 @@ void enrregistrerResult(String? intitule , int note) async{
   };
    await ref.child("Results/$intitule/$anneeActif/$userId").set(result);
 }
+
+void showAlertDialog(BuildContext context,String note) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Note du quiz',style: TextStyle(
+          color: Colors.deepPurple,
+          fontSize: 18.0,
+          fontWeight: FontWeight.w800,
+        ),),
+        content: Text('Vous avez obtenu la note de: $note% !',textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 15.0,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        actions: [
+          TextButton(
+            child: const Text('Fermer'),
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){return const HomePage();}), (route) => false); // Ferme la boîte de dialogue
+            },
+          ),
+
+        ],
+      );
+    },
+  );
+}
+
 

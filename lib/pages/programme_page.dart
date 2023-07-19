@@ -77,9 +77,7 @@ class _ProgrammePageState extends State<ProgrammePage> {
                   children: [
                     Text("Les textes du $date"),
                     ElevatedButton(
-                        onPressed:
-                            widget.funcNull
-                        ,
+                        onPressed: widget.funcNull,
                         child: const Text("Fermer")
                     ),
                   ],
@@ -160,18 +158,87 @@ class ContenuParDateBody extends StatelessWidget{
   }
 }
 
-class Programme extends StatelessWidget{
+class Programme extends StatefulWidget{
 
   final List<ProgrammeModel> elements;
 
   const Programme({super.key, required this.elements});
 
   @override
+  State<Programme> createState() => _ProgrammeState();
+}
+
+class _ProgrammeState extends State<Programme> {
+  List<ProgrammeModel> searchResult=[];
+  bool initial = true;
+
+
+  @override
+  void initState() {
+    super.initState();
+    searchResult=widget.elements;
+  }
+  @override
   Widget build(BuildContext context){
-    return ListView(
-      children: elements.map((e){
-        return ListeProgrammeWidget(element: e);
-      }).toList(),
-   );
+    void searchListProgrammes(List<ProgrammeModel> donnees, String search){
+      initial = false;
+      List<ProgrammeModel> result=[];
+      if(search.isEmpty){
+        result=donnees;
+      }else{
+        result=donnees.where((element){
+          return element.intitule.toString().toLowerCase().contains(search.toLowerCase());
+        }).toList();
+      }
+      setState(() {
+        initial = false;
+        searchResult = result;
+      });
+
+    }
+
+    // searchResult=widget.elements;
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 10.0,right: 20.0,left: 15.0, bottom: 10.0),
+          child: TextField(
+            onChanged: (val){
+              searchListProgrammes(widget.elements, val);
+            },
+            decoration: const InputDecoration(
+              hintText: "Recherchez ici",
+              suffixIcon: Icon(Icons.close , size: 20,),
+              focusColor: Colors.blue,
+              fillColor: Colors.blue,
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.blue, width: 2.0) ,
+              ),
+            ),
+            cursorColor: Colors.blue,
+          ),
+
+        ),
+        FutureBuilder(
+          builder: (context,snapshot){
+            if(snapshot.connectionState==ConnectionState.waiting){
+              return const Center(child: CircularProgressIndicator(color: Colors.green,),);
+            }else{
+              return Flexible(child: ListView(
+                children: initial? widget.elements.map((e){
+                  return ListeProgrammeWidget(element: e);
+                }).toList(): searchResult.map((e){
+                  return ListeProgrammeWidget(element: e);
+                }).toList(),
+              ),);
+            }
+          }
+        ),
+
+
+      ],
+    );
   }
 }
+
+
