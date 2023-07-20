@@ -2,11 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../controlleurs/function_programme.dart';
-import '../models/donnees_sim.dart';
 import '../models/programme_model.dart';
 import '../widgets/liste_programme_widget.dart';
 
-final Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class LecturesNonValidesPage extends StatelessWidget {
   final String? anneeActif;
   const LecturesNonValidesPage({super.key, this.anneeActif});
@@ -14,44 +13,6 @@ class LecturesNonValidesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    List elements = [
-      {
-        "titre": "Adoration 1 ",
-        "date": "17-06-2023",
-        "contenu" : "",
-        "valide":true,
-      },
-      {
-        "titre": "Adoration Août" ,
-        "date": "17-01-2023",
-        "contenu" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-        ,"valide":true,
-      },
-      {
-        "titre": "Adoration Septembre",
-        "date": "14-09-2023",
-        "contenu" : "",
-        "valide":false,
-      },
-      {
-        "titre": "Adoration 1 ",
-        "date": "08-12-2023",
-        "contenu" : "",
-        "valide":false,
-      },
-      {
-        "titre": "Adoration Août" ,
-        "date": "17-01-2023",
-        "contenu" : "",
-        "valide":true,
-      },
-      {
-        "titre": "Adoration Septembre",
-        "date": "14-09-2023",
-        "contenu" : "",
-        "valide":false,
-      },
-    ];
     String userId= FirebaseAuth.instance.currentUser!.uid;
     String cycle="";
     
@@ -93,7 +54,7 @@ class LecturesNonValidesPage extends StatelessWidget {
     // print(lecturesNonVld);
 
     return Scaffold(
-        appBar: AppBar(title: Text(
+        appBar: AppBar(title: const Text(
           "Mes Lectures non validées",
           overflow: TextOverflow.ellipsis,
           style: TextStyle(

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
 
@@ -14,7 +13,7 @@ import '../../controlleurs/function.dart';
 
 
 
-Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 
 
 class OtpVerification extends StatefulWidget {
@@ -27,7 +26,6 @@ class OtpVerification extends StatefulWidget {
 }
 
 class _OtpVerificationState extends State<OtpVerification> {
-  final _formKey = GlobalKey<FormState>();
   final TextEditingController _optController = TextEditingController();
 
   String smsCode = "";
@@ -73,7 +71,7 @@ class _OtpVerificationState extends State<OtpVerification> {
       },
       onFailed: (e){
         Fluttertoast.showToast(msg: "le code est erroné");
-        print("le code est erroné");
+        // print("le code est erroné");
       },
       autoRetrieval: (v){
 
@@ -107,7 +105,7 @@ class _OtpVerificationState extends State<OtpVerification> {
   }
   @override
   Widget build(BuildContext context) {
-    print(widget.verificationId);
+    // print(widget.verificationId);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
@@ -120,7 +118,7 @@ class _OtpVerificationState extends State<OtpVerification> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   child: Text(
                     "Entrez le code et cliquez sur vérifier",
                     style: TextStyle(

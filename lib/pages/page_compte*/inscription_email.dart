@@ -5,8 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vp_chretien/models/user_model.dart';
 import 'package:vp_chretien/pages/page_compte*/connexion.dart';
 
-import '../homePage.dart';
-
 Color _mainColor= const Color(0xFF446600);
 class InscriptionEmail extends StatefulWidget {
   const InscriptionEmail({super.key});

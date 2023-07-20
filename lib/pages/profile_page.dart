@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vp_chretien/controlleurs/function.dart';
 import 'package:vp_chretien/models/user_model.dart';
-import 'package:vp_chretien/pages/MyHomePage.dart';
 import 'package:vp_chretien/pages/homePage.dart';
 import 'package:vp_chretien/pages/modifier_informations_page.dart';
 import 'package:vp_chretien/pages/page_compte*/connexion.dart';
@@ -70,13 +69,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 width: 150,
               ),
               const SizedBox(height: 30.0,),
-              InformatioPerso("Nom", widget.userModel.name??""),
+              informatioPerso("Nom", widget.userModel.name??""),
 
-              InformatioPerso("Contact", widget.userModel.email??""),
+              informatioPerso("Contact", widget.userModel.email??""),
 
-              InformatioPerso("Téléphone", widget.userModel.mobile??""),
+              informatioPerso("Téléphone", widget.userModel.mobile??""),
 
-              InformatioPerso("Adresse", widget.userModel.locality??""),
+              informatioPerso("Adresse", widget.userModel.locality??""),
 
               const SizedBox(height: 40.0,),
 
@@ -221,7 +220,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget InformatioPerso(String titre, String valeur){
+  Widget informatioPerso(String titre, String valeur){
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

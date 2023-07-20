@@ -1,6 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:vp_chretien/controlleurs/function_programme.dart';
 import 'package:vp_chretien/pages/liste_statistique_page.dart';
 import 'package:vp_chretien/widgets/bouton_widget.dart';
 
@@ -66,7 +65,7 @@ class _StatistiquePageState extends State<StatistiquePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 40.0,),
-              const Image(image: AssetImage("images/vp1.jpg")),
+              const Image(image: AssetImage("images/stat.jpg")),
               const SizedBox(height: 25.0,),
               Text(
                 "Progression générale: ${widget.progression}%",

@@ -9,7 +9,7 @@ import 'package:vp_chretien/pages/page_compte*/connexion.dart';
 Color _mainColor= const Color(0xFF446600);
 
 class PageGarde extends StatefulWidget {
-  PageGarde({super.key});
+  const PageGarde({super.key});
 
   @override
   State<PageGarde> createState() => _PageGardeState();
@@ -22,11 +22,6 @@ class _PageGardeState extends State<PageGarde> {
     return _auth.currentUser != null ? true : false;
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
   final ref = FirebaseDatabase.instance.ref();
   Future<String> getActifb() async{
     String cycle="";
@@ -39,7 +34,7 @@ class _PageGardeState extends State<PageGarde> {
   @override
   void initState() {
     // TODO: implement initState
-    // getActifb();
+
     super.initState();
   }
   @override

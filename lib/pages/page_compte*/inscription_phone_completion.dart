@@ -8,7 +8,7 @@ import '../../models/user_model.dart';
 import 'connexion.dart';
 
 
-Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class InscriptionPhoneCompletion extends StatefulWidget {
   final String numero;
   const InscriptionPhoneCompletion({super.key, required this.numero});
@@ -157,7 +157,7 @@ class _InscriptionPhoneCompletionState extends State<InscriptionPhoneCompletion>
 
                       width: 30.0,
                       height: 30.0,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: _mainColor,
                       ),
                       child: Checkbox(
@@ -180,7 +180,7 @@ class _InscriptionPhoneCompletionState extends State<InscriptionPhoneCompletion>
                       onPressed: (){
                         // la page des termes et conditions
                       },
-                      child: Column(
+                      child: const Column(
                         children: [
 
                           Text("Vous respectez le" , style: TextStyle(  color: _mainColor , fontSize: 15.0, fontWeight: FontWeight.normal),),
@@ -211,7 +211,7 @@ class _InscriptionPhoneCompletionState extends State<InscriptionPhoneCompletion>
                   onPressed: (){
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Connexion(actif: false,)));
                   },
-                  child: Text("Vous avez déjà un compte?" , style: TextStyle( color: _mainColor , fontSize: 15.0, fontWeight: FontWeight.normal),),
+                  child: const Text("Vous avez déjà un compte?" , style: TextStyle( color: _mainColor , fontSize: 15.0, fontWeight: FontWeight.normal),),
                 ),
 
                 const SizedBox(height: 25.0,),

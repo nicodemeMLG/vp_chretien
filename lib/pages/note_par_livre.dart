@@ -3,7 +3,7 @@ import 'package:vp_chretien/models/livre_model.dart';
 import 'package:vp_chretien/widgets/liste_statistique_livre_widget.dart';
 
 
-final Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class NoteParLivre extends StatefulWidget {
   final List<LivreModel> livres;
   final String? idAnnee;
@@ -45,7 +45,7 @@ class _NoteParLivreState extends State<NoteParLivre> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Mes notes",
           overflow: TextOverflow.ellipsis,
           style: TextStyle(

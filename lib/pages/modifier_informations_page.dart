@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:vp_chretien/pages/profile_page.dart';
 import '../controlleurs/function.dart';
 import '../models/user_model.dart';
 
-Color _mainColor= const Color(0xFF446600);
 class ModifierInformationsPage extends StatefulWidget {
   final UserModel user;
 
@@ -36,10 +33,10 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
   @override
   void initState(){
     super.initState();
-    nomController.text=widget.user.name.toString()??"";
-    telephoneController.text = widget.user.mobile.toString()??"";
-    emailController.text= widget.user.email.toString()??"";
-    villeController.text = widget.user.locality.toString()??"";
+    nomController.text=widget.user.name.toString();
+    telephoneController.text = widget.user.mobile.toString();
+    emailController.text= widget.user.email.toString();
+    villeController.text = widget.user.locality.toString();
 
 
   }

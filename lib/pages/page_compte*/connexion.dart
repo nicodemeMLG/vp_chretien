@@ -1,8 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:vp_chretien/controlleurs/function.dart';
-import 'package:vp_chretien/pages/homePage.dart';
 import 'package:vp_chretien/pages/page_compte*/inscription_email.dart';
 import 'package:vp_chretien/pages/page_compte*/inscription_phone.dart';
 import 'package:vp_chretien/pages/page_compte*/passe_oublie.dart';
@@ -49,7 +47,7 @@ class _ConnexionState extends State<Connexion> {
                   width: 150,
                 ),
                 widget.actif ? const Text("Votre compte n'est pas encore activé" , style: TextStyle(color: Colors.red,fontSize: 15.0),) :
-                SizedBox(),
+                const SizedBox(),
                 Form(
                   key: _formKey,
                   child: Column(
@@ -176,7 +174,7 @@ class _ConnexionState extends State<Connexion> {
                 const SizedBox(height: 20.0,),
                 TextButton(
                   onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InscriptionEmail()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const InscriptionEmail()));
                   },
 
                   child: Text("S'inscrire avec un EMAIL" , style: TextStyle( color: _mainColor , fontSize: 18.0, fontWeight: FontWeight.w600),),
@@ -184,7 +182,7 @@ class _ConnexionState extends State<Connexion> {
                 const SizedBox(height: 35.0,),
                 TextButton(
                   onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> InscriptionPhone()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const InscriptionPhone()));
                   },
                   child: Text("Se connecter avec le TELEPHONE" , style: TextStyle( color: _mainColor , fontSize: 18.0, fontWeight: FontWeight.w600),),
                 ),

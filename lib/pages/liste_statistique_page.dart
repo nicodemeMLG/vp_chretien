@@ -1,6 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:vp_chretien/models/donnees_sim.dart';
 import 'package:vp_chretien/pages/rapport_quiz.dart';
 import 'package:vp_chretien/widgets/liste_statistique_widget.dart';
 import '../models/livre_model.dart';

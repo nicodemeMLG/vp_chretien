@@ -208,7 +208,6 @@ class ProgrammeSection extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    bool estValid;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: element.map((e){

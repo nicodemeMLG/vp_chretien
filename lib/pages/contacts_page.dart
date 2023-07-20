@@ -28,7 +28,7 @@ Widget contacts(){
     child: Container(
       // color: Colors.blue,
       height: 400.0,
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
           const Image(image: AssetImage("images/vp1.jpg")),

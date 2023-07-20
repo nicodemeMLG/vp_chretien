@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-final Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class NoteParDate extends StatefulWidget {
   final String? idAnnee;
   const NoteParDate({super.key, required this.idAnnee});
@@ -23,7 +23,7 @@ class _NoteParDateState extends State<NoteParDate> {
   }
   String idAnnee="";
   String cycle="";
-  String userId = FirebaseAuth.instance.currentUser!.uid??"";
+  String userId = FirebaseAuth.instance.currentUser!.uid;
 
   Future<String> getNoteParDate(DateTime date) async{
     String noteParDate;
@@ -64,7 +64,7 @@ class _NoteParDateState extends State<NoteParDate> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: Text(
+      appBar: AppBar(title: const Text(
           "Mes notes",
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
@@ -124,7 +124,7 @@ class _NoteParDateState extends State<NoteParDate> {
                     }
                   },
                 ),
-                Text("%" , style: TextStyle(fontSize: 16.0,color: _mainColor)),
+                const Text("%" , style: TextStyle(fontSize: 16.0,color: _mainColor)),
               ],
             ),
           ],

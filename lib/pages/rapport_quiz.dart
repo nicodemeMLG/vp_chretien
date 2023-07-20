@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/liste_quiz_widget.dart';
 
 
-final Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class RapportQuiz extends StatelessWidget {
   final List quiz;
   final String idAnnee;
@@ -17,7 +17,7 @@ class RapportQuiz extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
         "Rapport de Quiz",
         overflow: TextOverflow.ellipsis,
         style: TextStyle(

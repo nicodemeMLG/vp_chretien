@@ -26,7 +26,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  DateTime? laDate= null;
+  DateTime? laDate;
   String annee= DateTime.now().year.toString();
   String mois= DateTime.now().month.toString();
   String jour= DateTime.now().day.toString();
@@ -135,13 +135,6 @@ class _HomePageState extends State<HomePage> {
     anneeActif();
     getCycle();
     getNoteParCycle();
-    void dateNull() {
-      laDate=null;
-    }
-    // if(widget.cycle!=null){
-    //   _currentIndex=3;
-    // }
-
     Map<String,DateTime?>? date = {'date':laDate};
     List<Widget> tabs =[
 
@@ -158,7 +151,7 @@ class _HomePageState extends State<HomePage> {
 
 
     List<Widget> btnActions=[
-      // IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
+
       IconButton(
           onPressed: (){
         _showDatePicker();
@@ -223,7 +216,6 @@ class _HomePageState extends State<HomePage> {
                 onTap: (){
                   setState(() {
                     _currentIndex = 0;
-
                     _pageController.jumpToPage(_currentIndex);
                     Navigator.pop(context);
 
@@ -368,7 +360,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      // body: tabs[_currentIndex],
 
       body:PageView(
         controller: _pageController,

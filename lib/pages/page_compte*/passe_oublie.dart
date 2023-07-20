@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vp_chretien/controlleurs/function.dart';
 
-Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class PasseOublie extends StatefulWidget {
   const PasseOublie({super.key});
 
@@ -13,8 +13,6 @@ class PasseOublie extends StatefulWidget {
 class _PasseOublieState extends State<PasseOublie> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
-
-  bool _isChecked = false;
   bool loading = false;
 
 
@@ -54,12 +52,12 @@ class _PasseOublieState extends State<PasseOublie> {
 
                       hintText: "Email",
                       labelStyle: TextStyle(color: Colors.grey.shade500,fontSize: 18.0),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                      enabledBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
                           borderSide: BorderSide(color: _mainColor,width: 2.0)
                       ),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: const BorderRadius.all(Radius.circular(15.0)),
+                      focusedBorder: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(15.0)),
                           borderSide: BorderSide(color: _mainColor,width: 2.0)
                       ),
                     ),
@@ -110,7 +108,7 @@ class _PasseOublieState extends State<PasseOublie> {
                       onPressed: (){
                         Navigator.of(context).pop();
                       },
-                      child: Text("<<Retour" , style: TextStyle( color: _mainColor , fontSize: 15.0, fontWeight: FontWeight.normal),),
+                      child: const Text("<<Retour" , style: TextStyle( color: _mainColor , fontSize: 15.0, fontWeight: FontWeight.normal),),
                     ),
 
                   ],

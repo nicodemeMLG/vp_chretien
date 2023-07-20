@@ -5,7 +5,7 @@ import 'package:vp_chretien/models/programme_model.dart';
 
 
 late DateTime? maDate;
-final Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class ProgrammePage2 extends StatefulWidget {
   final String? cycle;
   const ProgrammePage2({super.key, required this.cycle});
@@ -24,7 +24,6 @@ class _ProgrammePage2State extends State<ProgrammePage2> {
   List<ProgrammeModel> listeProgramme=[];
   Future<List<ProgrammeModel>> getProgrammes() async{
     List<ProgrammeModel> programmes=[];
-    final ref = FirebaseDatabase.instance.ref().child("actifb");
 
     await FirebaseDatabase.instance.ref().child("lecturesParCycle/${widget.cycle}/lecture").once()
         .then((event){
@@ -45,7 +44,7 @@ class _ProgrammePage2State extends State<ProgrammePage2> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           "Lecture de la bible",
           overflow: TextOverflow.ellipsis,
           style: TextStyle(

@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 
-final Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class MoyenneQuizPage extends StatefulWidget {
   final String quiz;
   final String idAnnee;
@@ -53,7 +53,7 @@ class _MoyenneQuizPageState extends State<MoyenneQuizPage> {
             const SizedBox(height: 15.0,),
             Text(
               widget.quiz,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 30.0,
                 color: _mainColor,
@@ -85,7 +85,7 @@ class _MoyenneQuizPageState extends State<MoyenneQuizPage> {
                       }
                     }
                 ),
-                Text("%" , style: TextStyle(fontSize: 16.0,color: _mainColor)),
+                const Text("%" , style: TextStyle(fontSize: 16.0,color: _mainColor)),
               ],
             ),
           ],

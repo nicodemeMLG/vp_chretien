@@ -1,15 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:vp_chretien/widgets/appbar_widget.dart';
-
-import '../controlleurs/function_programme.dart';
-import '../models/donnees_sim.dart';
 import '../models/programme_model.dart';
 import '../widgets/liste_programme_widget.dart';
 
-final Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class LecturesValidesPage extends StatefulWidget {
 
   final String? idAnnee;
@@ -51,7 +46,7 @@ class _LecturesValidesPageState extends State<LecturesValidesPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: Text(
+      appBar: AppBar(title: const Text(
         "Mes Lectures validées",
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
