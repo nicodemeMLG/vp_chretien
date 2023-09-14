@@ -16,6 +16,8 @@ class ProgrammePage extends StatefulWidget {
 
 }
 
+
+
 class _ProgrammePageState extends State<ProgrammePage> {
   List<LectureModel> listeProgramme=[];
   List<LectureModel> listeProgrammeDate=[];
@@ -98,13 +100,15 @@ class ContenuBody extends StatelessWidget{
   const ContenuBody({super.key});
 
 
+  Future<void> fauFuture() async{
 
+  }
 
   @override
   Widget build(BuildContext context){
 
     return FutureBuilder(
-      // future: getProgrammes(),
+        future: fauFuture(),
         builder: (context , snapshot){
           if(snapshot.connectionState==ConnectionState.waiting){
             return const Center(
