@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
 
-import 'package:vp_chretien/pages/page_compte*/inscription_phone_completion.dart';
+import 'package:vp_chretien/pages/page_compte/inscription_phone_completion.dart';
 import 'package:vp_chretien/pages/switch_page.dart';
+import 'package:vp_chretien/services/auth_service.dart';
 
-import '../../controlleurs/function.dart';
 
 
 
@@ -56,7 +56,7 @@ class _OtpVerificationState extends State<OtpVerification> {
   void resendSmsCode() {
     resend=false;
     setState(() {});
-    authWithPhoneNumber(
+    AuthService().authWithPhoneNumber(
       widget.numero,
       onCodeSend: (verificationId , v){
         loading=false;
@@ -66,7 +66,7 @@ class _OtpVerificationState extends State<OtpVerification> {
       },
       onAutoVerify: (v) async{
         loading=false;
-        await auth.signInWithCredential(v);
+        await AuthService().auth.signInWithCredential(v);
         setState(() {});
       },
       onFailed: (e){
@@ -84,7 +84,7 @@ class _OtpVerificationState extends State<OtpVerification> {
   void onVerifySmsCode() async {
     loading = true;
     setState(() {});
-    await optSend(widget.verificationId, smsCode);
+    await AuthService().optSend(widget.verificationId, smsCode);
     loading = false;
     setState(() {});
     Fluttertoast.showToast(msg: "Vérification effectué avec succès");
@@ -101,7 +101,6 @@ class _OtpVerificationState extends State<OtpVerification> {
     }else {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => InscriptionPhoneCompletion(numero: widget.numero)));
     }
-
   }
   @override
   Widget build(BuildContext context) {

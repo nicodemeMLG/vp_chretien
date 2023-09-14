@@ -2,8 +2,8 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:vp_chretien/controlleurs/function.dart';
-import 'package:vp_chretien/pages/page_compte*/otp_verification.dart';
+import 'package:vp_chretien/pages/page_compte/otp_verification.dart';
+import 'package:vp_chretien/services/auth_service.dart';
 
 
 Color _mainColor= const Color(0xFF446600);
@@ -62,7 +62,7 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
     setState(() {});
     if(numero.isNotEmpty) {
       final auth = FirebaseAuth.instance;
-      authWithPhoneNumber(
+      AuthService().authWithPhoneNumber(
           numero,
           onCodeSend: (verificationId , v){
             loading=false;

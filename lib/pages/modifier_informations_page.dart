@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../controlleurs/function.dart';
+import 'package:vp_chretien/services/auth_service.dart';
 import '../models/user_model.dart';
 
 class ModifierInformationsPage extends StatefulWidget {
@@ -208,7 +208,7 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
                     widget.user.email = emailController.text;
                     widget.user.mobile = telephoneController.text;
                     widget.user.locality = villeController.text;
-                    updateUserProfil(widget.user.toMap());
+                    AuthService().updateUserProfil(widget.user.toMap());
                     Navigator.of(context).pop();
                   }
                 },

@@ -8,7 +8,7 @@ import 'package:vp_chretien/widgets/validation_contenu_widget.dart';
 Color _mainColor= const Color(0xFF446600);
 
 class LecturePage extends StatefulWidget {
-  final ProgrammeModel element;
+  final LectureModel element;
   final bool disponible;
   final bool isValid;
   const LecturePage({super.key, required this.element, required this.disponible, required this.isValid});

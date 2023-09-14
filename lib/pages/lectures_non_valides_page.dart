@@ -16,14 +16,14 @@ class LecturesNonValidesPage extends StatelessWidget {
     String userId= FirebaseAuth.instance.currentUser!.uid;
     String cycle="";
     
-    Future<List<ProgrammeModel>> getLecturesNonValide() async{
+    Future<List<LectureModel>> getLecturesNonValide() async{
       List<String> lectureVldId=[];
-      List<ProgrammeModel> lectureNonVld=[];
+      List<LectureModel> lectureNonVld=[];
       final ref= FirebaseDatabase.instance.ref();
       final snapshot1 = await ref.child("Users/$userId/$anneeActif").get();
-      ProgrammeModel lecture = ProgrammeModel();
+      LectureModel lecture = LectureModel();
       for(var l in snapshot1.children){
-        lecture = ProgrammeModel.fromMap(l.value as Map);
+        lecture = LectureModel.fromMap(l.value as Map);
 
         lectureVldId.add(lecture.uid.toString());
       }
@@ -36,7 +36,7 @@ class LecturesNonValidesPage extends StatelessWidget {
       final snapshot3 = await ref.child("lecturesParCycle/$cycle/lecture").get();
       for(var l in snapshot3.children){
         
-        lecture = ProgrammeModel.fromMap(l.value as Map);
+        lecture = LectureModel.fromMap(l.value as Map);
         // print(lecture.uid);
         if(!(lectureVldId.contains(lecture.uid.toString())) && dateValide(lecture.disponible.toString()) ){
 
@@ -72,7 +72,7 @@ class LecturesNonValidesPage extends StatelessWidget {
               );
             }
             else if(snapshot.hasData){
-              List<ProgrammeModel> lecturesNonVld=snapshot.data as List<ProgrammeModel>;
+              List<LectureModel> lecturesNonVld=snapshot.data as List<LectureModel>;
               // print(snapshot.data);
               return ListView(
                 children: lecturesNonVld.map((e){

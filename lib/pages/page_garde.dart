@@ -1,16 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'package:vp_chretien/pages/homePage.dart';
-import 'package:vp_chretien/pages/page_compte*/connexion.dart';
+import 'package:vp_chretien/pages/page_compte/connexion.dart';
+import 'package:vp_chretien/services/programme_service.dart';
 
 
 Color _mainColor= const Color(0xFF446600);
 
 class PageGarde extends StatefulWidget {
   const PageGarde({super.key});
-
   @override
   State<PageGarde> createState() => _PageGardeState();
 }
@@ -22,24 +21,16 @@ class _PageGardeState extends State<PageGarde> {
     return _auth.currentUser != null ? true : false;
   }
 
-  final ref = FirebaseDatabase.instance.ref();
-  Future<String> getActifb() async{
-    String cycle="";
-    final snapshot= await ref.child("actifb/actif").get();
-    cycle = snapshot.value.toString();
-    return cycle;
-  }
   String cycle="";
 
   @override
   void initState() {
     // TODO: implement initState
-
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       body: Container(
@@ -66,31 +57,31 @@ class _PageGardeState extends State<PageGarde> {
             ),
             const SizedBox(height: 20.0,),
             FutureBuilder(
-              future: getActifb(),
+              future: ProgrammeService().getActifb(),
               builder: (context , snapshot){
-                  if(snapshot.connectionState==ConnectionState.waiting){
-                    return const CircularProgressIndicator(color: Colors.green,);
-                  }else{
-                    cycle = snapshot.data.toString();
-                    return ElevatedButton(
-                      onPressed: cycle==""?null: isLoggedIn()? (){
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const HomePage()));
-                      } : (){
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Connexion(actif: false,)));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(200.0, 50.0),
-                        backgroundColor: _mainColor,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(0)),
-                        ),
-                        padding: const EdgeInsets.all(5.0),
+                if(snapshot.connectionState==ConnectionState.waiting){
+                  return const CircularProgressIndicator(color: Colors.green,);
+                }else{
+                  cycle = snapshot.data.toString();
+                  return ElevatedButton(
+                    onPressed: cycle==""?null: isLoggedIn()? (){
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const HomePage()));
+                    } : (){
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Connexion(actif: false,)));
+                    },
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(200.0, 50.0),
+                      backgroundColor: _mainColor,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(0)),
                       ),
-                      child: isLoggedIn() ? Text(cycle=='ancien'?"Ancien Testament":cycle=='nouveau'?"Nouveau Testament":"", style: const TextStyle( color: Colors.white , fontSize: 20.0, fontWeight: FontWeight.w600),) :
-                      const Text( "Connexion", style: TextStyle(color: Colors.white , fontSize: 20.0, fontWeight: FontWeight.w600),) ,
-                    ) ;
-                  }
+                      padding: const EdgeInsets.all(5.0),
+                    ),
+                    child: isLoggedIn() ? Text(cycle=='ancien'?"Ancien Testament":cycle=='nouveau'?"Nouveau Testament":"", style: const TextStyle( color: Colors.white , fontSize: 20.0, fontWeight: FontWeight.w600),) :
+                    const Text( "Connexion", style: TextStyle(color: Colors.white , fontSize: 20.0, fontWeight: FontWeight.w600),) ,
+                  ) ;
                 }
+              }
             ),
 
           ],
@@ -98,13 +89,4 @@ class _PageGardeState extends State<PageGarde> {
       ),
     );
   }
-}
-
-Future<String> isAncienTestament() async{
-  String status;
-  final ref = FirebaseDatabase.instance.ref().child("actifb");
-  final snapshot = await ref.get();
-  final value = snapshot.value as Map;
-  status = value['actif'];
-  return status;
 }

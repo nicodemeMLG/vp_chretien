@@ -16,6 +16,7 @@ class NoteParLivre extends StatefulWidget {
 class _NoteParLivreState extends State<NoteParLivre> {
 
   List<LivreModel> searchResult=[];
+  final searchText = TextEditingController();
 
   @override
   void initState() {
@@ -72,13 +73,19 @@ class _NoteParLivreState extends State<NoteParLivre> {
               onChanged: (val){
                 searchListProgrammes(widget.livres, val);
               },
-
-              decoration: const InputDecoration(
+              controller: searchText,
+              decoration: InputDecoration(
                 hintText: "Recherchez ici",
-                suffixIcon: Icon(Icons.close , size: 40,),
+                suffixIcon: IconButton(
+                    onPressed: (){
+                      setState(() {
+                        searchText.text="";
+                        searchResult=widget.livres;
+                      });
+                    }, icon: const Icon(Icons.close , size: 40,)),
                 focusColor: Colors.blue,
                 fillColor: Colors.blue,
-                focusedBorder: UnderlineInputBorder(
+                focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.blue, width: 2.0) ,
                 ),
               ),

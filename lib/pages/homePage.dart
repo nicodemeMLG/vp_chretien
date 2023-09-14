@@ -6,14 +6,14 @@ import 'package:intl/intl.dart';
 import 'package:vp_chretien/models/user_model.dart';
 import 'package:vp_chretien/pages/MyHomePage.dart';
 import 'package:vp_chretien/pages/contacts_page.dart';
-import 'package:vp_chretien/pages/page_compte*/connexion.dart';
+import 'package:vp_chretien/pages/page_compte/connexion.dart';
 import 'package:vp_chretien/pages/profile_page.dart';
 import 'package:vp_chretien/pages/programme_lecture.dart';
 import 'package:vp_chretien/pages/programme_page.dart';
 import 'package:vp_chretien/pages/statistique_page.dart';
+import 'package:vp_chretien/services/auth_service.dart';
 import 'package:vp_chretien/widgets/appbar_widget.dart';
 
-import '../controlleurs/function.dart';
 import '../controlleurs/function_programme.dart';
 import '../models/programme_model.dart';
 
@@ -33,10 +33,10 @@ class _HomePageState extends State<HomePage> {
 
   void _showDatePicker(){
     showDatePicker( initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2025), context: context)
-      .then((value){
-        laDate=value!;
-        setState(() {});
-      }
+        .then((value){
+      laDate=value!;
+      setState(() {});
+    }
     );
   }
 
@@ -66,8 +66,8 @@ class _HomePageState extends State<HomePage> {
     final snapshot = await refannee.child('Parcours/AnneeActif').get();
     Map annee=snapshot.value as Map;
     idAnnee = annee['id'];
-
   }
+
   String cycle="";
   void getCycle() async{
     final ref = FirebaseDatabase.instance.ref().child("actifb");
@@ -101,9 +101,9 @@ class _HomePageState extends State<HomePage> {
 
 
 
-  Future<List<ProgrammeModel>> getProgrammes() async{
+  Future<List<LectureModel>> getProgrammes() async{
     String cycle="ancien";
-    List<ProgrammeModel> programmes=[];
+    List<LectureModel> programmes=[];
     final ref = FirebaseDatabase.instance.ref().child("actifb");
     await ref.once().then((val) {
       Map value =val.snapshot.value as Map;
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
         .then((event){
       // print(event.snapshot.children);
       for ( var val in event.snapshot.children){
-        ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+        LectureModel a=LectureModel.fromMap(val.value);
         // print(a.uid);
         programmes.add(a);
       }
@@ -154,8 +154,8 @@ class _HomePageState extends State<HomePage> {
 
       IconButton(
           onPressed: (){
-        _showDatePicker();
-      }, icon: const Icon(Icons.calendar_month_outlined))
+            _showDatePicker();
+          }, icon: const Icon(Icons.calendar_month_outlined))
     ];
 
     return Scaffold(
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
               child: DrawerHeader(
                 margin: EdgeInsets.zero,
                 decoration: BoxDecoration(
-                    color: Colors.green[800],
+                  color: Colors.green[800],
                 ),
                 child:  Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -348,7 +348,7 @@ class _HomePageState extends State<HomePage> {
                 onTap: (){
                   setState(() {
                     // _selected=6;
-                    signOut();
+                    AuthService().signOut();
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Connexion(actif: false,)));
                   });
                 },
@@ -364,9 +364,9 @@ class _HomePageState extends State<HomePage> {
       body:PageView(
         controller: _pageController,
         onPageChanged: (value){
-            setState(() {
-              _currentIndex=value;
-            });
+          setState(() {
+            _currentIndex=value;
+          });
         },
         children: tabs,
       ) ,

@@ -2,14 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:intl/intl.dart';
 import 'package:vp_chretien/models/livre_model.dart';
-import '../controlleurs/function_programme.dart';
 import '../models/programme_model.dart';
 import '../models/user_model.dart';
 
 class ContenuWidget extends StatefulWidget {
-  final ProgrammeModel element;
+  final LectureModel element;
   final bool isValid;
   const ContenuWidget({super.key , required this.element, required this.isValid});
 
@@ -79,13 +77,13 @@ class _ContenuWidgetState extends State<ContenuWidget> {
         Row(
           children: [
             Text("Lecture du ", style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
-            Text(widget.element.disponible.toString()??"", style: const TextStyle(color: Colors.blue , fontSize: 20.0, fontWeight: FontWeight.w500))
+            Text(widget.element.disponible.toString(), style: const TextStyle(color: Colors.blue , fontSize: 20.0, fontWeight: FontWeight.w500))
           ],
         ),
         const SizedBox(height: 20.0,),
-        Text(widget.element.intitule.toString()??"", style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
+        Text(widget.element.intitule.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
         const SizedBox(height: 10.0,),
-        Text(widget.element.texte.toString()??"", style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
+        Text(widget.element.texte.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
         const SizedBox(height: 10.0,),
 
         ElevatedButton(
@@ -191,7 +189,7 @@ void enregistrementNoteParLivre(String idAnnee, String idUser,String? idLivre,Us
   await ref.set(noteLecture);
 }
 
-void enregistrerLectureValider(String idAnnee, String idUser,String? idLecture,ProgrammeModel? lecture) async{
+void enregistrerLectureValider(String idAnnee, String idUser,String? idLecture,LectureModel? lecture) async{
   Map<String,dynamic> lectureVld = {
     "disponible":lecture?.disponible,
     "etat":lecture?.etat,

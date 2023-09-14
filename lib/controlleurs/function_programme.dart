@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:vp_chretien/models/donnees_sim.dart';
+// import 'package:vp_chretien/models/donnees_sim.dart';
 import 'package:vp_chretien/models/livre_model.dart';
 import 'package:vp_chretien/models/programme_model.dart';
 
@@ -15,9 +15,9 @@ List<Map<String, dynamic>> elementsValides(List elements,bool valid){
   return lectures;
 }
 
-Future<List<ProgrammeModel>> getProgrammes() async{
+Future<List<LectureModel>> getProgrammes() async{
   String cycle="ancien";
-  List<ProgrammeModel> programmes=[];
+  List<LectureModel> programmes=[];
   final ref = FirebaseDatabase.instance.ref().child("actifb");
   await ref.once().then((val) {
     Map value =val.snapshot.value as Map;
@@ -28,7 +28,7 @@ Future<List<ProgrammeModel>> getProgrammes() async{
       .then((value){
     // print(value.snapshot.children);
     for ( var val in value.children){
-      ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+      LectureModel a=LectureModel.fromMap(val.value);
       programmes.add(a);
     }
     // print(programmes);
@@ -43,7 +43,7 @@ Future<List> getProgrammeDuJour(String date) async{
       .then((value){
     // print(value.snapshot.children);
     for ( var val in value.snapshot.children){
-      ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+      LectureModel a=LectureModel.fromMap(val.value);
       programmes.add(a);
     }
     // print(programmes);
@@ -55,20 +55,20 @@ void valideLecture(String lectureid , String? date , String idLivre) async{
   await FirebaseDatabase.instance.ref().child("lecturesParCycle/ancien/lecture/04-07-2023/lectures/$lectureid")
       .update({"etat" : "Oui"})
       .then((value){
-        Fluttertoast.showToast(msg :"Lecture validée");
-      })
+    Fluttertoast.showToast(msg :"Lecture validée");
+  })
       .catchError((e){
-        Fluttertoast.showToast(msg :"Erreur de connection");
-      });
+    Fluttertoast.showToast(msg :"Erreur de connection");
+  });
 
   await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/lectures/$lectureid")
-          .update({"etat" : "Oui"})
-          .then((value){
-          Fluttertoast.showToast(msg :"Lecture validée");
-      })
-        .catchError((e){
-        Fluttertoast.showToast(msg :"Erreur de connection");
-        });
+      .update({"etat" : "Oui"})
+      .then((value){
+    Fluttertoast.showToast(msg :"Lecture validée");
+  })
+      .catchError((e){
+    Fluttertoast.showToast(msg :"Erreur de connection");
+  });
 
   await FirebaseDatabase.instance.ref().child("lecturesParLivre/$idLivre/lecture/$lectureid")
       .update({"etat" : "Oui"})
@@ -81,19 +81,19 @@ void valideLecture(String lectureid , String? date , String idLivre) async{
 }
 
 
-double progressionGeneraleSim(){
-  int valide=0 , nblectures=0;
-  for(var lecture in lectures){
-    nblectures++;
-    if(lecture.etat=='oui'){
-      valide++;
-    }
-  }
-  return (valide/nblectures)*100;
-}
+// double progressionGeneraleSim(){
+//   int valide=0 , nblectures=0;
+//   for(var lecture in lectures){
+//     nblectures++;
+//     if(lecture.etat=='oui'){
+//       valide++;
+//     }
+//   }
+//   return (valide/nblectures)*100;
+// }
 
-List<ProgrammeModel> etatLecture(List<ProgrammeModel> maListe, String etat){
-  List<ProgrammeModel> listeEtat=[];
+List<LectureModel> etatLecture(List<LectureModel> maListe, String etat){
+  List<LectureModel> listeEtat=[];
   for(var lecture in maListe){
     if(lecture.etat== etat && dateValide(lecture.disponible.toString())){
       listeEtat.add(lecture);
@@ -105,7 +105,7 @@ List<ProgrammeModel> etatLecture(List<ProgrammeModel> maListe, String etat){
 bool dateValide(String dateIn){
   DateTime now = DateTime.now();
   DateFormat format = DateFormat('d-M-y');
-  
+
   DateTime date = format.parse(dateIn);
   int compare = date.compareTo(now);
   bool status = compare > 0 ? false : true;

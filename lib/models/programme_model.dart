@@ -1,6 +1,5 @@
-import 'package:vp_chretien/pages/programme_page.dart';
 
-class ProgrammeModel{
+class LectureModel{
 
   String? cycle;
   String? datefin;
@@ -14,10 +13,10 @@ class ProgrammeModel{
   String? texte;
   String? uid;
 
-  ProgrammeModel({this.uid,this.cycle,this.disponible,this.datefin,this.duree,this.etat,this.intitule,this.livrename,this.livreuid,this.productImageUrl,this.texte});
+  LectureModel({this.uid,this.cycle,this.disponible,this.datefin,this.duree,this.etat,this.intitule,this.livrename,this.livreuid,this.productImageUrl,this.texte});
 
-  factory ProgrammeModel.fromMap(map){
-    return ProgrammeModel(
+  factory LectureModel.fromMap(map){
+    return LectureModel(
       uid: map['uid'],
       cycle: map['cycle'],
       disponible: map['disponible'],

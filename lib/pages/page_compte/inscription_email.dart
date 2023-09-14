@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vp_chretien/models/user_model.dart';
-import 'package:vp_chretien/pages/page_compte*/connexion.dart';
+import 'package:vp_chretien/pages/page_compte/connexion.dart';
+import 'package:vp_chretien/services/auth_service.dart';
 
 Color _mainColor= const Color(0xFF446600);
 class InscriptionEmail extends StatefulWidget {
@@ -392,7 +392,6 @@ class _InscriptionEmailState extends State<InscriptionEmail> {
 
   postDetailsToFirestore() async{
     // FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    DatabaseReference firebaseDatabase = FirebaseDatabase.instance.ref().child('Admin/Users');
     User? user = _auth.currentUser;
     UserModel userModel = UserModel();
 
@@ -403,7 +402,7 @@ class _InscriptionEmailState extends State<InscriptionEmail> {
     userModel.name = _nomController.text;
     userModel.type = false;
 
-    await firebaseDatabase.child(user.uid).set(userModel.toMap());
+    await AuthService().signUpWithEmail(userModel);
 
     // await firebaseFirestore.collection("utilisateurs").doc(user.uid).set(userModel.toMap());
     Fluttertoast.showToast(msg: "Compte créé avec succès");

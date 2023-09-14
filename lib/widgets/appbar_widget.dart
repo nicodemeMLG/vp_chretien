@@ -1,8 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:vp_chretien/services/auth_service.dart';
 
-import '../controlleurs/function.dart';
-import '../pages/page_compte*/connexion.dart';
+import '../pages/page_compte/connexion.dart';
 final Color _mainColor= Color(0xFF446600);
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
@@ -54,7 +54,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           ],
           onSelected: (String value) {
             if(value=='deconnexion'){
-              signOut();
+              AuthService().signOut();
               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Connexion(actif: false,)));
             }
           },

@@ -9,7 +9,7 @@ import '../pages/lecture_page.dart';
 import '../pages/quiz_page.dart';
 
 class ListeProgrammeJourWidget extends StatefulWidget {
-  final ProgrammeModel element;
+  final LectureModel element;
   final String anneeActif;
   const ListeProgrammeJourWidget({super.key, required this.element, required this.anneeActif});
 
@@ -58,7 +58,7 @@ class _ListeProgrammeJourWidgetState extends State<ListeProgrammeJourWidget> {
 
         leading: const FaIcon(FontAwesomeIcons.bookBible , size: 30.0, color: Colors.purple,),
         title: Text(
-          widget.element.intitule.toString()??"" ,
+          widget.element.intitule.toString() ,
           style: TextStyle(
             color: mainColor,
             fontSize: 18.0,

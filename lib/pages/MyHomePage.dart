@@ -8,8 +8,6 @@ import 'package:vp_chretien/widgets/date_widget.dart';
 import 'package:vp_chretien/widgets/liste_programme_jour_widget.dart';
 import 'package:vp_chretien/widgets/slider_widget.dart';
 
-import '../controlleurs/function_programme.dart';
-
 Color mainColor= const Color(0xFF446600);
 
 class MyHomePage extends StatefulWidget{
@@ -22,12 +20,7 @@ class MyHomePage extends StatefulWidget{
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  double progession() {
-    double progres=0;
-    // progressionGenerale().then((value){ progres=value;});
-    progres = progressionGeneraleSim();
-    return progres;
-  }
+
 
   final String? userId=FirebaseAuth.instance.currentUser?.uid;
   @override
@@ -118,29 +111,29 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                         style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.all(2.0),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(0)),
-                          ),
-                          side: const BorderSide(color: Colors.grey)
-                      ), child: Row(
-                          children: [
-                            Container(
-                              width:30,
-                              height: 30,
-
-                              decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(15)
-                              ),
-                              child: const Icon(
-                                Icons.check,
-                                size: 25.0,
-                                color: Colors.white,
-                              ),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(0)),
                             ),
-                            const Text("Lectures validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.w500),)
-                          ],
-                        ),
+                            side: const BorderSide(color: Colors.grey)
+                        ), child: Row(
+                        children: [
+                          Container(
+                            width:30,
+                            height: 30,
+
+                            decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+                            child: const Icon(
+                              Icons.check,
+                              size: 25.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const Text("Lectures validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.w500),)
+                        ],
+                      ),
                       ),
 
                       ElevatedButton(
@@ -180,14 +173,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
-             Padding(
-                padding: const EdgeInsets.only(left: 10.0,),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0,),
               child: Text(
                 "Programme du jour: $noteParDate% ($cycle test.)" ,
                 textAlign: TextAlign.start,
                 style: const TextStyle(color: Colors.white ,
-                    fontWeight: FontWeight.w700 ,
-                    fontSize: 17.0,
+                  fontWeight: FontWeight.w700 ,
+                  fontSize: 17.0,
                 ),
               ),
             ),
@@ -217,4 +210,3 @@ class ProgrammeSection extends StatelessWidget{
     );
   }
 }
-

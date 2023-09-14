@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:vp_chretien/controlleurs/function.dart';
 import 'package:vp_chretien/models/user_model.dart';
 import 'package:vp_chretien/pages/homePage.dart';
 import 'package:vp_chretien/pages/modifier_informations_page.dart';
-import 'package:vp_chretien/pages/page_compte*/connexion.dart';
+import 'package:vp_chretien/pages/page_compte/connexion.dart';
 import 'package:vp_chretien/pages/politique_page.dart';
+import 'package:vp_chretien/services/auth_service.dart';
 
 
 // Color _mainColor= const Color(0xFF446600);
@@ -136,10 +136,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   )
                 ],
               ),
-
               ElevatedButton(
                 onPressed: (){
-                  signOut();
+                  AuthService().signOut();
                   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Connexion(actif: false,)));
                 },
                 style: ElevatedButton.styleFrom(
@@ -193,7 +192,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         Fluttertoast.showToast(msg: "Contact : +2266624512");
                       },
                       style: TextButton.styleFrom(
-
                         padding: EdgeInsets.zero,
 
                       ),

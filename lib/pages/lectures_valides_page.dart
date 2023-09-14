@@ -17,7 +17,7 @@ class LecturesValidesPage extends StatefulWidget {
 class _LecturesValidesPageState extends State<LecturesValidesPage> {
 
   String idAnnee ="";
-  Future<List<ProgrammeModel>> lectureValid() async{
+  Future<List<LectureModel>> lectureValid() async{
     //recuperation de l'année actif
     final ref = FirebaseDatabase.instance.ref();
     final snapshot = await ref.child('Parcours/AnneeActif').get();
@@ -25,12 +25,12 @@ class _LecturesValidesPageState extends State<LecturesValidesPage> {
     idAnnee = annee['id'];
 
 
-    List<ProgrammeModel> lecturesVld =[];
+    List<LectureModel> lecturesVld =[];
     final userId = FirebaseAuth.instance.currentUser?.uid;
 
     final event = await ref.child("Users/$userId/${widget.idAnnee}").once();
     for(var value in event.snapshot.children){
-      ProgrammeModel child = ProgrammeModel.fromMap(value.value);
+      LectureModel child = LectureModel.fromMap(value.value);
       lecturesVld.add(child);
     }
     return lecturesVld;
@@ -58,14 +58,14 @@ class _LecturesValidesPageState extends State<LecturesValidesPage> {
       body: FutureBuilder(
         future: lectureValid(),
         builder: (context , snapshot){
-          List<ProgrammeModel> lecturesVld =[];
+          List<LectureModel> lecturesVld =[];
 
           if(snapshot.connectionState==ConnectionState.waiting){
             return const Center(
               child: CircularProgressIndicator(color: Colors.green,),
             );
           } else if(snapshot.hasData) {
-            lecturesVld=snapshot.data as List<ProgrammeModel>;
+            lecturesVld=snapshot.data as List<LectureModel>;
             return ListView(
               children: lecturesVld.map((e){
                 return ListeProgrammeWidget(element: e);

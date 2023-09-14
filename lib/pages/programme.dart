@@ -21,15 +21,14 @@ class _ProgrammePage2State extends State<ProgrammePage2> {
     // widget.date?['date']=null;
     super.initState();
   }
-  List<ProgrammeModel> listeProgramme=[];
-  Future<List<ProgrammeModel>> getProgrammes() async{
-    List<ProgrammeModel> programmes=[];
-
+  List<LectureModel> listeProgramme=[];
+  Future<List<LectureModel>> getProgrammes() async{
+    List<LectureModel> programmes=[];
     await FirebaseDatabase.instance.ref().child("lecturesParCycle/${widget.cycle}/lecture").once()
         .then((event){
       // print(event.snapshot.children);
       for ( var val in event.snapshot.children){
-        ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+        LectureModel a=LectureModel.fromMap(val.value);
         // print(a.uid);
         programmes.add(a);
       }
@@ -65,7 +64,7 @@ class _ProgrammePage2State extends State<ProgrammePage2> {
               return Container();
             }
             else {
-              return Programme(elements: snapshot.data as List<ProgrammeModel>);
+              return Programme(elements: snapshot.data as List<LectureModel>);
             }
           }
       ),
@@ -75,7 +74,7 @@ class _ProgrammePage2State extends State<ProgrammePage2> {
 
 class Programme extends StatelessWidget{
 
-  final List<ProgrammeModel> elements;
+  final List<LectureModel> elements;
 
   const Programme({super.key, required this.elements});
 

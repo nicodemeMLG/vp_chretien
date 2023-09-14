@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:vp_chretien/pages/page_compte*/inscription_email.dart';
-import 'package:vp_chretien/pages/page_compte*/inscription_phone.dart';
-import 'package:vp_chretien/pages/page_compte*/passe_oublie.dart';
+import 'package:vp_chretien/pages/page_compte/inscription_email.dart';
+import 'package:vp_chretien/pages/page_compte/inscription_phone.dart';
+import 'package:vp_chretien/pages/page_compte/passe_oublie.dart';
 import 'package:vp_chretien/pages/switch_page.dart';
 
 
@@ -198,17 +198,17 @@ class _ConnexionState extends State<Connexion> {
     setState(() {});
     if(_formKey.currentState!.validate()){
       await _auth
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((uid){
-            Fluttertoast.showToast(msg: "Connecté avec succès");
-            _loading = false;
-            setState(() {});
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const SwitchPage()));
-          })
-          .catchError((e){
-            _loading = false;
-            setState(() {});
-            Fluttertoast.showToast(msg: "Connexion echouée");
+        .signInWithEmailAndPassword(email: email, password: password)
+        .then((uid){
+          Fluttertoast.showToast(msg: "Connecté avec succès");
+          _loading = false;
+          setState(() {});
+          Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const SwitchPage()));
+        })
+        .catchError((e){
+          _loading = false;
+          setState(() {});
+          Fluttertoast.showToast(msg: "Connexion echouée");
       })
       ;
     }

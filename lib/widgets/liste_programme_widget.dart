@@ -13,8 +13,8 @@ final Color _mainColor= Color(0xFF446600);
 class ListeProgrammeWidget extends StatefulWidget {
 
 
-  final ProgrammeModel element;
-  ListeProgrammeWidget({super.key,required this.element});
+  final LectureModel element;
+  const ListeProgrammeWidget({super.key,required this.element});
 
   @override
   State<ListeProgrammeWidget> createState() => _ListeProgrammeWidgetState();
@@ -59,7 +59,7 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
 
         leading: const FaIcon(FontAwesomeIcons.bookBible , size: 30.0, color: Colors.purple,),
         title: Text(
-          widget.element.intitule.toString()??"" ,
+          widget.element.intitule.toString() ,
           style: TextStyle(
             color: _mainColor,
             fontSize: 16.0,

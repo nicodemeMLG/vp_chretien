@@ -17,10 +17,10 @@ class ProgrammePage extends StatefulWidget {
 }
 
 class _ProgrammePageState extends State<ProgrammePage> {
-  List<ProgrammeModel> listeProgramme=[];
-  List<ProgrammeModel> listeProgrammeDate=[];
+  List<LectureModel> listeProgramme=[];
+  List<LectureModel> listeProgrammeDate=[];
   void getProgrammes() async{
-    List<ProgrammeModel> programmes=[];
+    List<LectureModel> programmes=[];
     String? cycle="";
     final ref = FirebaseDatabase.instance.ref().child("actifb");
     await ref.once().then((val) {
@@ -32,7 +32,7 @@ class _ProgrammePageState extends State<ProgrammePage> {
         .then((event){
       // print(event.snapshot.children);
       for ( var val in event.snapshot.children){
-        ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+        LectureModel a=LectureModel.fromMap(val.value);
         // print(a.uid);
         programmes.add(a);
       }
@@ -42,7 +42,7 @@ class _ProgrammePageState extends State<ProgrammePage> {
   }
 
   void getProgrammesParDate() async{
-    List<ProgrammeModel> programmes=[];
+    List<LectureModel> programmes=[];
 
     String date = DateFormat("dd-MM-yyyy").format(maDate!);
 
@@ -50,7 +50,7 @@ class _ProgrammePageState extends State<ProgrammePage> {
     await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/lectures").once()
         .then((event){
       for ( var val in event.snapshot.children){
-        ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+        LectureModel a=LectureModel.fromMap(val.value);
 
         programmes.add(a);
 
@@ -104,7 +104,7 @@ class ContenuBody extends StatelessWidget{
   Widget build(BuildContext context){
 
     return FutureBuilder(
-        // future: getProgrammes(),
+      // future: getProgrammes(),
         builder: (context , snapshot){
           if(snapshot.connectionState==ConnectionState.waiting){
             return const Center(
@@ -114,7 +114,7 @@ class ContenuBody extends StatelessWidget{
             return Container();
           }
           else {
-            return Programme(elements: snapshot.data as List<ProgrammeModel>);
+            return Programme(elements: snapshot.data as List<LectureModel>);
           }
         }
     );
@@ -125,8 +125,8 @@ class ContenuParDateBody extends StatelessWidget{
 
   const ContenuParDateBody({super.key,});
 
-  Future<List<ProgrammeModel>> getProgrammes() async{
-    List<ProgrammeModel> programmes=[];
+  Future<List<LectureModel>> getProgrammes() async{
+    List<LectureModel> programmes=[];
 
     String date = DateFormat("dd-MM-yyyy").format(maDate!);
 
@@ -134,7 +134,7 @@ class ContenuParDateBody extends StatelessWidget{
     await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/lectures").once()
         .then((event){
       for ( var val in event.snapshot.children){
-        ProgrammeModel a=ProgrammeModel.fromMap(val.value);
+        LectureModel a=LectureModel.fromMap(val.value);
         programmes.add(a);
       }
     });
@@ -144,26 +144,26 @@ class ContenuParDateBody extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return FutureBuilder(
-            future: getProgrammes(),
-            builder: (context , snapshot){
-              if(snapshot.connectionState==ConnectionState.waiting){
-                return const Center(
-                  child: CircularProgressIndicator(color: Colors.green,),
-                );
-              } else if(snapshot.hasError){
-                return Container();
-              }
-              else {
-                return Programme(elements: snapshot.data as List<ProgrammeModel>);
-              }
-            }
-        );
+        future: getProgrammes(),
+        builder: (context , snapshot){
+          if(snapshot.connectionState==ConnectionState.waiting){
+            return const Center(
+              child: CircularProgressIndicator(color: Colors.green,),
+            );
+          } else if(snapshot.hasError){
+            return Container();
+          }
+          else {
+            return Programme(elements: snapshot.data as List<LectureModel>);
+          }
+        }
+    );
   }
 }
 
 class Programme extends StatefulWidget{
 
-  final List<ProgrammeModel> elements;
+  final List<LectureModel> elements;
 
   const Programme({super.key, required this.elements});
 
@@ -172,8 +172,9 @@ class Programme extends StatefulWidget{
 }
 
 class _ProgrammeState extends State<Programme> {
-  List<ProgrammeModel> searchResult=[];
+  List<LectureModel> searchResult=[];
   bool initial = true;
+  final searchText=TextEditingController();
 
 
   @override
@@ -183,9 +184,9 @@ class _ProgrammeState extends State<Programme> {
   }
   @override
   Widget build(BuildContext context){
-    void searchListProgrammes(List<ProgrammeModel> donnees, String search){
+    void searchListProgrammes(List<LectureModel> donnees, String search){
       initial = false;
-      List<ProgrammeModel> result=[];
+      List<LectureModel> result=[];
       if(search.isEmpty){
         result=donnees;
       }else{
@@ -200,42 +201,52 @@ class _ProgrammeState extends State<Programme> {
 
     }
 
+
     // searchResult=widget.elements;
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 10.0,right: 20.0,left: 15.0, bottom: 10.0),
           child: TextField(
+
             onChanged: (val){
+
               searchListProgrammes(widget.elements, val);
+
             },
-            decoration: const InputDecoration(
+            controller: searchText,
+            decoration: InputDecoration(
               hintText: "Recherchez ici",
-              suffixIcon: Icon(Icons.close , size: 20,),
+              suffixIcon: IconButton(onPressed: (){
+                setState(() {
+                  searchText.text="";
+                  searchResult=widget.elements;
+              });}, icon: const Icon(Icons.close , size: 30,)),
               focusColor: Colors.blue,
               fillColor: Colors.blue,
-              focusedBorder: UnderlineInputBorder(
+              focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.blue, width: 2.0) ,
               ),
             ),
             cursorColor: Colors.blue,
+
           ),
 
         ),
         FutureBuilder(
-          builder: (context,snapshot){
-            if(snapshot.connectionState==ConnectionState.waiting){
-              return const Center(child: CircularProgressIndicator(color: Colors.green,),);
-            }else{
-              return Flexible(child: ListView(
-                children: initial? widget.elements.map((e){
-                  return ListeProgrammeWidget(element: e);
-                }).toList(): searchResult.map((e){
-                  return ListeProgrammeWidget(element: e);
-                }).toList(),
-              ),);
+            builder: (context,snapshot){
+              if(snapshot.connectionState==ConnectionState.waiting){
+                return const Center(child: CircularProgressIndicator(color: Colors.green,),);
+              }else{
+                return Flexible(child: ListView(
+                  children: initial? widget.elements.map((e){
+                    return ListeProgrammeWidget(element: e);
+                  }).toList(): searchResult.map((e){
+                    return ListeProgrammeWidget(element: e);
+                  }).toList(),
+                ),);
+              }
             }
-          }
         ),
 
 
@@ -243,5 +254,3 @@ class _ProgrammeState extends State<Programme> {
     );
   }
 }
-
-

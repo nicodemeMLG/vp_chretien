@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vp_chretien/models/livre_model.dart';
-
-
-import '../pages/lecture_page.dart';
 import '../pages/note_livre.dart';
 Color _mainColor= const Color(0xFF446600);
 class ListeStatistiqueLivreWidget extends StatelessWidget {

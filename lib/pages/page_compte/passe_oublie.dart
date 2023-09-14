@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:vp_chretien/controlleurs/function.dart';
+import 'package:vp_chretien/services/auth_service.dart';
 
 const Color _mainColor= Color(0xFF446600);
 class PasseOublie extends StatefulWidget {
@@ -77,7 +77,7 @@ class _PasseOublieState extends State<PasseOublie> {
                     if(_formKey.currentState!.validate()){
                       loading=true;
                       setState(() {});
-                      bool send = await resetPassword(_emailController.text);
+                      bool send = await AuthService().resetPassword(_emailController.text);
                       if(send){
                         Fluttertoast.showToast(msg: "Accédez à votre email pour modifier le mot de passe");
                       }else{
