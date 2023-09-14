@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:vp_chretien/models/user_model.dart';
-import 'package:vp_chretien/pages/MyHomePage.dart';
+import 'package:vp_chretien/pages/my_home_page.dart';
 import 'package:vp_chretien/pages/contacts_page.dart';
 import 'package:vp_chretien/pages/page_compte/connexion.dart';
 import 'package:vp_chretien/pages/profile_page.dart';

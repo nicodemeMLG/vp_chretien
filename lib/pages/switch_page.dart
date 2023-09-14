@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:vp_chretien/models/user_model.dart';
-import 'package:vp_chretien/pages/homePage.dart';
+import 'package:vp_chretien/pages/home_page.dart';
 import 'package:vp_chretien/pages/page_compte/connexion.dart';
 
 class SwitchPage extends StatefulWidget {

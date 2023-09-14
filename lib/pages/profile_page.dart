@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vp_chretien/models/user_model.dart';
-import 'package:vp_chretien/pages/homePage.dart';
+import 'package:vp_chretien/pages/home_page.dart';
 import 'package:vp_chretien/pages/modifier_informations_page.dart';
 import 'package:vp_chretien/pages/page_compte/connexion.dart';
 import 'package:vp_chretien/pages/politique_page.dart';

@@ -26,14 +26,14 @@ class SliderWidget extends StatelessWidget {
       items: stockImg.map((photo) {
         return Builder(
           builder: (BuildContext context){
-            return ImageBox(photo);
+            return imageBox(photo);
           },
         );
       }).toList(),
     );
   }
 
-  Widget ImageBox(String photo){
+  Widget imageBox(String photo){
     return Container(
       height: double.infinity,
       width: double.infinity,

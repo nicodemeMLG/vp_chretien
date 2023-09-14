@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vp_chretien/pages/MyHomePage.dart';
+import 'package:vp_chretien/pages/my_home_page.dart';
 
 class DrawerWidget extends StatefulWidget {
 
@@ -24,45 +24,43 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     return Drawer(
       child: ListView(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 300,
             child: DrawerHeader(
               margin: EdgeInsets.zero,
               decoration: BoxDecoration(
                   color: Colors.green
               ),
-              child: Container(
-                child: const Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
 
 
-                      children: [
-                        Image(
-                          image: AssetImage("images/5.jpg"),
-                          width: 150.0,
-                          height: 150.0,
-                        ),
-                        Text("Programme de lecture Biblique",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800,fontSize: 16 ),),
-                        Text("Verts Paturages",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800,fontSize: 16 ),)
-                      ],
-                    ),
+                    children: [
+                      Image(
+                        image: AssetImage("images/5.jpg"),
+                        width: 150.0,
+                        height: 150.0,
+                      ),
+                      Text("Programme de lecture Biblique",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800,fontSize: 16 ),),
+                      Text("Verts Paturages",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800,fontSize: 16 ),)
+                    ],
+                  ),
 
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Aïcha Ouedraogo épse Dipama", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16 ),),
-                        Text("aichajuniore@gmail.com",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 14 ),),
-                      ],
-                    )
-                  ],
-                ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Aïcha Ouedraogo épse Dipama", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16 ),),
+                      Text("aichajuniore@gmail.com",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 14 ),),
+                    ],
+                  )
+                ],
               ),
             ),
           ),
 
-          Container(
+          SizedBox(
             height: 45.0,
             child: ListTile(
               leading: const Icon(Icons.home_filled , size: 20.0, ),
@@ -77,22 +75,22 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   // widget.indexPage = 0;
                   _selected=0;
                   Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                    return MyHomePage(programmejour: [],);
+                    return const MyHomePage(programmejour: [],);
                   }));
                 });
               },
             ),
           ),
 
-          Divider(
+          const Divider(
             height: 2.0,
           ),
-          Container(
+          SizedBox(
             height: 45.0,
             child: ListTile(
 
-              leading: Icon(Icons.menu_book , size: 20.0, ),
-              title: Text('LECTURE DE LA BIBLE',style: TextStyle(
+              leading: const Icon(Icons.menu_book , size: 20.0, ),
+              title: const Text('LECTURE DE LA BIBLE',style: TextStyle(
                 fontSize: 15.0,
               ),),
               selectedTileColor: Colors.grey[300],
@@ -107,11 +105,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           ),
 
 
-          Container(
+          SizedBox(
             height: 45.0,
             child: ListTile(
-              leading: Icon(Icons.pin_rounded , size: 20.0, ),
-              title: Text('PROGRAMME EN COURS',style: TextStyle(
+              leading: const Icon(Icons.pin_rounded , size: 20.0, ),
+              title: const Text('PROGRAMME EN COURS',style: TextStyle(
                 fontSize: 15.0,
               ),),
               selectedTileColor: Colors.grey[300],
@@ -127,13 +125,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
 
 
-          Divider(),
+          const Divider(),
 
-          Container(
+          SizedBox(
             height: 45.0,
             child: ListTile(
-              leading: Icon(Icons.calculate , size: 20.0, ),
-              title: Text('MES STATISTIQUES',style: TextStyle(
+              leading: const Icon(Icons.calculate , size: 20.0, ),
+              title: const Text('MES STATISTIQUES',style: TextStyle(
                 fontSize: 15.0,
               ),),
               selectedTileColor: Colors.grey[300],
@@ -147,11 +145,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ),
           ),
 
-          Container(
+          SizedBox(
             height: 45.0,
             child: ListTile(
-              leading: Icon(Icons.person_pin , size: 20.0, ),
-              title: Text('MON PROFIL', style: TextStyle(
+              leading: const Icon(Icons.person_pin , size: 20.0, ),
+              title: const Text('MON PROFIL', style: TextStyle(
                 fontSize: 15.0,
               ),),
               selectedTileColor: Colors.grey[300],
@@ -167,13 +165,13 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
 
 
-          Divider(),
+          const Divider(),
 
-          Container(
+          SizedBox(
             height: 45.0,
             child: ListTile(
-              leading: Icon(Icons.phone_android_outlined , size: 20.0, ),
-              title: Text('Contacts',style: TextStyle(
+              leading: const Icon(Icons.phone_android_outlined , size: 20.0, ),
+              title: const Text('Contacts',style: TextStyle(
                 fontSize: 15.0,
               ),),
               selectedTileColor: Colors.grey[300],
@@ -187,11 +185,11 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             ),
           ),
 
-          Container(
+          SizedBox(
             height: 45.0,
             child: ListTile(
-              leading: Icon(Icons.logout_rounded , size: 20.0, ),
-              title: Text('Se deconnecter' , style: TextStyle(
+              leading: const Icon(Icons.logout_rounded , size: 20.0, ),
+              title: const Text('Se deconnecter' , style: TextStyle(
                 fontSize: 15.0,
               ),),
               selectedTileColor: Colors.grey[300],

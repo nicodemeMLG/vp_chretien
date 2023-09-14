@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vp_chretien/services/auth_service.dart';
 
 import '../pages/page_compte/connexion.dart';
-final Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
 
@@ -27,7 +27,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         overflow: TextOverflow.ellipsis,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.w600,
           fontSize: 20.0,
           color: _mainColor,

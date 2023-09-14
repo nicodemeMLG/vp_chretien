@@ -68,7 +68,6 @@ class _ContenuWidgetState extends State<ContenuWidget> {
     // print("Nombre chapitres: "+livre.nbrechapitre.toString());
     // print("annee actif : "+idAnnee);
 
-    print(widget.isValid);
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,7 +124,7 @@ void enregistrementNoteParDate(String idAnnee, String idUser,String? cycle,int? 
 
 
   // String date=DateFormat("dd-MM-yyyy").format(DateTime.now());
-  final ref = await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/$idAnnee/$cycle/$idUser");
+  final ref = FirebaseDatabase.instance.ref().child("lecturesParDate/$date/$idAnnee/$cycle/$idUser");
   final snapshot = await ref.get();
   Map noteLecture={};
   if(snapshot.value==null){
@@ -145,7 +144,7 @@ void enregistrementNoteParDate(String idAnnee, String idUser,String? cycle,int? 
 
 void enregistrementNoteParCycle(String idAnnee, String idUser,String? cycle,int nbrLectures,UserModel user) async{
   double note = 1*100/nbrLectures;
-  final ref = await FirebaseDatabase.instance.ref().child("lecturesParCycle/$cycle/$idAnnee/$idUser");
+  final ref = FirebaseDatabase.instance.ref().child("lecturesParCycle/$cycle/$idAnnee/$idUser");
   final snapshot = await ref.get();
   // Map noteLecture = snapshot.value as Map;
   // noteLecture["note"] = (double.parse(noteLecture["note"]) + note).toStringAsFixed(2);
@@ -166,11 +165,11 @@ void enregistrementNoteParCycle(String idAnnee, String idUser,String? cycle,int 
 }
 
 void enregistrementNoteParLivre(String idAnnee, String idUser,String? idLivre,UserModel user) async{
-  final refCount = await FirebaseDatabase.instance.ref().child("lecturesParLivre/$idLivre/lecture");
+  final refCount =  FirebaseDatabase.instance.ref().child("lecturesParLivre/$idLivre/lecture");
   final snapshotCount = await refCount.get();
   int count = snapshotCount.children.length;
   double note = 1*100/count;
-  final ref = await FirebaseDatabase.instance.ref().child("lecturesParLivre/$idLivre/$idAnnee/$idUser");
+  final ref = FirebaseDatabase.instance.ref().child("lecturesParLivre/$idLivre/$idAnnee/$idUser");
   final snapshot = await ref.get();
   // Map noteLecture = snapshot.value as Map;
   // noteLecture["note"] = (double.parse(noteLecture["note"]) + note).toStringAsFixed(2);
@@ -196,7 +195,7 @@ void enregistrerLectureValider(String idAnnee, String idUser,String? idLecture,L
     "intitule":lecture?.intitule,
     "uid":lecture?.uid,
   };
-  final ref = await FirebaseDatabase.instance.ref().child("Users/$idUser/$idAnnee/$idLecture");
+  final ref = FirebaseDatabase.instance.ref().child("Users/$idUser/$idAnnee/$idLecture");
   await ref.set(lectureVld).then((value) { Fluttertoast.showToast(msg: "Validé !");});
 
 }

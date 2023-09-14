@@ -9,7 +9,7 @@ import 'package:vp_chretien/models/programme_model.dart';
 import '../pages/quiz_page.dart';
 
 
-final Color _mainColor= Color(0xFF446600);
+const Color _mainColor= Color(0xFF446600);
 class ListeProgrammeWidget extends StatefulWidget {
 
 
@@ -47,7 +47,7 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
 
     return Container(
       height: 70.0,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         border: BorderDirectional(
           top: BorderSide(
             color: _mainColor,
@@ -60,7 +60,7 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
         leading: const FaIcon(FontAwesomeIcons.bookBible , size: 30.0, color: Colors.purple,),
         title: Text(
           widget.element.intitule.toString() ,
-          style: TextStyle(
+          style: const TextStyle(
             color: _mainColor,
             fontSize: 16.0,
             fontWeight: FontWeight.w600,

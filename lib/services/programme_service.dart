@@ -47,7 +47,6 @@ class ProgrammeService{
         Map valueCycle =event.snapshot.value as Map;
         noteParCycle = valueCycle['note'];
       }
-      print(noteParCycle);
     });
     return noteParCycle;
   }
@@ -100,7 +99,7 @@ class ProgrammeService{
   }
 
   //avoir la liste des lecture à une date donnée
-  List<LectureModel> LecturesADate(DateTime maDate) {
+  List<LectureModel> lecturesADate(DateTime maDate) {
     List<LectureModel> programmes=[];
 
     String date = DateFormat("dd-MM-yyyy").format(maDate);

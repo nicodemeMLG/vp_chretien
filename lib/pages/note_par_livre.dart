@@ -43,7 +43,8 @@ class _NoteParLivreState extends State<NoteParLivre> {
       });
 
     }
-
+    Future<void> fauFuture() async{
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -96,7 +97,7 @@ class _NoteParLivreState extends State<NoteParLivre> {
 
           Flexible(
             child: FutureBuilder(
-
+              future: fauFuture(),
               builder: (context , snapshot){
                 if(snapshot.connectionState==ConnectionState.waiting){
                   return const Center(
