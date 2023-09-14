@@ -100,8 +100,8 @@ class ContenuBody extends StatelessWidget{
   const ContenuBody({super.key});
 
 
-  Future<void> fauFuture() async{
-
+  Future<int> fauFuture() async{
+    return 0;
   }
 
   @override
