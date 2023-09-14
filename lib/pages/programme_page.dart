@@ -100,8 +100,7 @@ class ContenuBody extends StatelessWidget{
   const ContenuBody({super.key});
 
 
-  Future<int> fauFuture() async{
-    return 0;
+  Future<void> fauFuture() async{
   }
 
   @override
@@ -205,7 +204,8 @@ class _ProgrammeState extends State<Programme> {
 
     }
 
-
+    Future<void> fauFuture() async{
+    }
     // searchResult=widget.elements;
     return Column(
       children: [
@@ -238,7 +238,8 @@ class _ProgrammeState extends State<Programme> {
 
         ),
         FutureBuilder(
-            builder: (context,snapshot){
+          future: fauFuture(),
+          builder: (context,snapshot){
               if(snapshot.connectionState==ConnectionState.waiting){
                 return const Center(child: CircularProgressIndicator(color: Colors.green,),);
               }else{
@@ -256,5 +257,7 @@ class _ProgrammeState extends State<Programme> {
 
       ],
     );
+
+
   }
 }
