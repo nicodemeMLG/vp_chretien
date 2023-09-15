@@ -35,7 +35,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       ),
 
       actions: [
-
         Row(
           children: btnAction != null ? btnAction!.map((e) => e).toList(): [],
         ),

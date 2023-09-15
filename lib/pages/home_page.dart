@@ -63,9 +63,9 @@ class _HomePageState extends State<HomePage> {
   String idAnnee="";
   DatabaseReference refannee = FirebaseDatabase.instance.ref();
   void anneeActif() async{
-    final snapshot = await refannee.child('Parcours/AnneeActif').get();
-    Map annee=snapshot.value as Map;
-    idAnnee = annee['id'];
+    final snapshot = await refannee.child('Parcours/AnneeActif/id').get();
+    String annee=snapshot.value as String;
+    idAnnee = annee;
   }
 
   String cycle="";

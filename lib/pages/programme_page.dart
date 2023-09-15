@@ -15,52 +15,44 @@ class ProgrammePage extends StatefulWidget {
   State<ProgrammePage> createState() => _ProgrammePageState();
 
 }
+List<LectureModel> listeProgramme=[];
+List<LectureModel> listeProgrammeDate=[];
+void getProgrammes() async{
+  List<LectureModel> programmes=[];
+  String? cycle="";
+  final ref = FirebaseDatabase.instance.ref().child("actifb");
+  await ref.once().then((val) {
+    Map value =val.snapshot.value as Map;
+    cycle = value['actif'];
+  });
 
+  await FirebaseDatabase.instance.ref().child("lecturesParCycle/$cycle/lecture").once()
+      .then((event){
+    // print(event.snapshot.children);
+    for ( var val in event.snapshot.children){
+      LectureModel a=LectureModel.fromMap(val.value);
+      // print(a.uid);
+      programmes.add(a);
+    }
 
+  });
+  listeProgramme = programmes;
+}
+
+void getProgrammesParDate() async{
+  List<LectureModel> programmes=[];
+  String date = DateFormat("dd-MM-yyyy").format(maDate!);
+  await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/lectures").once().then((event){
+    for ( var val in event.snapshot.children){
+      LectureModel a=LectureModel.fromMap(val.value);
+      programmes.add(a);
+    }
+  });
+  listeProgrammeDate=programmes;
+}
 
 class _ProgrammePageState extends State<ProgrammePage> {
-  List<LectureModel> listeProgramme=[];
-  List<LectureModel> listeProgrammeDate=[];
-  void getProgrammes() async{
-    List<LectureModel> programmes=[];
-    String? cycle="";
-    final ref = FirebaseDatabase.instance.ref().child("actifb");
-    await ref.once().then((val) {
-      Map value =val.snapshot.value as Map;
-      cycle = value['actif'];
-    });
 
-    await FirebaseDatabase.instance.ref().child("lecturesParCycle/$cycle/lecture").once()
-        .then((event){
-      // print(event.snapshot.children);
-      for ( var val in event.snapshot.children){
-        LectureModel a=LectureModel.fromMap(val.value);
-        // print(a.uid);
-        programmes.add(a);
-      }
-
-    });
-    listeProgramme = programmes;
-  }
-
-  void getProgrammesParDate() async{
-    List<LectureModel> programmes=[];
-
-    String date = DateFormat("dd-MM-yyyy").format(maDate!);
-
-
-    await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/lectures").once()
-        .then((event){
-      for ( var val in event.snapshot.children){
-        LectureModel a=LectureModel.fromMap(val.value);
-
-        programmes.add(a);
-
-      }
-    });
-    listeProgrammeDate=programmes;
-
-  }
   @override
   Widget build(BuildContext context) {
     String date="";
@@ -92,74 +84,6 @@ class _ProgrammePageState extends State<ProgrammePage> {
             ],
           )
       ),
-    );
-  }
-}
-
-class ContenuBody extends StatelessWidget{
-  const ContenuBody({super.key});
-
-
-  Future<void> fauFuture() async{
-  }
-
-  @override
-  Widget build(BuildContext context){
-
-    return FutureBuilder(
-        future: fauFuture(),
-        builder: (context , snapshot){
-          if(snapshot.connectionState==ConnectionState.waiting){
-            return const Center(
-              child: CircularProgressIndicator(color: Colors.green,),
-            );
-          } else if(snapshot.hasError){
-            return Container();
-          }
-          else {
-            return Programme(elements: snapshot.data as List<LectureModel>);
-          }
-        }
-    );
-  }
-}
-
-class ContenuParDateBody extends StatelessWidget{
-
-  const ContenuParDateBody({super.key,});
-
-  Future<List<LectureModel>> getProgrammes() async{
-    List<LectureModel> programmes=[];
-
-    String date = DateFormat("dd-MM-yyyy").format(maDate!);
-
-
-    await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/lectures").once()
-        .then((event){
-      for ( var val in event.snapshot.children){
-        LectureModel a=LectureModel.fromMap(val.value);
-        programmes.add(a);
-      }
-    });
-    return programmes;
-  }
-
-  @override
-  Widget build(BuildContext context){
-    return FutureBuilder(
-        future: getProgrammes(),
-        builder: (context , snapshot){
-          if(snapshot.connectionState==ConnectionState.waiting){
-            return const Center(
-              child: CircularProgressIndicator(color: Colors.green,),
-            );
-          } else if(snapshot.hasError){
-            return Container();
-          }
-          else {
-            return Programme(elements: snapshot.data as List<LectureModel>);
-          }
-        }
     );
   }
 }
@@ -203,7 +127,6 @@ class _ProgrammeState extends State<Programme> {
       });
 
     }
-
     Future<void> fauFuture() async{
     }
     // searchResult=widget.elements;
@@ -212,11 +135,8 @@ class _ProgrammeState extends State<Programme> {
         Padding(
           padding: const EdgeInsets.only(top: 10.0,right: 20.0,left: 15.0, bottom: 10.0),
           child: TextField(
-
             onChanged: (val){
-
               searchListProgrammes(widget.elements, val);
-
             },
             controller: searchText,
             decoration: InputDecoration(
@@ -237,22 +157,13 @@ class _ProgrammeState extends State<Programme> {
           ),
 
         ),
-        FutureBuilder(
-          future: fauFuture(),
-          builder: (context,snapshot){
-              if(snapshot.connectionState==ConnectionState.waiting){
-                return const Center(child: CircularProgressIndicator(color: Colors.green,),);
-              }else{
-                return Flexible(child: ListView(
+        Flexible(child: ListView(
                   children: initial? widget.elements.map((e){
                     return ListeProgrammeWidget(element: e);
                   }).toList(): searchResult.map((e){
                     return ListeProgrammeWidget(element: e);
                   }).toList(),
-                ),);
-              }
-            }
-        ),
+                ),)
 
 
       ],

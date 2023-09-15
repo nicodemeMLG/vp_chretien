@@ -51,12 +51,11 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
         border: BorderDirectional(
           top: BorderSide(
             color: _mainColor,
-            width: 3.0
+            width: 3.0,
           ),
         ),
       ),
       child: ListTile(
-
         leading: const FaIcon(FontAwesomeIcons.bookBible , size: 30.0, color: Colors.purple,),
         title: Text(
           widget.element.intitule.toString() ,
@@ -74,7 +73,6 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
           ),
         ),
         trailing: !status ? const FaIcon(FontAwesomeIcons.lock , size: 30.0, color: Colors.red,) : const FaIcon(FontAwesomeIcons.unlock , size: 30.0, color: Colors.green,),
-
         onTap:widget.element.texte==null? null : (){
           if(widget.element.livrename=="quiz"){
             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){
