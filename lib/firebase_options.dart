@@ -64,6 +64,6 @@ class DefaultFirebaseOptions {
     projectId: 'applichretien',
     storageBucket: 'applichretien.appspot.com',
     iosClientId: '131582918463-if3itbof2nsoppsnb7lj4l789bpnsa1e.apps.googleusercontent.com',
-    iosBundleId: 'com.example.vpChretien',
+    iosBundleId: 'cmda.bf.vertpaturage',
   );
 }
