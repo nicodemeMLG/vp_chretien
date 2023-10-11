@@ -235,7 +235,7 @@ class _InscriptionPhoneCompletionState extends State<InscriptionPhoneCompletion>
     userModel.mobile = user!.phoneNumber;
     userModel.name = _nomController.text;
     userModel.email=user!.phoneNumber;
-    userModel.type = false;
+    userModel.type = "Oui";
 
     await firebaseDatabase.child(user!.uid).set(userModel.toMap())
         .then((value) => Fluttertoast.showToast(msg: "Compte créé avec succès"))

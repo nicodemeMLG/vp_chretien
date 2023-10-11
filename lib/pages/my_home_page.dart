@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   late String noteParCycle;
   late String noteParDate;
   String date=DateFormat("dd-MM-yyyy").format(DateTime.now());
-
+  List sliderModel=[];
   void getCycle() async{
     final ref = FirebaseDatabase.instance.ref().child("actifb");
     final snapshot= await ref.get();
@@ -46,6 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
     final snapshot = await refParDate.get();
     Map? valueDate = snapshot.value!=null ? snapshot.value as Map : {};
     noteParDate= valueDate['note']??"0";
+  }
+
+  void getSliderImage() async{
+    final ref = FirebaseDatabase.instance.ref().child("SliderModel1");
+    final snapshot = await ref.get();
+    for (var slide in snapshot.children){
+      Map s = slide.value as Map;
+      sliderModel.add(s['banner']);
+    }
+
   }
 
   void getNoteParCycle() async{
@@ -72,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context){
     getCycle();
+    getSliderImage();
     getNoteParCycle();
     getNoteParDate();
     // print(noteParDate);
@@ -97,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  const SliderWidget(),
+                  SliderWidget(stockImg: sliderModel,),
                   const Text("ANCIEN TESTAMENT",style: TextStyle(color: Colors.green, fontSize: 17.0),),
                   Text("Progression générale: $noteParCycle%",style: const TextStyle(color: Colors.green, fontSize: 17.0,fontWeight: FontWeight.w700),),
                   Row(

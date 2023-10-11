@@ -23,8 +23,7 @@ class _NoteLivreState extends State<NoteLivre> {
     final ref = FirebaseDatabase.instance.ref();
     final snapshot1 = await ref.child("Parcours/AnneeActif/id").get();
     idAnnee = snapshot1.value as String;
-    
-    
+
     String userId = FirebaseAuth.instance.currentUser!.uid;
     //recuperer la note du livre
     final snapshot2 = await ref.child("lecturesParLivre/${widget.livre.uid}/${widget.idAnnee}/$userId/note").get();
@@ -88,7 +87,6 @@ class _NoteLivreState extends State<NoteLivre> {
                     }
                     else{
                       return const Text("0", style: TextStyle( fontSize: 50.0,color: Colors.green , fontWeight: FontWeight.w800),);
-
                     }
                   },
                 ),

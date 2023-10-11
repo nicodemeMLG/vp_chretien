@@ -4,7 +4,7 @@ class UserModel{
   String? email;
   String? mobile;
   String? locality;
-  bool? type;
+  String? type;
 
 
   UserModel({this.email, this.mobile, this.name, this.locality, this.uid, this.type });

@@ -1,20 +1,21 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-final List stockImg = [
+/*final List stockImg = [
   "images/1.jpg",
   "images/2.jpg",
   "images/3.jpeg",
-];
+];*/
 
 class SliderWidget extends StatelessWidget {
-  const SliderWidget({super.key});
+  final List stockImg;
+  const SliderWidget({super.key, required this.stockImg});
 
   @override
   Widget build(BuildContext context) {
     return   CarouselSlider(
       options: CarouselOptions(
-        height: 200,
+        height: 250,
         aspectRatio: 1/1,
         viewportFraction: 1.0,
         enableInfiniteScroll: true,
@@ -38,7 +39,7 @@ class SliderWidget extends StatelessWidget {
       width: double.infinity,
       margin: const EdgeInsets.all(1.0),
       child: Image(
-        image: AssetImage(photo),
+        image: NetworkImage(photo),
         fit: BoxFit.cover,
         width: double.infinity,
         height: double.infinity,

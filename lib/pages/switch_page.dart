@@ -14,7 +14,7 @@ class SwitchPage extends StatefulWidget {
 
 class _SwitchPageState extends State<SwitchPage> {
 
-  Future<bool?> validateUser() async{
+  Future<String?> validateUser() async{
     final ref = FirebaseDatabase.instance.ref();
     String userId= FirebaseAuth.instance.currentUser!.uid;
     // print(userId);
@@ -29,7 +29,7 @@ class _SwitchPageState extends State<SwitchPage> {
       future: validateUser(),
         builder: (context , snapshot){
           // print(snapshot.data);
-          if(snapshot.data==true){
+          if(snapshot.data.toString()=="Oui"){
             return const HomePage();
           }else {
             // signOut();

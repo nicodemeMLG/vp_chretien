@@ -400,7 +400,7 @@ class _InscriptionEmailState extends State<InscriptionEmail> {
     userModel.locality  = _villeController.text;
     userModel.mobile = _contactController.text;
     userModel.name = _nomController.text;
-    userModel.type = false;
+    userModel.type = "Oui";
 
     await AuthService().signUpWithEmail(userModel);
 

@@ -18,7 +18,7 @@ class _QuizPageState extends State<QuizPage> {
   Future<List> getQuestions() async{
     List questions=[];
     final ref = FirebaseDatabase.instance.ref();
-    final snapshot = await ref.child('tests/${widget.nomQuiz}/Questions').get();
+    final snapshot = await ref.child('tests/${widget.nomQuiz}/${widget.nomQuiz}/Questions').get();
     for(var q in snapshot.children){
       Map quiz = q.value as Map;
       questions.add(quiz);
