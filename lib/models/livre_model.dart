@@ -1,7 +1,7 @@
 class LivreModel{
   String? cycle;
   String? intitule;
-  int? nbrechapitre;
+  String? nbrechapitre;
   int? totalchapitre;
   String? uid;
 

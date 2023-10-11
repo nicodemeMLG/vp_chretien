@@ -9,8 +9,6 @@ class RapportQuiz extends StatelessWidget {
   final String idAnnee;
   const RapportQuiz({super.key, required this.quiz, required this.idAnnee});
 
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -32,8 +30,7 @@ class RapportQuiz extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.all(10.0),
-            child: Text("Cliquez sur un un quiz pour voir votre moyenne" , style: TextStyle(fontSize: 18.0),),
-
+            child: Text("Cliquez sur un quiz pour voir votre moyenne" , style: TextStyle(fontSize: 18.0),),
           ),
           Flexible(child: ListView(
             children: quiz.map((e){

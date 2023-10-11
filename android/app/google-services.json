@@ -1,40 +1,50 @@
 {
   "project_info": {
-    "project_number": "131582918463",
-    "project_id": "applichretien",
-    "storage_bucket": "applichretien.appspot.com"
+    "project_number": "842874585724",
+    "firebase_url": "https://vertspaturages-82d36-default-rtdb.firebaseio.com",
+    "project_id": "vertspaturages-82d36",
+    "storage_bucket": "vertspaturages-82d36.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:131582918463:android:49c491fdab14b602055d8a",
+        "mobilesdk_app_id": "1:842874585724:android:c7713f2a75a5590bcefff9",
         "android_client_info": {
-          "package_name": "com.example.appli_vp"
+          "package_name": "com.kfidele.adminvertspaturage"
         }
       },
       "oauth_client": [
         {
-          "client_id": "131582918463-fi6isdegivlbbi2pdq6qd0mp2jlri9h2.apps.googleusercontent.com",
+          "client_id": "842874585724-u96c7rj140hfmqgbj5i0mr3dejrdjmr5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kfidele.adminvertspaturage",
+            "certificate_hash": "81b161b6ff5104c1d759c62e42c395e7f29624b3"
+          }
+        },
+        {
+          "client_id": "842874585724-4emt13j30op7bnsbub41g1la6b7nuga2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBvgxM7D6zsLUFlk2Y3pUf8xrM4_oCn3Og"
+          "current_key": "AIzaSyDcw-t_OkNbad7HiV1Fkbi65aDv2mCRyP8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "131582918463-fi6isdegivlbbi2pdq6qd0mp2jlri9h2.apps.googleusercontent.com",
+              "client_id": "842874585724-4emt13j30op7bnsbub41g1la6b7nuga2.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "131582918463-htj5gk4kanol8jpmpjvtcb7ur6jc07dg.apps.googleusercontent.com",
+              "client_id": "842874585724-phdlr1c932hcg90uhsf2l7d0b1o0beds.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.appliVp"
+                "bundle_id": "cmda.bf.vertpaturage",
+                "app_store_id": "6465290329"
               }
             }
           ]
@@ -43,34 +53,59 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:131582918463:android:4e82ef9c053dcc5f055d8a",
+        "mobilesdk_app_id": "1:842874585724:android:fa07bd8b26b6d4bfcefff9",
         "android_client_info": {
-          "package_name": "com.example.vp_chretien"
+          "package_name": "com.kfidele.vertpaturage"
         }
       },
       "oauth_client": [
         {
-          "client_id": "131582918463-fi6isdegivlbbi2pdq6qd0mp2jlri9h2.apps.googleusercontent.com",
+          "client_id": "842874585724-5vqf38llm278fa29o50shk344hr0i6p8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kfidele.vertpaturage",
+            "certificate_hash": "9f59eeb7015865728dd29c93060c4d4f720b3473"
+          }
+        },
+        {
+          "client_id": "842874585724-p8v1i8nmh0bkfs3t1jgrh4fjidtfm0se.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kfidele.vertpaturage",
+            "certificate_hash": "81b161b6ff5104c1d759c62e42c395e7f29624b3"
+          }
+        },
+        {
+          "client_id": "842874585724-s8n1svmpkkamt8ndfuk91ugi1kbl2cim.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kfidele.vertpaturage",
+            "certificate_hash": "957689e7d867ac841535dadb4537d42fa6de0f8c"
+          }
+        },
+        {
+          "client_id": "842874585724-4emt13j30op7bnsbub41g1la6b7nuga2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBvgxM7D6zsLUFlk2Y3pUf8xrM4_oCn3Og"
+          "current_key": "AIzaSyDcw-t_OkNbad7HiV1Fkbi65aDv2mCRyP8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "131582918463-fi6isdegivlbbi2pdq6qd0mp2jlri9h2.apps.googleusercontent.com",
+              "client_id": "842874585724-4emt13j30op7bnsbub41g1la6b7nuga2.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "131582918463-htj5gk4kanol8jpmpjvtcb7ur6jc07dg.apps.googleusercontent.com",
+              "client_id": "842874585724-phdlr1c932hcg90uhsf2l7d0b1o0beds.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.appliVp"
+                "bundle_id": "cmda.bf.vertpaturage",
+                "app_store_id": "6465290329"
               }
             }
           ]

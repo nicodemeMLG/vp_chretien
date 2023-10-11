@@ -24,7 +24,7 @@ class _ProgrammePage2State extends State<ProgrammePage2> {
   List<LectureModel> listeProgramme=[];
   Future<List<LectureModel>> getProgrammes() async{
     List<LectureModel> programmes=[];
-    await FirebaseDatabase.instance.ref().child("lecturesParCycle/${widget.cycle}/lecture").once()
+    await FirebaseDatabase.instance.ref().child("lecturesParCycle/${widget.cycle}/lectures").once()
         .then((event){
       // print(event.snapshot.children);
       for ( var val in event.snapshot.children){
@@ -64,6 +64,7 @@ class _ProgrammePage2State extends State<ProgrammePage2> {
               return Container();
             }
             else {
+              //print(snapshot.data);
               return Programme(elements: snapshot.data as List<LectureModel>);
             }
           }

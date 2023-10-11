@@ -26,7 +26,7 @@ void getProgrammes() async{
     cycle = value['actif'];
   });
 
-  await FirebaseDatabase.instance.ref().child("lecturesParCycle/$cycle/lecture").once()
+  await FirebaseDatabase.instance.ref().child("lecturesParCycle/$cycle/lectures").once()
       .then((event){
     // print(event.snapshot.children);
     for ( var val in event.snapshot.children){
@@ -145,7 +145,7 @@ class _ProgrammeState extends State<Programme> {
                 setState(() {
                   searchText.text="";
                   searchResult=widget.elements;
-              });}, icon: const Icon(Icons.close , size: 30,)),
+                });}, icon: const Icon(Icons.close , size: 30,)),
               focusColor: Colors.blue,
               fillColor: Colors.blue,
               focusedBorder: const UnderlineInputBorder(
@@ -158,12 +158,12 @@ class _ProgrammeState extends State<Programme> {
 
         ),
         Flexible(child: ListView(
-                  children: initial? widget.elements.map((e){
-                    return ListeProgrammeWidget(element: e);
-                  }).toList(): searchResult.map((e){
-                    return ListeProgrammeWidget(element: e);
-                  }).toList(),
-                ),)
+          children: initial? widget.elements.map((e){
+            return ListeProgrammeWidget(element: e);
+          }).toList(): searchResult.map((e){
+            return ListeProgrammeWidget(element: e);
+          }).toList(),
+        ),)
 
 
       ],

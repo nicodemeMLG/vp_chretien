@@ -25,10 +25,8 @@ class _ListeStatistiquePageState extends State<ListeStatistiquePage> {
     List<LivreModel> meslivres=[];
     final ref=FirebaseDatabase.instance.ref();
     final snapshot = await ref.child("livres").get();
-
     for(var s in snapshot.children){
       LivreModel livre=LivreModel.fromMap(s.value as Map);
-      // print(s.value);
       meslivres.add(livre);
     }
     livres=meslivres;

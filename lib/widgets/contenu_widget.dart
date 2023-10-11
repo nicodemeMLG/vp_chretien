@@ -37,7 +37,7 @@ class _ContenuWidgetState extends State<ContenuWidget> {
   Widget build(BuildContext context) {
 
 
-
+    bool asPicture = widget.element.productImageUrl!.isNotEmpty;
     int countCycle;
     if(widget.element.cycle.toString() == "ancien"){
       countCycle=912;
@@ -82,8 +82,13 @@ class _ContenuWidgetState extends State<ContenuWidget> {
         const SizedBox(height: 20.0,),
         Text(widget.element.intitule.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
         const SizedBox(height: 10.0,),
+        asPicture ? Image(
+          image: NetworkImage(widget.element.productImageUrl.toString()),
+        ) : const SizedBox(),
+        const SizedBox(height: 10.0,),
         Text(widget.element.texte.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
         const SizedBox(height: 10.0,),
+
 
         ElevatedButton(
           onPressed: widget.isValid ? null : (){
@@ -120,10 +125,6 @@ class _ContenuWidgetState extends State<ContenuWidget> {
 
 void enregistrementNoteParDate(String idAnnee, String idUser,String? cycle,int? nbrLectures,String? date, UserModel user) async{
   double note = 1*100/nbrLectures!;
-
-
-
-  // String date=DateFormat("dd-MM-yyyy").format(DateTime.now());
   final ref = FirebaseDatabase.instance.ref().child("lecturesParDate/$date/$idAnnee/$cycle/$idUser");
   final snapshot = await ref.get();
   Map noteLecture={};

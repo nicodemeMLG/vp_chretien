@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>131582918463-if3itbof2nsoppsnb7lj4l789bpnsa1e.apps.googleusercontent.com</string>
+	<string>842874585724-phdlr1c932hcg90uhsf2l7d0b1o0beds.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.131582918463-if3itbof2nsoppsnb7lj4l789bpnsa1e</string>
+	<string>com.googleusercontent.apps.842874585724-phdlr1c932hcg90uhsf2l7d0b1o0beds</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>842874585724-5vqf38llm278fa29o50shk344hr0i6p8.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAu3_IGSsUnjTqmOLB5aopXU6V7i-EgDe4</string>
+	<string>AIzaSyBpJtViQn5ZySTaaTdiVd8dHy5KCw5UaYk</string>
 	<key>GCM_SENDER_ID</key>
-	<string>131582918463</string>
+	<string>842874585724</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.vpChretien</string>
+	<string>cmda.bf.vertpaturage</string>
 	<key>PROJECT_ID</key>
-	<string>applichretien</string>
+	<string>vertspaturages-82d36</string>
 	<key>STORAGE_BUCKET</key>
-	<string>applichretien.appspot.com</string>
+	<string>vertspaturages-82d36.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:131582918463:ios:67fb2e674f020c72055d8a</string>
+	<string>1:842874585724:ios:ffa35c267d88e805cefff9</string>
+	<key>DATABASE_URL</key>
+	<string>https://vertspaturages-82d36-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

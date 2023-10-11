@@ -30,7 +30,7 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     int note = 0;
     int compte=0;
-    // print(note);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -50,7 +50,7 @@ class _QuizPageState extends State<QuizPage> {
             }
             else if(snapshot.hasData){
               questions=snapshot.data as List;
-              // print(questions);
+
               return SingleChildScrollView(
                 child: Column(
                   children: [

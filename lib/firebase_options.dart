@@ -50,20 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBvgxM7D6zsLUFlk2Y3pUf8xrM4_oCn3Og',
-    appId: '1:131582918463:android:4e82ef9c053dcc5f055d8a',
-    messagingSenderId: '131582918463',
-    projectId: 'applichretien',
-    storageBucket: 'applichretien.appspot.com',
+    apiKey: 'AIzaSyDcw-t_OkNbad7HiV1Fkbi65aDv2mCRyP8',
+    appId: '1:842874585724:android:fa07bd8b26b6d4bfcefff9',
+    messagingSenderId: '842874585724',
+    projectId: 'vertspaturages-82d36',
+    storageBucket: 'vertspaturages-82d36.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAu3_IGSsUnjTqmOLB5aopXU6V7i-EgDe4',
-    appId: '1:131582918463:ios:67fb2e674f020c72055d8a',
-    messagingSenderId: '131582918463',
-    projectId: 'applichretien',
-    storageBucket: 'applichretien.appspot.com',
-    iosClientId: '131582918463-if3itbof2nsoppsnb7lj4l789bpnsa1e.apps.googleusercontent.com',
+    apiKey: 'AIzaSyBpJtViQn5ZySTaaTdiVd8dHy5KCw5UaYk',
+    appId: '1:842874585724:ios:ffa35c267d88e805cefff9',
+    messagingSenderId: '842874585724',
+    projectId: 'vertspaturages-82d36',
+    storageBucket: 'vertspaturages-82d36.appspot.com',
+    iosClientId: '842874585724-phdlr1c932hcg90uhsf2l7d0b1o0beds.apps.googleusercontent.com',
     iosBundleId: 'cmda.bf.vertpaturage',
   );
 }

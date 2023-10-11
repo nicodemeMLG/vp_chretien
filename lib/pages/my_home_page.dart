@@ -98,7 +98,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
 
                   const SliderWidget(),
-
                   const Text("ANCIEN TESTAMENT",style: TextStyle(color: Colors.green, fontSize: 17.0),),
                   Text("Progression générale: $noteParCycle%",style: const TextStyle(color: Colors.green, fontSize: 17.0,fontWeight: FontWeight.w700),),
                   Row(

@@ -7,7 +7,6 @@ final List stockImg = [
   "images/3.jpeg",
 ];
 
-
 class SliderWidget extends StatelessWidget {
   const SliderWidget({super.key});
 

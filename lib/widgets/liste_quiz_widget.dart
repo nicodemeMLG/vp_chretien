@@ -25,7 +25,6 @@ class ListeQuizWidget extends StatelessWidget {
               offset: Offset(0,2),
             ),
           ]
-
       ),
 
       child: Center(

@@ -24,7 +24,6 @@ class LecturesNonValidesPage extends StatelessWidget {
       LectureModel lecture = LectureModel();
       for(var l in snapshot1.children){
         lecture = LectureModel.fromMap(l.value as Map);
-
         lectureVldId.add(lecture.uid.toString());
       }
 
@@ -33,7 +32,7 @@ class LecturesNonValidesPage extends StatelessWidget {
       final snapshot2 = await ref.child("actifb/actif").get();
       cycle=snapshot2.value as String;
 
-      final snapshot3 = await ref.child("lecturesParCycle/$cycle/lecture").get();
+      final snapshot3 = await ref.child("lecturesParCycle/$cycle/lectures").get();
       for(var l in snapshot3.children){
         
         lecture = LectureModel.fromMap(l.value as Map);

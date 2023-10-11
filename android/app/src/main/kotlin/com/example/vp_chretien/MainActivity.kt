@@ -1,4 +1,4 @@
-package com.example.vp_chretien
+package com.kfidele.adminvertspaturage
 
 import io.flutter.embedding.android.FlutterActivity
 
