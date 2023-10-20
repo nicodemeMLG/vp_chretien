@@ -53,9 +53,10 @@ class _MoyenneQuizPageState extends State<MoyenneQuizPage> {
             const SizedBox(height: 15.0,),
             Text(
               widget.quiz,
+              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 30.0,
+                fontSize: 20.0,
                 color: _mainColor,
               ),
             ),
@@ -65,7 +66,7 @@ class _MoyenneQuizPageState extends State<MoyenneQuizPage> {
               "Votre moyenne : ",
               style: TextStyle(
                 fontWeight: FontWeight.normal,
-                fontSize: 18.0,
+                fontSize: 16.0,
                 color: Colors.black,
               ),
             ),

@@ -65,7 +65,10 @@ class _StatistiquePageState extends State<StatistiquePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 40.0,),
-              const Image(image: AssetImage("images/stat.jpg")),
+              Image(
+                  image: const AssetImage("images/stat.png"),
+                height: MediaQuery.of(context).size.height*0.3,
+              ),
               const SizedBox(height: 25.0,),
               Text(
                 "Progression générale: ${widget.progression}%",
@@ -84,7 +87,7 @@ class _StatistiquePageState extends State<StatistiquePage> {
                 ],
               ),
 
-              const SizedBox(height: 25,),
+              const SizedBox(height: 25),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

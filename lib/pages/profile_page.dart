@@ -61,14 +61,14 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const SizedBox(height: 20.0,),
+              //const SizedBox(height: 10.0,),
 
-              const Image(
-                image: AssetImage("images/vp1.jpg"),
-                height:100.0,
+              Image(
+                image: const AssetImage("images/profile.png"),
+                height:MediaQuery.of(context).size.height * 0.3,
                 width: 150,
               ),
-              const SizedBox(height: 30.0,),
+              //const SizedBox(height: 10.0,),
               informatioPerso("Nom", widget.userModel.name??""),
 
               informatioPerso("Contact", widget.userModel.email??""),
@@ -77,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
               informatioPerso("Adresse", widget.userModel.locality??""),
 
-              const SizedBox(height: 40.0,),
+              const SizedBox(height: 30.0,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,7 +103,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18.0,
+                          fontSize: 15.0,
                           fontWeight: FontWeight.w600
                       ),
                     ),
@@ -129,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18.0,
+                          fontSize: 15.0,
                           fontWeight: FontWeight.w600
                       ),
                     ),
@@ -154,13 +154,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 18.0,
+                      fontSize: 15.0,
                       fontWeight: FontWeight.w600
                   ),
                 ),
               ),
 
-              const SizedBox(height: 40.0,),
+              const SizedBox(height: 30.0,),
 
               SizedBox(
                 width: double.infinity,
@@ -226,7 +226,7 @@ class _ProfilePageState extends State<ProfilePage> {
           "$titre : ",
           style: TextStyle(
             color: Colors.green[800],
-            fontSize: 20.0,
+            fontSize: 16.0,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -236,7 +236,7 @@ class _ProfilePageState extends State<ProfilePage> {
             maxLines: 3,
             style: TextStyle(
               color: Colors.grey[800],
-              fontSize: 18.0,
+              fontSize: 16.0,
               fontWeight: FontWeight.normal,
             ),
           ),

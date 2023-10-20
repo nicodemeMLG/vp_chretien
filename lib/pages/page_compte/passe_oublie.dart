@@ -19,6 +19,10 @@ class _PasseOublieState extends State<PasseOublie> {
 
   @override
   Widget build(BuildContext context) {
+
+    void fermerFenetre(){
+      Navigator.of(context).pop();
+    }
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
@@ -83,7 +87,7 @@ class _PasseOublieState extends State<PasseOublie> {
                       }else{
                         Fluttertoast.showToast(msg: "Une erreur s'est produite, veuillez réessayer plus tard");
                       }
-                      Navigator.of(context).pop();
+                      fermerFenetre();
                     }
                   },
 

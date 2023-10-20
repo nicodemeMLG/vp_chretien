@@ -24,7 +24,7 @@ class _ContenuWidgetState extends State<ContenuWidget> {
   void getNbrLecturesParDate() async{
     final snapshot = await ref.child("lecturesParDate/${widget.element.disponible}/lectures").get();
     nbrlectures= snapshot.children.length;
-    setState(() {});
+    //setState(() {});
   }
   UserModel user=UserModel();
   void getUser() async{
@@ -36,8 +36,6 @@ class _ContenuWidgetState extends State<ContenuWidget> {
   @override
   Widget build(BuildContext context) {
 
-
-    bool asPicture = widget.element.productImageUrl!.isNotEmpty;
     int countCycle;
     if(widget.element.cycle.toString() == "ancien"){
       countCycle=912;
@@ -75,18 +73,18 @@ class _ContenuWidgetState extends State<ContenuWidget> {
         const SizedBox(height: 20.0,),
         Row(
           children: [
-            Text("Lecture du ", style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
-            Text(widget.element.disponible.toString(), style: const TextStyle(color: Colors.blue , fontSize: 20.0, fontWeight: FontWeight.w500))
+            Text("Lecture du ", style: TextStyle(color: Colors.grey.shade600 , fontSize: 18.0, fontWeight: FontWeight.w500),),
+            Text(widget.element.disponible.toString(), style: const TextStyle(color: Colors.blue , fontSize: 16.0, fontWeight: FontWeight.w500))
           ],
         ),
         const SizedBox(height: 20.0,),
-        Text(widget.element.intitule.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
+        Text(widget.element.intitule.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 18.0, fontWeight: FontWeight.w500),),
         const SizedBox(height: 10.0,),
         /*asPicture ? Image(
           image: NetworkImage(widget.element.productImageUrl.toString()),
         ) : const SizedBox(),*/
         const SizedBox(height: 10.0,),
-        Text(widget.element.texte.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 20.0, fontWeight: FontWeight.w500),),
+        Text(widget.element.texte.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 16.0, fontWeight: FontWeight.w500),),
         const SizedBox(height: 10.0,),
 
 
@@ -112,7 +110,7 @@ class _ContenuWidgetState extends State<ContenuWidget> {
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
                 color: Colors.white,
-                fontSize: 18.0,
+                fontSize: 16.0,
                 fontWeight: FontWeight.w600
             ),
           ),

@@ -19,8 +19,6 @@ class LecturePage extends StatefulWidget {
 class _LecturePageState extends State<LecturePage> {
   DateFormat format = DateFormat('d-M-y');
 
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -44,7 +42,7 @@ class _LecturePageState extends State<LecturePage> {
                   border: Border.all(color: Colors.blue,width: 2.0),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                child: Text(widget.element.livrename.toString(),overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.grey[800] , fontSize: 18.0,fontWeight: FontWeight.w500),),
+                child: Text(widget.element.livrename.toString(),overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.grey[800] , fontSize: 16.0,fontWeight: FontWeight.w500),),
               ),
               widget.disponible ? ContenuWidget(element:widget.element, isValid: widget.isValid, ) : ValidationContenuWidget(dateValid: date),
             ],

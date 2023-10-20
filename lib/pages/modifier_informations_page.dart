@@ -18,8 +18,6 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
   final emailController = TextEditingController();
   final villeController = TextEditingController();
 
-
-
   @override
   void dispose(){
     nomController.dispose();
@@ -47,10 +45,10 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.green[800],
-        title: const Text("Modifier mes informations" ,
+        title: const Text("Modifier mes informations" , overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontWeight: FontWeight.w500,
-            fontSize: 23.0,
+            fontSize: 20.0,
             color: Colors.white,
           ),),
       ),
@@ -70,7 +68,7 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
                       cursorColor: Colors.blue,
                       controller: nomController,
                       style: const TextStyle(
-                          fontSize: 18.0
+                          fontSize: 15.0
                       ),
                       decoration: InputDecoration(
                         focusColor: Colors.blue,
@@ -102,7 +100,7 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
                       keyboardType: TextInputType.number,
                       controller: telephoneController,
                       style: const TextStyle(
-                          fontSize: 18.0
+                          fontSize: 15.0
                       ),
                       decoration: InputDecoration(
                         labelText: "Téléphone",
@@ -132,7 +130,7 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
                     child: TextFormField(
                       controller: emailController,
                       style: const TextStyle(
-                          fontSize: 18.0
+                          fontSize: 15.0
                       ),
                       readOnly: true,
                       decoration: InputDecoration(
@@ -167,7 +165,7 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
                     height: 50.0,
                     child: TextFormField(
                       style: const TextStyle(
-                        fontSize: 18.0
+                        fontSize: 15.0
                       ),
                       controller: villeController,
                       decoration: InputDecoration(
@@ -223,7 +221,7 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
                   'Valider',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 22.5,
+                    fontSize: 20,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

@@ -26,8 +26,10 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
   void lectureValid() async{
     String anneeActif="";
     final ref = FirebaseDatabase.instance.ref();
-    final event = await ref.child('Parcours/AnneeActif/id').once();
-    anneeActif =event.snapshot.value as String;
+    // final event = await ref.child('Parcours/AnneeActif/id').once();
+    // anneeActif =event.snapshot.value as String;
+    final snapshotAnneeActif = await ref.child('Parcours/AnneeActif/id').get();
+    anneeActif = snapshotAnneeActif.value as String;
     final userId = FirebaseAuth.instance.currentUser?.uid;
     final snapshot = await ref.child("Users/$userId/$anneeActif/${widget.element.uid}").get();
     if(snapshot.value!=null){
@@ -56,23 +58,23 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
         ),
       ),
       child: ListTile(
-        leading: const FaIcon(FontAwesomeIcons.bookBible , size: 30.0, color: Colors.purple,),
+        leading: const FaIcon(FontAwesomeIcons.bookBible , size: 20.0, color: Colors.purple,),
         title: Text(
           widget.element.intitule.toString() ,
           style: const TextStyle(
             color: _mainColor,
-            fontSize: 16.0,
+            fontSize: 14.0,
             fontWeight: FontWeight.w600,
           ),
         ),
         subtitle: Text("Lecture du ${widget.element.disponible}",
           style: TextStyle(
             color: Colors.grey[700],
-            fontSize: 14.0,
+            fontSize: 12.0,
             fontWeight: FontWeight.w400,
           ),
         ),
-        trailing: !status ? const FaIcon(FontAwesomeIcons.lock , size: 30.0, color: Colors.red,) : const FaIcon(FontAwesomeIcons.unlock , size: 30.0, color: Colors.green,),
+        trailing: !status ? const FaIcon(FontAwesomeIcons.lock , size: 20.0, color: Colors.red,) : const FaIcon(FontAwesomeIcons.unlock , size: 20.0, color: Colors.green,),
         onTap:widget.element.texte==null? null : (){
           if(widget.element.livrename=="quiz"){
             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){

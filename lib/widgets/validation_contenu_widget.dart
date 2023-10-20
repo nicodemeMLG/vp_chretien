@@ -50,8 +50,9 @@ class _ValidationContenuWidgetState extends State<ValidationContenuWidget> {
       children: [
        Text(
           "Disponible dans",
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 20.0,
+            fontSize: 18.0,
             fontWeight: FontWeight.w600,
             color: Colors.grey[700],
 
@@ -107,7 +108,7 @@ class _ValidationContenuWidgetState extends State<ValidationContenuWidget> {
   }
   Widget compteur(String titre, int valeur){
     return Container(
-      width: 80,
+      width: MediaQuery.of(context).size.width * 0.22,
       //height: 80,
       decoration: BoxDecoration(
         color: Colors.grey[200],
@@ -118,15 +119,16 @@ class _ValidationContenuWidgetState extends State<ValidationContenuWidget> {
           Text(valeur.toString(),
             style: const TextStyle(
               color: Colors.black,
-              fontSize: 25.0,
+              fontSize: 18.0,
               //height: 25,
               fontWeight: FontWeight.bold,
 
           ),),
           Text(titre,
+            overflow: TextOverflow.ellipsis,
             style: const TextStyle(
               color: Colors.purple,
-              fontSize: 15.0,
+              fontSize: 14.0,
               fontWeight: FontWeight.w600,
             ),
           ),

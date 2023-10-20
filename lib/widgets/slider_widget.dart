@@ -13,6 +13,7 @@ class SliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //print(stockImg);
     return   CarouselSlider(
       options: CarouselOptions(
         height: 250,

@@ -74,7 +74,6 @@ class _OtpVerificationState extends State<OtpVerification> {
         // print("le code est erroné");
       },
       autoRetrieval: (v){
-
       },
     );
   }
@@ -96,12 +95,21 @@ class _OtpVerificationState extends State<OtpVerification> {
     User? user = FirebaseAuth.instance.currentUser;
     DatabaseReference ref = FirebaseDatabase.instance.ref();
     final snapshot = await ref.child('Admin/Users/${user!.uid}').get();
-    if(snapshot.value!=null){
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SwitchPage()));
-    }else {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => InscriptionPhoneCompletion(numero: widget.numero)));
-    }
+    snapshot.value!=null ?
+    appelSwitchPage()
+    :
+    appelPhoneInscription();
+
   }
+
+  void appelSwitchPage(){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SwitchPage()));
+  }
+
+  void appelPhoneInscription(){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => InscriptionPhoneCompletion(numero: widget.numero)));
+  }
+
   @override
   Widget build(BuildContext context) {
     // print(widget.verificationId);

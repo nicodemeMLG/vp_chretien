@@ -16,7 +16,7 @@ class ProgrammeLecture extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontWeight: FontWeight.w700,
-            fontSize: 22.0,
+            fontSize: 20.0,
             color: _mainColor,
           ),
         ),
@@ -52,7 +52,7 @@ class ProgrammeLecture extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(0)),
                 ),
               ),
-              child: const Text("NOUVEAU TESTAMENT" , style: TextStyle(fontSize: 20.0,color: Colors.white),),
+              child: const Text("NOUVEAU TESTAMENT" ,overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 18.0,color: Colors.white),),
             ),
 
             const SizedBox(height: 20.0,),
@@ -73,7 +73,7 @@ class ProgrammeLecture extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(0)),
                 ),
               ),
-              child: const Text("ANCIEN TESTAMENT" , style: TextStyle(fontSize: 20.0 , color: Colors.white),),
+              child: const Text("ANCIEN TESTAMENT" ,overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 18.0 , color: Colors.white),),
             ),
 
           ],

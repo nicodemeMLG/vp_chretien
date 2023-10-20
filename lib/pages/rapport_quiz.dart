@@ -30,7 +30,7 @@ class RapportQuiz extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.all(10.0),
-            child: Text("Cliquez sur un quiz pour voir votre moyenne" , style: TextStyle(fontSize: 18.0),),
+            child: Text("Cliquez sur un quiz pour voir votre moyenne" , style: TextStyle(fontSize: 16.0),),
           ),
           Flexible(child: ListView(
             children: quiz.map((e){

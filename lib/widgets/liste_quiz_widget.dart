@@ -35,7 +35,7 @@ class ListeQuizWidget extends StatelessWidget {
             element ,
             style: const TextStyle(
               color: Colors.white,
-              fontSize: 15.0,
+              fontSize: 14.0,
               fontWeight: FontWeight.w600,
             ),
             overflow: TextOverflow.ellipsis,
@@ -52,7 +52,7 @@ class ListeQuizWidget extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
             ),
-            child: const Text("Moyenne" , style: TextStyle( fontSize: 16.0 , color: Colors.white),),
+            child: const Text("Moyenne" , style: TextStyle( fontSize: 14.0 , color: Colors.white),),
           ),
 
         ),

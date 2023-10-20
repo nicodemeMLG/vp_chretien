@@ -28,14 +28,14 @@ class _LecturesValidesPageState extends State<LecturesValidesPage> {
     List<LectureModel> lecturesVld =[];
     final userId = FirebaseAuth.instance.currentUser?.uid;
 
-    final event = await ref.child("Users/$userId/${widget.idAnnee}").once();
-    for(var value in event.snapshot.children){
+    //j'ai modifié le once par get ici 17-10-2023
+    final snapshotL = await ref.child("Users/$userId/${widget.idAnnee}").get();
+    for(var value in snapshotL.children){
       LectureModel child = LectureModel.fromMap(value.value);
       lecturesVld.add(child);
     }
     return lecturesVld;
   }
-
   @override
   void dispose() {
     // TODO: implement dispose
@@ -59,7 +59,6 @@ class _LecturesValidesPageState extends State<LecturesValidesPage> {
         future: lectureValid(),
         builder: (context , snapshot){
           List<LectureModel> lecturesVld =[];
-
           if(snapshot.connectionState==ConnectionState.waiting){
             return const Center(
               child: CircularProgressIndicator(color: Colors.green,),

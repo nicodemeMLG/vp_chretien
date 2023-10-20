@@ -110,6 +110,10 @@ class _ProgrammeState extends State<Programme> {
     searchResult=widget.elements;
   }
   @override
+  void dispose(){
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context){
     void searchListProgrammes(List<LectureModel> donnees, String search){
       initial = false;
@@ -127,8 +131,7 @@ class _ProgrammeState extends State<Programme> {
       });
 
     }
-    Future<void> fauFuture() async{
-    }
+
     // searchResult=widget.elements;
     return Column(
       children: [

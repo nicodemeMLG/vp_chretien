@@ -27,12 +27,12 @@ class ListeStatistiqueWidget extends StatelessWidget {
       ),
       child: ListTile(
 
-        leading: const FaIcon(FontAwesomeIcons.bookBible , size: 30.0, color: Colors.purple,),
+        leading: const FaIcon(FontAwesomeIcons.bookBible , size: 20.0, color: Colors.purple,),
         title: Text(
           titre ,
           style: TextStyle(
             color: textCouleur,
-            fontSize: 16.0,
+            fontSize: 14.0,
             fontWeight: FontWeight.w700,
           ),
         ),

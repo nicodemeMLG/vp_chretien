@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
     getNoteParCycle();
     getNoteParDate();
     // print(noteParDate);
-
+    //print(widget.programmejour);
     return Scaffold(
       body: Container(
         color: mainColor,
@@ -109,10 +109,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
 
                   SliderWidget(stockImg: sliderModel,),
-                  const Text("ANCIEN TESTAMENT",style: TextStyle(color: Colors.green, fontSize: 17.0),),
-                  Text("Progression générale: $noteParCycle%",style: const TextStyle(color: Colors.green, fontSize: 17.0,fontWeight: FontWeight.w700),),
+                  const Text("ANCIEN TESTAMENT",overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.green, fontSize: 16.0),),
+                  Text("Progression générale: $noteParCycle%",overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.green, fontSize: 15.0,fontWeight: FontWeight.w700),),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ElevatedButton(
@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.white,
                             ),
                           ),
-                          const Text("Lectures validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.w500),)
+                          const Text("Lectures validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: 14.0,fontWeight: FontWeight.w500),)
                         ],
                       ),
                       ),
@@ -171,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.white,
                             ),
                           ),
-                          const Text("Lectures non validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: 15.0,fontWeight: FontWeight.w500),)
+                          const Text("Lectures non validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: 14.0,fontWeight: FontWeight.w500),)
                         ],
                       ),
                       ),
@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 textAlign: TextAlign.start,
                 style: const TextStyle(color: Colors.white ,
                   fontWeight: FontWeight.w700 ,
-                  fontSize: 17.0,
+                  fontSize: 15.0,
                 ),
               ),
             ),

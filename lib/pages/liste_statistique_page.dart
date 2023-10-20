@@ -100,7 +100,7 @@ class _ListeStatistiquePageState extends State<ListeStatistiquePage> {
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
             fontWeight: FontWeight.w700,
-            fontSize: 22.0,
+            fontSize: 20.0,
             color: _mainColor,
           ),
         ),
