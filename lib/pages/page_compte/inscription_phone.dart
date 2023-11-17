@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:vp_chretien/pages/page_compte/otp_verification.dart';
@@ -15,37 +16,9 @@ class InscriptionPhone extends StatefulWidget {
 
 class _InscriptionPhoneState extends State<InscriptionPhone> {
 
-  // late List<Country> pays=[];
-  //
-  // Future<List<Country>> getCountries() async{
-  //   // final url = Uri.https('restcountries.com','v3.1/all');
-  //   final response = await http.get(Uri.parse('https://restcountries.com/v3.1/all'));
-  //   // print(response.statusCode);
-  //   if(response.statusCode == 200){
-  //     final List<dynamic> data = json.decode(response.body);
-  //     return data.map((item){
-  //
-  //       final String name="${item['name']['common'] }??";
-  //       final String code = "${item['cca3'] }";
-  //       final String flag = "${item['flag']['svg'] }";
-  //       return Country(name: name, code: code, flag: flag);
-  //     }).toList();
-  //   } else {
-  //     throw Exception("Failed to fetch countries");
-  //   }
-  // }
-
-
   @override
   void initState() {
     super.initState();
-    // getCountries().then((result) async{
-    //
-    //   setState(() {
-    //     pays = result;
-    //
-    //   });
-    // });
   }
 
   CountryCode countryCode = CountryCode();
@@ -53,16 +26,16 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
   String selectedCountryCode = '';
   final _contactController = TextEditingController();
 
-
   final _formKey= GlobalKey<FormState>();
   bool loading = false;
   String numero = '';
   void sendOtpCode(){
-    loading=true;
-    setState(() {});
-    if(numero.isNotEmpty) {
-      final auth = FirebaseAuth.instance;
-      AuthService().authWithPhoneNumber(
+    if(_formKey.currentState!.validate()){
+      if(numero.isNotEmpty) {
+        loading=true;
+        setState(() {});
+        final auth = FirebaseAuth.instance;
+        AuthService().authWithPhoneNumber(
           numero,
           onCodeSend: (verificationId , v){
             loading=false;
@@ -70,30 +43,39 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
             Navigator.of(context).push(MaterialPageRoute(builder: (context)=> OtpVerification(numero: numero, verificationId: verificationId,)));
           },
           onAutoVerify: (v) async{
-            loading=false;
+
             await auth.signInWithCredential(v);
-            setState(() {});
+            setState(() {
+              loading=false;
+            });
           },
           onFailed: (e){
+            //loading=false;
+            Fluttertoast.showToast(msg: "Connexion echouée, Veuillez réessayer");
+            setState(() {
+              loading=false;
+            });
           },
           autoRetrieval: (v){
 
           },
-      );
+        );
+      }
     }
+
   }
-  
-  
+
+
   @override
   Widget build(BuildContext context) {
-
+    double screenWidth = MediaQuery.of(context).size.width;
     // print(pays);
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         toolbarHeight: 0,
         automaticallyImplyLeading: false,
-        flexibleSpace: Container(color: Colors.grey.shade600,height: 40.0,),
+        flexibleSpace: Container(color: Colors.grey.shade600,height: screenWidth>300?40.0:30.0,),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -104,7 +86,7 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
                 child: Text(
                   "Confirmez votre numéro",
                   style: GoogleFonts.abrilFatface(
-                    fontSize: 18.0,
+                    fontSize: screenWidth>300?18.0:13.0,
                     color: Colors.black,
                     fontWeight: FontWeight.w700,
                   ),
@@ -116,19 +98,19 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
                 child: Text(
                   "Assurez-vous que le numéro de téléphone est valide pour obtenir un code de vérification",
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: screenWidth>300?16.0:11.0,
                     color: Colors.grey.shade700,
                     fontWeight: FontWeight.normal,
                   ),
                 ),
             ),
             const SizedBox(height: 10,),
-            const SizedBox(
+            SizedBox(
                 // width: double.maxFinite,
                 child: Text(
                   "NB : CHOISISSEZ VOTRE PAYS D'ABORD !",
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: screenWidth>300?16.0:11.0,
                     color: Colors.red,
                     fontWeight: FontWeight.w500,
                   ),
@@ -136,7 +118,7 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
 
             ),
 
-            const SizedBox(height: 20.0,),
+            SizedBox(height: screenWidth>300?20.0:15.0,),
 
             Form(
               key: _formKey,
@@ -179,7 +161,7 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
                             const SizedBox(width: 8.0),
                             Text(
                               '${countryCode?.name} (${countryCode?.dialCode})',
-                              style: const TextStyle(fontSize: 16.0),
+                              style: TextStyle(fontSize: screenWidth>300?16.0:11.0),
                             ),
                             const Icon(Icons.arrow_drop_down),
                           ],
@@ -194,24 +176,24 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
                     ),
                   ),
 
-                  const SizedBox(
-                    height: 20.0,
+                  SizedBox(
+                    height: screenWidth>300?20.0:15.0,
                   ),
 
                   SizedBox(
-                    height: 50.0,
+                    height: screenWidth>300?50.0:35.0,
                     child: TextFormField(
                       keyboardType: TextInputType.phone,
                       cursorColor: Colors.blue,
                       controller: _contactController,
-                      style: const TextStyle(
-                          fontSize: 18.0
+                      style: TextStyle(
+                          fontSize: screenWidth>300?18.0:13.0
                       ),
                       decoration: InputDecoration(
                         focusColor: Colors.blue,
                         labelText: "Numero de téléphone",
                         // hintText: "Adresse email",
-                        labelStyle: TextStyle(color: Colors.grey.shade500,fontSize: 18.0),
+                        labelStyle: TextStyle(color: Colors.grey.shade500,fontSize: screenWidth>300?18.0:13.0),
                         enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(15.0)),
                             borderSide: BorderSide(color: Colors.blue,width: 2.0)
@@ -227,17 +209,15 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
                       },
                       validator: (valeur){
                         if(int.tryParse(valeur!,radix: 10) == null || valeur.length<5 ){
-
                           return "Veuillez saisir un numéro de téléphone";
                         }
                         return null;
-
                       },
                     ),
                   ),
 
-                  const SizedBox(
-                    height: 20.0,
+                  SizedBox(
+                    height: screenWidth>300?20.0:15.0,
                   ),
 
                   ElevatedButton(
@@ -253,7 +233,7 @@ class _InscriptionPhoneState extends State<InscriptionPhone> {
                     const CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation(Colors.white),
                     ) :
-                    const Text("Confirmer" , style: TextStyle( color: Colors.white , fontSize: 20.0, fontWeight: FontWeight.w600),),
+                    Text("Confirmer" , style: TextStyle( color: Colors.white , fontSize: screenWidth>300?20.0:15.0, fontWeight: FontWeight.w600),),
                   ),
                 ],
               ),

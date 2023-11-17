@@ -23,10 +23,11 @@ class _LecturePageState extends State<LecturePage> {
   Widget build(BuildContext context) {
 
     DateTime date = format.parse(widget.element.disponible.toString());
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(widget.element.livrename.toString(),overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.white , fontSize: 20.0 , fontWeight: FontWeight.w800),),
+        title: Text(widget.element.livrename.toString(),overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.white , fontSize: isNotSmallScreen?20.0:15.0 , fontWeight: FontWeight.w800),),
         backgroundColor: _mainColor,
       ),
       body: SingleChildScrollView(
@@ -36,13 +37,13 @@ class _LecturePageState extends State<LecturePage> {
             children: [
               Container(
                 width: double.maxFinite,
-                height: 40.0,
+                height: isNotSmallScreen?40.0:25.0,
                 padding: const EdgeInsets.only(left: 5.0 , top: 4.0),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.blue,width: 2.0),
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                child: Text(widget.element.livrename.toString(),overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.grey[800] , fontSize: 16.0,fontWeight: FontWeight.w500),),
+                child: Text(widget.element.livrename.toString(),overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.grey[800] , fontSize: isNotSmallScreen?16.0:11.0,fontWeight: FontWeight.w500),),
               ),
               widget.disponible ? ContenuWidget(element:widget.element, isValid: widget.isValid, ) : ValidationContenuWidget(dateValid: date),
             ],

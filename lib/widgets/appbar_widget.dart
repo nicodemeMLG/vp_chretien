@@ -19,6 +19,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return AppBar(
       leading: IconButton(onPressed: (){
         Scaffold.of(context).openDrawer();
@@ -27,9 +28,9 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
         overflow: TextOverflow.ellipsis,
-        style: const TextStyle(
+        style: TextStyle(
           fontWeight: FontWeight.w600,
-          fontSize: 20.0,
+          fontSize: isNotSmallScreen?20.0:15.0,
           color: _mainColor,
         ),
       ),
@@ -47,7 +48,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             PopupMenuItem<String>(
               padding: const EdgeInsets.all(4.0),
               value: 'deconnexion',
-              child: Text('Déconnexion' , style: TextStyle( fontSize: 18.0, color: Colors.grey.shade700,),),
+              child: Text('Déconnexion' , style: TextStyle( fontSize: isNotSmallScreen?18.0:13.0, color: Colors.grey.shade700,),),
             ),
 
           ],

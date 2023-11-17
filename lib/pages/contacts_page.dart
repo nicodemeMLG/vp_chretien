@@ -11,10 +11,10 @@ class ContactsPage extends StatelessWidget {
       appBar: AppBar(
 
         backgroundColor: Colors.green[800],
-        title: const Text("Contacts" ,
+        title: Text("Contacts" ,
           style: TextStyle(
             fontWeight: FontWeight.w500,
-            fontSize: 23.0,
+            fontSize: MediaQuery.of(context).size.width >300? 23 : 15,
             color: Colors.white,
           ),),
       ),

@@ -14,6 +14,7 @@ class ListeStatistiqueLivreWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Container(
       height: 50.0,
       decoration: BoxDecoration(
@@ -26,12 +27,12 @@ class ListeStatistiqueLivreWidget extends StatelessWidget {
       ),
       child: ListTile(
 
-        leading: const FaIcon(FontAwesomeIcons.bookBible , size: 25.0, color: Colors.purple,),
+        leading: FaIcon(FontAwesomeIcons.bookBible , size: isNotSmallScreen?25.0:20.0, color: Colors.purple,),
         title: Text(
           element.intitule??"" ,
           style: TextStyle(
             color: _mainColor,
-            fontSize: 16.0,
+            fontSize: isNotSmallScreen?16.0:11.0,
             fontWeight: FontWeight.w600,
           ),
         ),

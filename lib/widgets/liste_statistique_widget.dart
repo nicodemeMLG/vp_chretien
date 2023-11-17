@@ -14,7 +14,7 @@ class ListeStatistiqueWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Container(
       height: 60.0,
       decoration: BoxDecoration(
@@ -32,7 +32,7 @@ class ListeStatistiqueWidget extends StatelessWidget {
           titre ,
           style: TextStyle(
             color: textCouleur,
-            fontSize: 14.0,
+            fontSize: isNotSmallScreen?14.0:8.0,
             fontWeight: FontWeight.w700,
           ),
         ),

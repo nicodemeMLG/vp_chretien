@@ -85,8 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
     getSliderImage();
     getNoteParCycle();
     getNoteParDate();
-    // print(noteParDate);
-    //print(widget.programmejour);
+
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Scaffold(
       body: Container(
         color: mainColor,
@@ -109,8 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
 
                   SliderWidget(stockImg: sliderModel,),
-                  const Text("ANCIEN TESTAMENT",overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.green, fontSize: 16.0),),
-                  Text("Progression générale: $noteParCycle%",overflow: TextOverflow.ellipsis, style: const TextStyle(color: Colors.green, fontSize: 15.0,fontWeight: FontWeight.w700),),
+                  Text(cycle=="ancien"?"ANCIEN TESTAMENT":"NOUVEAU TESTAMENT",overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.green, fontSize: isNotSmallScreen?16.0:11.0),),
+                  Text("Progression générale: $noteParCycle%",overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.green, fontSize: isNotSmallScreen?15.0:10.0,fontWeight: FontWeight.w700),),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.white,
                             ),
                           ),
-                          const Text("Lectures validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: 14.0,fontWeight: FontWeight.w500),)
+                          Text("Lectures validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: isNotSmallScreen?14.0:11.0,fontWeight: FontWeight.w500),)
                         ],
                       ),
                       ),
@@ -171,7 +171,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.white,
                             ),
                           ),
-                          const Text("Lectures non validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: 14.0,fontWeight: FontWeight.w500),)
+                          Text("Lectures non validées",overflow: TextOverflow.ellipsis ,style: TextStyle(color: Colors.black, fontSize: isNotSmallScreen?14.0:11.0,fontWeight: FontWeight.w500),)
                         ],
                       ),
                       ),
@@ -188,13 +188,17 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text(
                 "Programme du jour: $noteParDate% ($cycle test.)" ,
                 textAlign: TextAlign.start,
-                style: const TextStyle(color: Colors.white ,
+                style: TextStyle(color: Colors.white ,
                   fontWeight: FontWeight.w700 ,
-                  fontSize: 15.0,
+                  fontSize: isNotSmallScreen?15.0:10.0,
                 ),
               ),
             ),
-            Flexible(child: SingleChildScrollView(child: ProgrammeSection(element: widget.programmejour, anneeActif: widget.anneeActif.toString(),),),)
+            widget.programmejour.isNotEmpty?
+            Flexible(child: SingleChildScrollView(child: ProgrammeSection(element: widget.programmejour, anneeActif: widget.anneeActif.toString(),),),):
+            const Center(
+              child: Text("Pas de Lectures pour aujourd'hui!"),
+            ),
           ],
         ),
       ),

@@ -43,7 +43,7 @@ class _ValidationContenuWidgetState extends State<ValidationContenuWidget> {
   @override
   Widget build(BuildContext context) {
 
-
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +52,7 @@ class _ValidationContenuWidgetState extends State<ValidationContenuWidget> {
           "Disponible dans",
           overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            fontSize: 18.0,
+            fontSize: isNotSmallScreen?18.0:13.0,
             fontWeight: FontWeight.w600,
             color: Colors.grey[700],
 
@@ -73,28 +73,6 @@ class _ValidationContenuWidgetState extends State<ValidationContenuWidget> {
 
         const SizedBox(height: 10.0,),
 
-        // ElevatedButton(
-        //       onPressed: (){},
-        //       style: ElevatedButton.styleFrom(
-        //         backgroundColor: Colors.green[700],
-        //         fixedSize: const Size(double.maxFinite, 35),
-        //         padding: EdgeInsets.zero,
-        //         shape: const RoundedRectangleBorder(
-        //           borderRadius: BorderRadius.all(Radius.circular(0)),
-        //         ),
-        //       ),
-        //       child: const Text(
-        //         "Valider" ,
-        //         overflow: TextOverflow.ellipsis,
-        //         style: TextStyle(
-        //             color: Colors.white,
-        //             fontSize: 18.0,
-        //             fontWeight: FontWeight.w600
-        //         ),
-        //       ),
-        //
-        // ),
-
         const SizedBox(height: 5.0,),
 
         Divider(
@@ -107,6 +85,7 @@ class _ValidationContenuWidgetState extends State<ValidationContenuWidget> {
     );
   }
   Widget compteur(String titre, int valeur){
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Container(
       width: MediaQuery.of(context).size.width * 0.22,
       //height: 80,
@@ -117,18 +96,18 @@ class _ValidationContenuWidgetState extends State<ValidationContenuWidget> {
       child: Column(
         children: [
           Text(valeur.toString(),
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.black,
-              fontSize: 18.0,
+              fontSize: isNotSmallScreen?18.0:13.0,
               //height: 25,
               fontWeight: FontWeight.bold,
 
           ),),
           Text(titre,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.purple,
-              fontSize: 14.0,
+              fontSize: isNotSmallScreen?14.0:9.0,
               fontWeight: FontWeight.w600,
             ),
           ),

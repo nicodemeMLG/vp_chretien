@@ -85,7 +85,6 @@ class _HomePageState extends State<HomePage> {
         Map valueCycle =event.snapshot.value as Map;
         noteParCycle = valueCycle['note'];
       }
-
     });
   }
 
@@ -98,9 +97,6 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-
-
-
   Future<List<LectureModel>> getProgrammes() async{
     String cycle="ancien";
     List<LectureModel> programmes=[];
@@ -110,7 +106,7 @@ class _HomePageState extends State<HomePage> {
       cycle = value['actif'];
     });
 
-    await FirebaseDatabase.instance.ref().child("lecturesParCycle/$cycle/lecture").once()
+    await FirebaseDatabase.instance.ref().child("lecturesParCycle/$cycle/lectures").once()
         .then((event){
       // print(event.snapshot.children);
       for ( var val in event.snapshot.children){
@@ -156,7 +152,7 @@ class _HomePageState extends State<HomePage> {
             _showDatePicker();
           }, icon: const Icon(Icons.calendar_month_outlined))
     ];
-
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Scaffold(
       appBar: _currentIndex==0 ?  const AppBarWidget(title: "VP-CHRETIEN DE BERE",) :
       _currentIndex==1 ? const AppBarWidget(title: "Statistiques",) :
@@ -177,24 +173,24 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Column(
+                    Column(
                       mainAxisAlignment:MainAxisAlignment.center,
                       children: [
                         Image(
-                          image: AssetImage("images/vp1-bg.png"),
-                          width: 250.0,
-                          height: 150.0,
+                          image: const AssetImage("images/vp1-bg.png"),
+                          width: isNotSmallScreen?250.0:175,
+                          height:  isNotSmallScreen?150.0:75,
                         ),
-                        Text("Programme de lecture Biblique",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800,fontSize: 16 ),),
-                        Text("Verts Paturages",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800,fontSize: 16 ),)
+                        Text("Programme de lecture Biblique",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800,fontSize: isNotSmallScreen?16:11),),
+                        Text("Verts Paturages",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w800,fontSize: isNotSmallScreen?16:11 ),)
                       ],
                     ),
 
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(userModel.name??"", style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: 16 ),),
-                        Text(userModel.email??"",style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 14 ),),
+                        Text(userModel.name??"", style: TextStyle(color: Colors.white,fontWeight: FontWeight.w800,fontSize: isNotSmallScreen?16:11 ),),
+                        Text(userModel.email??"",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: isNotSmallScreen?14:9 ),),
                       ],
                     )
                   ],
@@ -205,9 +201,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 45.0,
               child: ListTile(
-                leading: const Icon(Icons.home_filled , size: 20.0, ),
-                title: const Text('ACCEUIL',style: TextStyle(
-                  fontSize: 15.0,
+                leading: Icon(Icons.home_filled , size: isNotSmallScreen?20.0:15.0, ),
+                title: Text('ACCEUIL',style: TextStyle(
+                  fontSize: isNotSmallScreen?15.0:10.0,
                 ),),
                 selectedTileColor: Colors.grey[300],
                 selectedColor: _mainColor,
@@ -232,9 +228,9 @@ class _HomePageState extends State<HomePage> {
               height: 45.0,
               child: ListTile(
 
-                leading: const Icon(Icons.menu_book , size: 20.0, ),
-                title: const Text('LECTURE DE LA BIBLE',style: TextStyle(
-                  fontSize: 15.0,
+                leading: Icon(Icons.menu_book , size: isNotSmallScreen?20.0:15.0, ),
+                title: Text('LECTURE DE LA BIBLE',style: TextStyle(
+                  fontSize:isNotSmallScreen?15.0:10.0,
                 ),),
                 selectedTileColor: Colors.grey[300],
                 selectedColor: _mainColor,
@@ -251,9 +247,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 45.0,
               child: ListTile(
-                leading: const Icon(Icons.pin_rounded , size: 20.0, ),
-                title: const Text('PROGRAMME EN COURS',style: TextStyle(
-                  fontSize: 15.0,
+                leading: Icon(Icons.pin_rounded , size: isNotSmallScreen?20.0:15.0, ),
+                title: Text('PROGRAMME EN COURS',style: TextStyle(
+                  fontSize: isNotSmallScreen?15.0:10.0,
                 ),),
                 selectedTileColor: Colors.grey[300],
                 selectedColor: _mainColor,
@@ -273,9 +269,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 45.0,
               child: ListTile(
-                leading: const Icon(Icons.calculate , size: 20.0, ),
-                title: const Text('MES STATISTIQUES',style: TextStyle(
-                  fontSize: 15.0,
+                leading: Icon(Icons.calculate , size: isNotSmallScreen?20.0:15.0, ),
+                title: Text('MES STATISTIQUES',style: TextStyle(
+                  fontSize: isNotSmallScreen?15.0:10.0,
                 ),),
                 selectedTileColor: Colors.grey[300],
                 selectedColor: _mainColor,
@@ -293,9 +289,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 45.0,
               child: ListTile(
-                leading: const Icon(Icons.person_pin , size: 20.0, ),
-                title: const Text('MON PROFIL', style: TextStyle(
-                  fontSize: 15.0,
+                leading: Icon(Icons.person_pin , size: isNotSmallScreen?20.0:15.0, ),
+                title: Text('MON PROFIL', style: TextStyle(
+                  fontSize: isNotSmallScreen?15.0:10.0,
                 ),),
                 selectedTileColor: Colors.grey[300],
                 selectedColor: _mainColor,
@@ -317,9 +313,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 45.0,
               child: ListTile(
-                leading: const Icon(Icons.phone_android_outlined , size: 20.0, ),
-                title: const Text('Contacts',style: TextStyle(
-                  fontSize: 15.0,
+                leading: Icon(Icons.phone_android_outlined , size: isNotSmallScreen?20.0:15.0, ),
+                title: Text('Contacts',style: TextStyle(
+                  fontSize: isNotSmallScreen?15.0:10.0,
                 ),),
                 selectedTileColor: Colors.grey[300],
                 selectedColor: _mainColor,
@@ -337,9 +333,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 45.0,
               child: ListTile(
-                leading: const Icon(Icons.logout_rounded , size: 20.0, ),
-                title: const Text('Se deconnecter' , style: TextStyle(
-                  fontSize: 15.0,
+                leading: Icon(Icons.logout_rounded , size: isNotSmallScreen?20.0:15.0, ),
+                title: Text('Se deconnecter' , style: TextStyle(
+                  fontSize: isNotSmallScreen?15.0:10.0,
                 ),),
                 selectedTileColor: Colors.grey[300],
                 selectedColor: _mainColor,

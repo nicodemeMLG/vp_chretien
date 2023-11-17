@@ -46,7 +46,7 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
     // getAnneeActif();
     lectureValid();
     // print(isValid);
-
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Container(
       height: 70.0,
       decoration: const BoxDecoration(
@@ -70,11 +70,11 @@ class _ListeProgrammeWidgetState extends State<ListeProgrammeWidget> {
         subtitle: Text("Lecture du ${widget.element.disponible}",
           style: TextStyle(
             color: Colors.grey[700],
-            fontSize: 12.0,
+            fontSize: isNotSmallScreen?12.0:8.0,
             fontWeight: FontWeight.w400,
           ),
         ),
-        trailing: !status ? const FaIcon(FontAwesomeIcons.lock , size: 20.0, color: Colors.red,) : const FaIcon(FontAwesomeIcons.unlock , size: 20.0, color: Colors.green,),
+        trailing: !status ? FaIcon(FontAwesomeIcons.lock , size: isNotSmallScreen?20.0:15.0, color: Colors.red,) : const FaIcon(FontAwesomeIcons.unlock , size: 20.0, color: Colors.green,),
         onTap:widget.element.texte==null? null : (){
           if(widget.element.livrename=="quiz"){
             Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){

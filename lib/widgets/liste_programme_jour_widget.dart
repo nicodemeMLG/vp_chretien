@@ -36,7 +36,7 @@ class _ListeProgrammeJourWidgetState extends State<ListeProgrammeJourWidget> {
 
     lectureValid();
 
-
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Container(
       height: 70.0,
       margin: const EdgeInsets.fromLTRB(10, 10, 10, 5.0),
@@ -61,12 +61,12 @@ class _ListeProgrammeJourWidgetState extends State<ListeProgrammeJourWidget> {
           widget.element.intitule.toString() ,
           style: TextStyle(
             color: mainColor,
-            fontSize: 18.0,
+            fontSize: isNotSmallScreen?18.0:13.0,
             fontWeight: FontWeight.w600,
           ),
           overflow: TextOverflow.ellipsis,
         ),
-        trailing: isValid ? const Text("Validé", style: TextStyle(color: Colors.green, fontSize: 16.0, fontWeight: FontWeight.w800),) : const Text("Non validé", style: TextStyle(color: Colors.red, fontSize: 16.0, fontWeight: FontWeight.w800),),
+        trailing: isValid ? Text("Validé", style: TextStyle(color: Colors.green, fontSize: isNotSmallScreen?16.0:11.0, fontWeight: FontWeight.w800),) : const Text("Non validé", style: TextStyle(color: Colors.red, fontSize: 16.0, fontWeight: FontWeight.w800),),
 
         onTap: (){
           if(widget.element.livrename=="quiz"){

@@ -19,20 +19,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  // final auth= FirebaseAuth.instance;
-  // User? user = FirebaseAuth.instance.currentUser;
-  // UserModel userModel=UserModel();
-  // void initialiseUserModel() async{
-  //   User? user = auth.currentUser;
-  //   DatabaseReference ref = FirebaseDatabase.instance.ref();
-  //   final snapshot = await ref.child('utilisateurs/${user!.uid}').get() ;
-  //   userModel = UserModel.fromMap(snapshot.value);
-  //
-  //
-  // }
-  // void getUser() async{
-  //   await initialiseUserModel().then((value) => user=value).catchError((e)=>Fluttertoast.showToast(msg: "Erreur de connexion"));
-  // }
 
   @override
   void initState() {
@@ -44,14 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
 
-    // DatabaseReference ref = FirebaseDatabase.instance.ref().child('utilisateurs/${user!.uid}');
-    // ref.onValue.listen((event) {
-    //   setState(() {
-    //     userModel = UserModel.fromMap(event.snapshot.value);
-    //   });
-    //
-    // });
-
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Scaffold(
       // appBar: AppBarWidget(title: "Profile"),
       backgroundColor: Colors.grey[100],
@@ -77,7 +56,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
               informatioPerso("Adresse", widget.userModel.locality??""),
 
-              const SizedBox(height: 30.0,),
+              SizedBox(height: isNotSmallScreen?30.0:20.0,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,12 +77,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
 
-                    child: const Text(
+                    child: Text(
                       "RETOUR" ,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 15.0,
+                          fontSize: isNotSmallScreen?15.0:11.0,
                           fontWeight: FontWeight.w600
                       ),
                     ),
@@ -124,12 +103,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
 
-                    child: const Text(
+                    child: Text(
                       "MODIFIER" ,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: 15.0,
+                          fontSize: isNotSmallScreen?15.0:11.0,
                           fontWeight: FontWeight.w600
                       ),
                     ),
@@ -149,12 +128,12 @@ class _ProfilePageState extends State<ProfilePage> {
                     borderRadius: BorderRadius.all(Radius.circular(0)),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   "SE DECONNECTER" ,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                       color: Colors.white,
-                      fontSize: 15.0,
+                      fontSize: isNotSmallScreen?15.0:11.0,
                       fontWeight: FontWeight.w600
                   ),
                 ),
@@ -180,7 +159,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         "Politique de confidentialité" ,
                         style: TextStyle(
                           color: Colors.grey[600],
-                          fontSize: 14.0,
+                          fontSize: isNotSmallScreen?14.0:11.0,
                           fontWeight: FontWeight.w400,
 
                         ),
@@ -199,7 +178,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         "Contact du développeur" ,
                         style: TextStyle(
                           color: Colors.grey[600],
-                          fontSize: 14.0,
+                          fontSize: isNotSmallScreen?16.0:11.0,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -219,6 +198,7 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget informatioPerso(String titre, String valeur){
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -226,7 +206,7 @@ class _ProfilePageState extends State<ProfilePage> {
           "$titre : ",
           style: TextStyle(
             color: Colors.green[800],
-            fontSize: 16.0,
+            fontSize: isNotSmallScreen?16.0:11.0,
             fontWeight: FontWeight.w700,
           ),
         ),
@@ -236,7 +216,7 @@ class _ProfilePageState extends State<ProfilePage> {
             maxLines: 3,
             style: TextStyle(
               color: Colors.grey[800],
-              fontSize: 16.0,
+              fontSize: isNotSmallScreen?16.0:11.0,
               fontWeight: FontWeight.normal,
             ),
           ),

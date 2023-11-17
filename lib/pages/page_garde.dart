@@ -63,7 +63,10 @@ class _PageGardeState extends State<PageGarde> {
                   return const CircularProgressIndicator(color: Colors.green,);
                 }else{
                   cycle = snapshot.data.toString();
-                  return ElevatedButton(
+                  return cycle=='clos'? Text("LES VALIDATIONS SONT FERMEES POUR L'INSTANT !",style: TextStyle(
+                    color: Colors.red,
+                    fontSize: MediaQuery.of(context).size.width >300? 16 : 11,
+                  ),) : ElevatedButton(
                     onPressed: cycle==""?null: isLoggedIn()? (){
                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const HomePage()));
                     } : (){
@@ -77,7 +80,7 @@ class _PageGardeState extends State<PageGarde> {
                       ),
                       padding: const EdgeInsets.all(5.0),
                     ),
-                    child: isLoggedIn() ? Text(cycle=='ancien'?"Ancien Testament":cycle=='nouveau'?"Nouveau Testament":"", style: const TextStyle( color: Colors.white , fontSize: 20.0, fontWeight: FontWeight.w600),) :
+                    child: isLoggedIn() ? Text(cycle=='ancien'?"Ancien Testament":cycle=='nouveau'?"Nouveau Testament":"", style: TextStyle( color: Colors.white , fontSize: MediaQuery.of(context).size.width >300? 18 : 12, fontWeight: FontWeight.w600),) :
                     const Text( "Connexion", style: TextStyle(color: Colors.white , fontSize: 20.0, fontWeight: FontWeight.w600),) ,
                   ) ;
                 }

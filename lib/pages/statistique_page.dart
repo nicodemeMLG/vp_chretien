@@ -54,7 +54,7 @@ class _StatistiquePageState extends State<StatistiquePage> {
   Widget build(BuildContext context) {
 
     getAnnees();
-
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(

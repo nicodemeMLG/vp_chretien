@@ -14,9 +14,10 @@ class SliderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //print(stockImg);
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return   CarouselSlider(
       options: CarouselOptions(
-        height: 250,
+        height: isNotSmallScreen?250:200,
         aspectRatio: 1/1,
         viewportFraction: 1.0,
         enableInfiniteScroll: true,

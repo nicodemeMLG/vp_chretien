@@ -11,6 +11,7 @@ class ListeQuizWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Container(
       height: 60.0,
       margin: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
@@ -52,7 +53,7 @@ class ListeQuizWidget extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
             ),
-            child: const Text("Moyenne" , style: TextStyle( fontSize: 14.0 , color: Colors.white),),
+            child: Text("Moyenne" , style: TextStyle( fontSize: isNotSmallScreen?14.0:10.0, color: Colors.white),),
           ),
 
         ),

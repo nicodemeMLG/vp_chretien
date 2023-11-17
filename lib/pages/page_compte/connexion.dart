@@ -28,6 +28,7 @@ class _ConnexionState extends State<Connexion> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
@@ -46,7 +47,7 @@ class _ConnexionState extends State<Connexion> {
                   height: 250.0,
                   width: 150,
                 ),
-                widget.actif ? const Text("Votre compte n'est pas encore activé" , style: TextStyle(color: Colors.red,fontSize: 15.0),) :
+                widget.actif ? Text("Votre compte n'est pas encore activé" , style: TextStyle(color: Colors.red,fontSize: screenWidth > 300?15.0: 11.0),) :
                 const SizedBox(),
                 Form(
                   key: _formKey,
@@ -65,7 +66,7 @@ class _ConnexionState extends State<Connexion> {
                             focusColor: Colors.blue,
                             labelText: "Adresse email",
                             // hintText: "Adresse email",
-                            labelStyle: TextStyle(color: Colors.grey.shade500,fontSize: 18.0),
+                            labelStyle: TextStyle(color: Colors.grey.shade500,fontSize: screenWidth > 300?18.0: 13),
                             enabledBorder: const OutlineInputBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
                                 borderSide: BorderSide(color: Colors.blue,width: 2.0)
@@ -74,10 +75,10 @@ class _ConnexionState extends State<Connexion> {
                                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
                                 borderSide: BorderSide(color: Colors.blue,width: 2.0)
                             ),
-                            errorBorder: const OutlineInputBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                                borderSide: BorderSide(color: Colors.red,width: 2.0)
-                            ),
+                            // errorBorder: const OutlineInputBorder(
+                            //     borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                            //     borderSide: BorderSide(color: Colors.red,width: 2.0)
+                            // ),
                           ),
                           validator: (valeur){
                             if(valeur!.isEmpty){
@@ -87,7 +88,6 @@ class _ConnexionState extends State<Connexion> {
                               return "Veuillez entrez une adresse valide";
                             }
                             return null;
-
                           },
                         ),
                       ),
@@ -100,26 +100,33 @@ class _ConnexionState extends State<Connexion> {
                           cursorColor: Colors.blue,
                           controller: _passeController,
                           obscureText: _isObscure ? true:false,
-                          style: const TextStyle(
-                              fontSize: 18.0
+                          style: TextStyle(
+                              fontSize: screenWidth > 300?18.0: 13.0
                           ),
+
                           decoration: InputDecoration(
                               focusColor: Colors.blue,
                               labelText: "Mot de passe",
                               // hintText: "Votre mot de passe",
-                              labelStyle: TextStyle(color: Colors.grey.shade500,fontSize: 18.0),
+                              labelStyle: TextStyle(color: Colors.grey.shade500,fontSize: screenWidth > 300?18.0: 13.0),
                               enabledBorder: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
                                   borderSide: BorderSide(color: Colors.blue,width: 2.0)
                               ),
                               focusedBorder: const OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                                  borderSide: BorderSide(color: Colors.blue,width: 2.0)
+                                  borderSide: BorderSide(color: Colors.blue,width: 2.0),
                               ),
-                              errorBorder: const OutlineInputBorder(
-                                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                                  borderSide: BorderSide(color: Colors.red,width: 2.0)
-                              ),
+                              // errorBorder: const OutlineInputBorder(
+                              //     borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                              //     borderSide: BorderSide(color: Colors.red,width: 2.0)
+                              // ),
+                              // focusedErrorBorder: const OutlineInputBorder(
+                              //     borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                              //     borderSide: BorderSide(color: Colors.red,width: 2.0)
+                              // ),
+                              errorMaxLines: 1,
+                              //
                               suffixIcon: IconButton(
                                 icon: Icon(Icons.remove_red_eye_rounded , color: _isObscure? Colors.grey:Colors.blue,),
                                 onPressed: () {
@@ -146,7 +153,7 @@ class _ConnexionState extends State<Connexion> {
                             onPressed: (){
                               Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const PasseOublie()));
                             },
-                            child: Text("Mot de passe oublié?" , style: TextStyle( color: _mainColor , fontSize: 18.0, fontWeight: FontWeight.w600),),
+                            child: Text("Mot de passe oublié?" , style: TextStyle( color: _mainColor , fontSize: screenWidth > 300?18.0: 13.0, fontWeight: FontWeight.w600),),
                           ),
                         ],
                       ),
@@ -156,16 +163,16 @@ class _ConnexionState extends State<Connexion> {
                           signIn(_emailController.text, _passeController.text);
                         },
                         style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(double.maxFinite, 50.0),
+                          fixedSize: Size(double.maxFinite, screenWidth > 300?50.0: 40.0),
                           backgroundColor: _mainColor,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(screenWidth > 300?25.0: 40.0)),
                           ),
                         ),
-                        child:  _loading?
+                        child:  _loading ?
                         const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation(Colors.white),
-                        ) :  const Text('Connexion' , style: TextStyle( color: Colors.white , fontSize: 20.0, fontWeight: FontWeight.w600),),
+                        ) : Text('Connexion' , style: TextStyle( color: Colors.white , fontSize: screenWidth > 300?20.0: 15.0, fontWeight: FontWeight.w600),),
                       ),
                     ],
                   ),
@@ -177,14 +184,14 @@ class _ConnexionState extends State<Connexion> {
                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const InscriptionEmail()));
                   },
 
-                  child: Text("S'inscrire avec un EMAIL" , style: TextStyle( color: _mainColor , fontSize: 18.0, fontWeight: FontWeight.w600),),
+                  child: Text("S'inscrire avec un EMAIL" , style: TextStyle( color: _mainColor , fontSize: screenWidth > 300?18.0: 13.0, fontWeight: FontWeight.w600),),
                 ),
                 const SizedBox(height: 35.0,),
                 TextButton(
                   onPressed: (){
                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const InscriptionPhone()));
                   },
-                  child: Text("Se connecter avec le TELEPHONE" , style: TextStyle( color: _mainColor , fontSize: 18.0, fontWeight: FontWeight.w600),),
+                  child: Text("Se connecter avec le TELEPHONE" , style: TextStyle( color: _mainColor , fontSize: screenWidth > 300?18.0: 13.0, fontWeight: FontWeight.w600),),
                 ),
               ]
           ),
@@ -194,9 +201,11 @@ class _ConnexionState extends State<Connexion> {
   }
 
   void signIn(String email, String password) async{
-    _loading = true;
-    setState(() {});
+
     if(_formKey.currentState!.validate()){
+      setState(() {
+        _loading=true;
+      });
       await _auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((uid){
@@ -208,7 +217,7 @@ class _ConnexionState extends State<Connexion> {
         .catchError((e){
           _loading = false;
           setState(() {});
-          Fluttertoast.showToast(msg: "Connexion echouée");
+          Fluttertoast.showToast(msg: "Connexion echouée, vérifiez vos identifiants");
       })
       ;
     }

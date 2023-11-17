@@ -65,26 +65,26 @@ class _ContenuWidgetState extends State<ContenuWidget> {
 
     // print("Nombre chapitres: "+livre.nbrechapitre.toString());
     // print("annee actif : "+idAnnee);
-
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 20.0,),
+        SizedBox(height: isNotSmallScreen?20.0:15.0,),
         Row(
           children: [
-            Text("Lecture du ", style: TextStyle(color: Colors.grey.shade600 , fontSize: 18.0, fontWeight: FontWeight.w500),),
-            Text(widget.element.disponible.toString(), style: const TextStyle(color: Colors.blue , fontSize: 16.0, fontWeight: FontWeight.w500))
+            Text("Lecture du ", style: TextStyle(color: Colors.grey.shade600 , fontSize: isNotSmallScreen?18.0:13.0, fontWeight: FontWeight.w500),),
+            Text(widget.element.disponible.toString(), style: TextStyle(color: Colors.blue , fontSize: isNotSmallScreen?16.0:11.0, fontWeight: FontWeight.w500))
           ],
         ),
         const SizedBox(height: 20.0,),
-        Text(widget.element.intitule.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 18.0, fontWeight: FontWeight.w500),),
+        Text(widget.element.intitule.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize:isNotSmallScreen?18.0:13.0, fontWeight: FontWeight.w500),),
         const SizedBox(height: 10.0,),
         /*asPicture ? Image(
           image: NetworkImage(widget.element.productImageUrl.toString()),
         ) : const SizedBox(),*/
         const SizedBox(height: 10.0,),
-        Text(widget.element.texte.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: 16.0, fontWeight: FontWeight.w500),),
+        Text(widget.element.texte.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: isNotSmallScreen?16.0:11.0, fontWeight: FontWeight.w500),),
         const SizedBox(height: 10.0,),
 
 
@@ -108,9 +108,9 @@ class _ContenuWidgetState extends State<ContenuWidget> {
           child: Text(
             widget.isValid ? "Déjà validé": "Valider" ,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
+            style: TextStyle(
                 color: Colors.white,
-                fontSize: 16.0,
+                fontSize: isNotSmallScreen?16.0:11.0,
                 fontWeight: FontWeight.w600
             ),
           ),

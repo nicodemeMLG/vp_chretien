@@ -9,6 +9,7 @@ class ButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return ElevatedButton(
       onPressed: onPressedFunction,
       style: ElevatedButton.styleFrom(
@@ -23,9 +24,9 @@ class ButtonWidget extends StatelessWidget {
       child: Text(
         titre ,
         overflow: TextOverflow.ellipsis,
-        style: const TextStyle(
+        style: TextStyle(
           color: Colors.white,
-          fontSize: 10.0,
+          fontSize: isNotSmallScreen?10.0:8.0,
           fontWeight: FontWeight.w600
         ),
       ),

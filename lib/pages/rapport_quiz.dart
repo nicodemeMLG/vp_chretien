@@ -11,16 +11,16 @@ class RapportQuiz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: const Text(
+        title: Text(
         "Rapport de Quiz",
         overflow: TextOverflow.ellipsis,
         style: TextStyle(
           fontWeight: FontWeight.w600,
-          fontSize: 20.0,
+          fontSize: isNotSmallScreen?20.0:15.0,
           color: _mainColor,
         ),
       ),
@@ -28,9 +28,9 @@ class RapportQuiz extends StatelessWidget {
       backgroundColor: Colors.grey[100],
       body: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Text("Cliquez sur un quiz pour voir votre moyenne" , style: TextStyle(fontSize: 16.0),),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text("Cliquez sur un quiz pour voir votre moyenne" , style: TextStyle(fontSize: isNotSmallScreen?16.0:11.0),),
           ),
           Flexible(child: ListView(
             children: quiz.map((e){
