@@ -72,8 +72,8 @@ class _StatistiquePageState extends State<StatistiquePage> {
               const SizedBox(height: 25.0,),
               Text(
                 "Progression générale: ${widget.progression}%",
-                style: const TextStyle(
-                  fontSize: 15.0,
+                style: TextStyle(
+                  fontSize: isNotSmallScreen?15:11,
                   color: _mainColor,
                   fontWeight: FontWeight.w800,
                 ),
