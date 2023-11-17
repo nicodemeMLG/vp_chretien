@@ -25,7 +25,6 @@ class _SwitchPageState extends State<SwitchPage> {
 
   @override
   Widget build(BuildContext context) {
-    final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return FutureBuilder(
       future: validateUser(),
         builder: (context , snapshot){
