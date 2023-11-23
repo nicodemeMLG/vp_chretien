@@ -130,7 +130,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           Container(
                             width:30,
                             height: 30,
-
                             decoration: BoxDecoration(
                                 color: Colors.green,
                                 borderRadius: BorderRadius.circular(15)
@@ -163,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             height: 30,
                             decoration: BoxDecoration(
                                 color: Colors.red,
-                                borderRadius: BorderRadius.circular(15)
+                                borderRadius: BorderRadius.circular(15),
                             ),
                             child: const Icon(
                               Icons.clear,
@@ -175,14 +174,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                       ),
                       ),
-
                     ],
                   ),
-
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.only(left: 10.0,),
               child: Text(
@@ -212,7 +208,6 @@ class ProgrammeSection extends StatelessWidget{
   final List element;
   final String anneeActif;
   const ProgrammeSection({super.key, required this.element, required this.anneeActif});
-
   @override
   Widget build(BuildContext context){
     return Column(
@@ -220,7 +215,6 @@ class ProgrammeSection extends StatelessWidget{
       children: element.map((e){
         return ListeProgrammeJourWidget(element: e,anneeActif:anneeActif);
       }).toList(),
-
     );
   }
 }
