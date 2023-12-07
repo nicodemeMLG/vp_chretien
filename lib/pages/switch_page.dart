@@ -5,6 +5,8 @@ import 'package:vp_chretien/models/user_model.dart';
 import 'package:vp_chretien/pages/home_page.dart';
 import 'package:vp_chretien/pages/page_compte/connexion.dart';
 
+import '../services/auth_service.dart';
+
 class SwitchPage extends StatefulWidget {
   const SwitchPage({super.key});
 
@@ -32,7 +34,7 @@ class _SwitchPageState extends State<SwitchPage> {
           if(snapshot.data.toString()=="Oui"){
             return const HomePage();
           }else{
-            // signOut();
+            AuthService().signOut();
             return const Connexion(actif: true);
           }
         }
