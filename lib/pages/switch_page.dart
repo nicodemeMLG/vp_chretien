@@ -5,7 +5,7 @@ import 'package:vp_chretien/models/user_model.dart';
 import 'package:vp_chretien/pages/home_page.dart';
 import 'package:vp_chretien/pages/page_compte/connexion.dart';
 
-import '../services/auth_service.dart';
+//import '../services/auth_service.dart';
 
 class SwitchPage extends StatefulWidget {
   const SwitchPage({super.key});
@@ -16,13 +16,13 @@ class SwitchPage extends StatefulWidget {
 
 class _SwitchPageState extends State<SwitchPage> {
 
-  Future<String?> validateUser() async{
+  Future<String> validateUser() async{
     final ref = FirebaseDatabase.instance.ref();
     String userId= FirebaseAuth.instance.currentUser!.uid;
     // print(userId);
     final snapshot1= await ref.child("Admin/Users/$userId").get();
     UserModel user = UserModel.fromMap(snapshot1.value as Map);
-    return user.type;
+    return user.type!;
   }
 
   @override
