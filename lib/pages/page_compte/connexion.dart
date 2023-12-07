@@ -5,6 +5,8 @@ import 'package:vp_chretien/pages/page_compte/inscription_email.dart';
 import 'package:vp_chretien/pages/page_compte/passe_oublie.dart';
 import 'package:vp_chretien/pages/switch_page.dart';
 
+import '../../services/auth_service.dart';
+
 
 Color _mainColor= const Color(0xFF446600);
 class Connexion extends StatefulWidget {
@@ -28,7 +30,7 @@ class _ConnexionState extends State<Connexion> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
+    AuthService().signOut();
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
