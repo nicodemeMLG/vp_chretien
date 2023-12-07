@@ -34,7 +34,7 @@ class _SwitchPageState extends State<SwitchPage> {
           if(snapshot.data.toString()=="Oui"){
             return const HomePage();
           }else{
-            AuthService().signOut();
+            //AuthService().signOut();
             return const Connexion(actif: true);
           }
         }
