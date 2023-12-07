@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vp_chretien/pages/page_compte/inscription_email.dart';
-import 'package:vp_chretien/pages/page_compte/inscription_phone.dart';
 import 'package:vp_chretien/pages/page_compte/passe_oublie.dart';
 import 'package:vp_chretien/pages/switch_page.dart';
 
@@ -187,12 +186,12 @@ class _ConnexionState extends State<Connexion> {
                   child: Text("S'inscrire avec un EMAIL" , style: TextStyle( color: _mainColor , fontSize: screenWidth > 300?18.0: 13.0, fontWeight: FontWeight.w600),),
                 ),
                 const SizedBox(height: 35.0,),
-                TextButton(
-                  onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const InscriptionPhone()));
-                  },
-                  child: Text("Se connecter avec le TELEPHONE" , style: TextStyle( color: _mainColor , fontSize: screenWidth > 300?18.0: 13.0, fontWeight: FontWeight.w600),),
-                ),
+                // TextButton(
+                //   onPressed: (){
+                //     Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const InscriptionPhone()));
+                //   },
+                //   child: Text("Se connecter avec le TELEPHONE" , style: TextStyle( color: _mainColor , fontSize: screenWidth > 300?18.0: 13.0, fontWeight: FontWeight.w600),),
+                // ),
               ]
           ),
         ),

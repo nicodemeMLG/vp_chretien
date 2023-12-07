@@ -50,7 +50,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
               value: 'deconnexion',
               child: Text('Déconnexion' , style: TextStyle( fontSize: isNotSmallScreen?18.0:13.0, color: Colors.grey.shade700,),),
             ),
-
           ],
           onSelected: (String value) {
             if(value=='deconnexion'){
