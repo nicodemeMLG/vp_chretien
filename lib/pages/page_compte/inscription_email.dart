@@ -145,13 +145,13 @@ class _InscriptionEmailState extends State<InscriptionEmail> {
                           borderSide: BorderSide(color: Colors.blue,width: 2.0)
                       ),
                     ),
-                    validator: (valeur){
+                    /*validator: (valeur){
                       if(valeur==null || valeur.isEmpty){
                         return "Veuillez saisir une valeur";
                       }
                       return null;
 
-                    },
+                    },*/
                   ),
                 ),
                 const SizedBox(height: 15.0,),
@@ -184,13 +184,13 @@ class _InscriptionEmailState extends State<InscriptionEmail> {
                       ),
                     ),
 
-                    validator: (valeur){
+                    /*validator: (valeur){
                       if(valeur==null || valeur.isEmpty){
                         return "Veuillez saisir une valeur";
                       }
                       return null;
 
-                    },
+                    },*/
                   ),
                 ),
                 const SizedBox(height: 15.0,),
