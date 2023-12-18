@@ -73,10 +73,7 @@ class _ConnexionState extends State<Connexion> {
                                 borderRadius: BorderRadius.all(Radius.circular(15.0)),
                                 borderSide: BorderSide(color: Colors.blue,width: 2.0)
                             ),
-                            // errorBorder: const OutlineInputBorder(
-                            //     borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                            //     borderSide: BorderSide(color: Colors.red,width: 2.0)
-                            // ),
+
                           ),
                           validator: (valeur){
                             if(valeur!.isEmpty){

@@ -139,6 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
 
+
               const SizedBox(height: 30.0,),
 
               SizedBox(
@@ -168,7 +169,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                     TextButton(
                       onPressed: () {
-                        Fluttertoast.showToast(msg: "Contact : +2266624512");
+                        Fluttertoast.showToast(msg: "Contact : +226 64-83-86-76");
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
@@ -178,12 +179,29 @@ class _ProfilePageState extends State<ProfilePage> {
                         "Contact du développeur" ,
                         style: TextStyle(
                           color: Colors.grey[600],
-                          fontSize: isNotSmallScreen?16.0:11.0,
+                          fontSize: isNotSmallScreen?14.0:11.0,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                     ),
 
+                    TextButton(
+                      onPressed: (){
+                        AuthService().deleteUser();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Connexion(actif: false,)));
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                      ),
+                      child: Text(
+                        "Supprimer le compte",
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: isNotSmallScreen?14.0:11.0,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
