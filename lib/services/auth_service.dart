@@ -79,11 +79,12 @@ class AuthService {
     return userModel;
   }
 
-  void deleteUser() {
+  void deleteUser() async{
     auth.signOut();
     try {
       FirebaseDatabase.instance.ref().child(
           'Admin/Users/${auth.currentUser?.uid}').remove();
+      await auth.currentUser?.delete();
       Fluttertoast.showToast(msg: "Votre compte à été supprimé avec succès");
 
     }catch(e){
