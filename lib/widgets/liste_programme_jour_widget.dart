@@ -66,6 +66,7 @@ class _ListeProgrammeJourWidgetState extends State<ListeProgrammeJourWidget> {
           ),
           overflow: TextOverflow.ellipsis,
         ),
+
         trailing: isValid ? Text("Validé", style: TextStyle(color: Colors.green, fontSize: isNotSmallScreen?16.0:11.0, fontWeight: FontWeight.w800),) : const Text("Non validé", style: TextStyle(color: Colors.red, fontSize: 16.0, fontWeight: FontWeight.w800),),
 
         onTap: (){

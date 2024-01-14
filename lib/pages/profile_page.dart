@@ -173,7 +173,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
-
                       ),
                       child: Text(
                         "Contact du développeur" ,

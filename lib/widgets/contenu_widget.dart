@@ -39,7 +39,7 @@ class _ContenuWidgetState extends State<ContenuWidget> {
     int countCycle;
     if(widget.element.cycle.toString() == "ancien"){
       countCycle=912;
-    } else if(widget.element.cycle.toString() == "ancien"){
+    } else if(widget.element.cycle.toString() == "nouveau"){
       countCycle=415;
     } else {
       countCycle=912;
@@ -47,7 +47,6 @@ class _ContenuWidgetState extends State<ContenuWidget> {
     void leLivre() async{
       final snapshot = await ref.child('livres/${widget.element.livreuid}').get();
       livre = LivreModel.fromMap(snapshot.value);
-      // print(snapshot.value);
 
     }
 
@@ -56,8 +55,8 @@ class _ContenuWidgetState extends State<ContenuWidget> {
       Map annee=snapshot.value as Map;
       idAnnee = annee['id'];
       // print(snapshot.value);
-
     }
+
     anneeActif();
     leLivre();
     getNbrLecturesParDate();
@@ -86,7 +85,6 @@ class _ContenuWidgetState extends State<ContenuWidget> {
         const SizedBox(height: 10.0,),
         Text(widget.element.texte.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: isNotSmallScreen?16.0:11.0, fontWeight: FontWeight.w500),),
         const SizedBox(height: 10.0,),
-
 
         ElevatedButton(
           onPressed: widget.isValid ? null : (){
@@ -159,7 +157,6 @@ void enregistrementNoteParCycle(String idAnnee, String idUser,String? cycle,int 
     noteLecture = snapshot.value as Map;
     noteLecture["note"] = (double.parse(noteLecture["note"]) + note).toStringAsFixed(2);
   }
-
   await ref.set(noteLecture);
 }
 
@@ -196,5 +193,4 @@ void enregistrerLectureValider(String idAnnee, String idUser,String? idLecture,L
   };
   final ref = FirebaseDatabase.instance.ref().child("Users/$idUser/$idAnnee/$idLecture");
   await ref.set(lectureVld).then((value) { Fluttertoast.showToast(msg: "Validé !");});
-
 }
