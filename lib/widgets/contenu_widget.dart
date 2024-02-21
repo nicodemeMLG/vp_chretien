@@ -37,6 +37,7 @@ class _ContenuWidgetState extends State<ContenuWidget> {
   Widget build(BuildContext context) {
 
     int countCycle;
+
     if(widget.element.cycle.toString() == "ancien"){
       countCycle=912;
     } else if(widget.element.cycle.toString() == "nouveau"){
@@ -147,6 +148,7 @@ void enregistrementNoteParCycle(String idAnnee, String idUser,String? cycle,int 
   // noteLecture["note"] = (double.parse(noteLecture["note"]) + note).toStringAsFixed(2);
   Map noteLecture={};
   if(snapshot.value==null){
+
     noteLecture ={
       'name': user.name,
       'note': note.toStringAsFixed(2),
@@ -154,8 +156,10 @@ void enregistrementNoteParCycle(String idAnnee, String idUser,String? cycle,int 
     };
 
   }else{
+
     noteLecture = snapshot.value as Map;
     noteLecture["note"] = (double.parse(noteLecture["note"]) + note).toStringAsFixed(2);
+
   }
   await ref.set(noteLecture);
 }
