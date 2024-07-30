@@ -22,7 +22,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return AppBar(
       leading: IconButton(onPressed: (){
-        Scaffold.of(context).openDrawer();
+
       }, icon: Icon(Icons.menu, color: Colors.grey[600])),
       backgroundColor: Colors.white,
       title: Text(
