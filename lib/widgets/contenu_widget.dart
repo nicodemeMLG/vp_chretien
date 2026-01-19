@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -67,56 +69,151 @@ class _ContenuWidgetState extends State<ContenuWidget> {
     // print("annee actif : "+idAnnee);
     final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: isNotSmallScreen?20.0:15.0,),
-        Row(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    SizedBox(height: isNotSmallScreen ? 20.0 : 15.0),
+    
+    // Date de lecture
+    Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
+      decoration: BoxDecoration(
+        color: Colors.blue.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(6.0),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.calendar_today,
+            size: isNotSmallScreen ? 16.0 : 12.0,
+            color: Colors.blue,
+          ),
+          const SizedBox(width: 6.0),
+          Text(
+            "Lecture du ",
+            style: TextStyle(
+              color: Colors.grey.shade700,
+              fontSize: isNotSmallScreen ? 14.0 : 11.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Text(
+            widget.element.disponible.toString(),
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: isNotSmallScreen ? 14.0 : 11.0,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    ),
+    
+    const SizedBox(height: 20.0),
+    
+    // Titre
+    Text(
+      widget.element.intitule.toString(),
+      style: TextStyle(
+        color: Colors.grey.shade800,
+        fontSize: isNotSmallScreen ? 20.0 : 15.0,
+        fontWeight: FontWeight.w700,
+        height: 1.3,
+      ),
+    ),
+    
+    const SizedBox(height: 16.0),
+    
+    // Divider subtil
+    Container(
+      height: 1.0,
+      width: 60.0,
+      color: Colors.grey.shade300,
+    ),
+    
+    const SizedBox(height: 16.0),
+    
+    // Texte de la lecture
+    Text(
+      widget.element.texte.toString(),
+      style: TextStyle(
+        color: Colors.grey.shade700,
+        fontSize: isNotSmallScreen ? 16.0 : 12.0,
+        fontWeight: FontWeight.w400,
+        height: 1.6,
+      ),
+    ),
+    
+    const SizedBox(height: 24.0),
+    
+    // Bouton de validation
+    SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        onPressed: widget.isValid
+            ? null
+            : () {
+                enregistrementNoteParDate(
+                  idAnnee!,
+                  userId!,
+                  widget.element.cycle,
+                  nbrlectures,
+                  widget.element.disponible,
+                  user,
+                );
+                enregistrementNoteParCycle(
+                  idAnnee!,
+                  userId!,
+                  widget.element.cycle,
+                  countCycle,
+                  user,
+                );
+                enregistrementNoteParLivre(
+                  idAnnee!,
+                  userId!,
+                  widget.element.livreuid,
+                  user,
+                );
+                enregistrerLectureValider(
+                  idAnnee!,
+                  userId!,
+                  widget.element.uid,
+                  widget.element,
+                );
+                Navigator.of(context).pop();
+              },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: widget.isValid ? Colors.grey.shade400 : Colors.green,
+          disabledBackgroundColor: Colors.grey.shade300,
+          padding: const EdgeInsets.symmetric(vertical: 14.0),
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Lecture du ", style: TextStyle(color: Colors.grey.shade600 , fontSize: isNotSmallScreen?18.0:13.0, fontWeight: FontWeight.w500),),
-            Text(widget.element.disponible.toString(), style: TextStyle(color: Colors.blue , fontSize: isNotSmallScreen?16.0:11.0, fontWeight: FontWeight.w500))
+            Icon(
+              widget.isValid ? Icons.check_circle : Icons.check_circle_outline,
+              size: isNotSmallScreen ? 20.0 : 16.0,
+              color: Colors.white,
+            ),
+            const SizedBox(width: 8.0),
+            Text(
+              widget.isValid ? "Déjà validé" : "Valider la lecture",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: isNotSmallScreen ? 16.0 : 12.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
-        const SizedBox(height: 20.0,),
-        Text(widget.element.intitule.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize:isNotSmallScreen?18.0:13.0, fontWeight: FontWeight.w500),),
-        const SizedBox(height: 10.0,),
-        /*asPicture ? Image(
-          image: NetworkImage(widget.element.productImageUrl.toString()),
-        ) : const SizedBox(),*/
-        const SizedBox(height: 10.0,),
-        Text(widget.element.texte.toString(), style: TextStyle(color: Colors.grey.shade600 , fontSize: isNotSmallScreen?16.0:11.0, fontWeight: FontWeight.w500),),
-        const SizedBox(height: 10.0,),
-
-        ElevatedButton(
-          onPressed: widget.isValid ? null : (){
-            enregistrementNoteParDate(idAnnee!, userId!, widget.element.cycle, nbrlectures,widget.element.disponible , user);
-            enregistrementNoteParCycle(idAnnee!,userId!,widget.element.cycle,countCycle,user);
-            enregistrementNoteParLivre(idAnnee!,userId!,widget.element.livreuid,user);
-            enregistrerLectureValider(idAnnee!,userId! , widget.element.uid,widget.element);
-
-            Navigator.of(context).pop();
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green[700],
-            fixedSize: const Size(double.maxFinite, 35),
-            padding: EdgeInsets.zero,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(0)),
-            ),
-          ),
-          child: Text(
-            widget.isValid ? "Déjà validé": "Valider" ,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: isNotSmallScreen?16.0:11.0,
-                fontWeight: FontWeight.w600
-            ),
-          ),
-
-        ),
-      ],
-    );
+      ),
+    ),
+  ],
+);
   }
 }
 

@@ -20,7 +20,6 @@ class _NoteParLivreState extends State<NoteParLivre> {
 
   @override
   void initState() {
-    // TODO: implement initState
     // getLivres();
     super.initState();
     searchResult=widget.livres;

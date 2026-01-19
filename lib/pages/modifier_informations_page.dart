@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:vp_chretien/services/auth_service.dart';
 import '../models/user_model.dart';
 
@@ -18,15 +19,7 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
   final emailController = TextEditingController();
   final villeController = TextEditingController();
 
-  @override
-  void dispose(){
-    nomController.dispose();
-    telephoneController.dispose();
-    emailController.dispose();
-    villeController.dispose();
-
-    super.dispose();
-  }
+  
 
   @override
   void initState(){
@@ -40,10 +33,20 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
   }
 
   @override
+  void dispose(){
+    nomController.dispose();
+    telephoneController.dispose();
+    emailController.dispose();
+    villeController.dispose();
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         backgroundColor: Colors.green[800],
         title: const Text("Modifier mes informations" , overflow: TextOverflow.ellipsis,
           style: TextStyle(
@@ -207,7 +210,9 @@ class _ModifierInformationsPageState extends State<ModifierInformationsPage> {
                     widget.user.mobile = telephoneController.text;
                     widget.user.locality = villeController.text;
                     AuthService().updateUserProfil(widget.user.toMap());
-                    Navigator.of(context).pop();
+                    Fluttertoast.showToast(msg: "Mise à jour effectué avec succès");
+                    // if (!context.mounted) return;
+                    // Navigator.of(context).pop();
                   }
                 },
                 style: ElevatedButton.styleFrom(

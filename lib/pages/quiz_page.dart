@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:vp_chretien/pages/home_page.dart';
+// import 'package:vp_chretien/pages/home_page.dart';
 
 Color _mainColor= const Color(0xFF446600);
 class QuizPage extends StatefulWidget {
@@ -27,13 +27,24 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    getQuestions();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     int note = 0;
     int compte=0;
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
         title: const Text("Quiz",overflow: TextOverflow.ellipsis, style: TextStyle(color: Colors.white , fontSize: 20.0 , fontWeight: FontWeight.w800),),
         backgroundColor: _mainColor,
       ),
@@ -215,13 +226,13 @@ void enrregistrerResult(String? intitule , int note) async{
   final ref = FirebaseDatabase.instance.ref();
   String userId= FirebaseAuth.instance.currentUser!.uid;
   final snapshot1 = await ref.child("Admin/Users/$userId/name").get();
-  String nomUser = snapshot1.value as String;
+  var nomUser = snapshot1.value;
   
   final snapshot2 = await ref.child("Parcours/AnneeActif/id").get();
   String anneeActif = snapshot2.value as String;
 
   Map result = {
-    'name':nomUser,
+    'name':nomUser.toString(),
     'note': "$note",
     'uid':userId,
   };
@@ -248,7 +259,12 @@ void showAlertDialog(BuildContext context,String note) {
           TextButton(
             child: const Text('Fermer'),
             onPressed: () {
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){return const HomePage();}), (route) => false); // Ferme la boîte de dialogue
+              if (Navigator.canPop(context)) {
+                Navigator.pop(context); // Ferme la boîte de dialogue
+              }
+              // if (!context.mounted) return;
+              // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){return const HomePage();}), (route) => false); // Ferme la boîte de dialogue
+              // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context){return const HomePage();}), (route) => false); // Ferme la boîte de dialogue
             },
           ),
 

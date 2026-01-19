@@ -15,6 +15,7 @@ class ProgrammePage extends StatefulWidget {
   State<ProgrammePage> createState() => _ProgrammePageState();
 
 }
+
 List<LectureModel> listeProgramme=[];
 List<LectureModel> listeProgrammeDate=[];
 void getProgrammes() async{
@@ -41,6 +42,7 @@ void getProgrammes() async{
 
 void getProgrammesParDate() async{
   List<LectureModel> programmes=[];
+  if(maDate==null) return;
   String date = DateFormat("dd-MM-yyyy").format(maDate!);
   await FirebaseDatabase.instance.ref().child("lecturesParDate/$date/lectures").once().then((event){
     for ( var val in event.snapshot.children){
@@ -52,6 +54,21 @@ void getProgrammesParDate() async{
 }
 
 class _ProgrammePageState extends State<ProgrammePage> {
+
+  @override
+  void initState() {
+    // widget.date?['date']=null;
+    super.initState();
+    maDate=widget.date!['date'];
+  }
+
+  // @override
+  // void dispose() {
+  //   // getProgrammes();
+  //   // getProgrammesParDate();
+  //   // maDate=null;
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -111,6 +128,9 @@ class _ProgrammeState extends State<Programme> {
   }
   @override
   void dispose(){
+    searchText.dispose();
+    getProgrammes();
+    getProgrammesParDate();
     super.dispose();
   }
   @override
@@ -162,11 +182,12 @@ class _ProgrammeState extends State<Programme> {
         ),
         Flexible(child: ListView(
           children: initial? widget.elements.map((e){
-            return ListeProgrammeWidget(element: e);
-          }).toList(): searchResult.map((e){
-            return ListeProgrammeWidget(element: e);
-          }).toList(),
-        ),)
+              return ListeProgrammeWidget(element: e);
+            }).toList(): searchResult.map((e){
+              return ListeProgrammeWidget(element: e);
+            }).toList(),
+          ),
+        )
 
 
       ],

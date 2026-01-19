@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -37,17 +39,53 @@ class SliderWidget extends StatelessWidget {
 
   Widget imageBox(String photo){
     return Container(
-      height: double.infinity,
-      width: double.infinity,
-      margin: const EdgeInsets.all(1.0),
-      child: Image(
-        image: NetworkImage(photo),
-        fit: BoxFit.cover,
-        width: double.infinity,
-        height: double.infinity,
+  height: 120.0, // Version ultra-compacte
+  width: double.infinity,
+  margin: const EdgeInsets.symmetric(horizontal: 2.0),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(8.0),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.1),
+        blurRadius: 4.0,
+        offset: const Offset(0, 1),
       ),
-
-    );
+    ],
+  ),
+  child: ClipRRect(
+    borderRadius: BorderRadius.circular(8.0),
+    child: Image.network(
+      photo,
+      fit: BoxFit.cover,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return Container(
+          color: Colors.grey[200],
+          child: const Center(
+            child: SizedBox(
+              width: 24.0,
+              height: 24.0,
+              child: CircularProgressIndicator(
+                strokeWidth: 2.0,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+              ),
+            ),
+          ),
+        );
+      },
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          color: Colors.grey[300],
+          child: Icon(
+            Icons.image_not_supported_outlined,
+            size: 32.0,
+            color: Colors.grey[500],
+          ),
+        );
+      },
+    ),
+  ),
+);
   }
 }
 

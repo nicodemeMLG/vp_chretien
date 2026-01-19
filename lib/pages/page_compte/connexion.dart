@@ -204,14 +204,16 @@ class _ConnexionState extends State<Connexion> {
       await _auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((uid){
-          Fluttertoast.showToast(msg: "Connecté avec succès");
           _loading = false;
           setState(() {});
+          Fluttertoast.showToast(msg: "Connecté avec succès");
+          // ignore: use_build_context_synchronously
           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const SwitchPage()));
         })
         .catchError((e){
           _loading = false;
           setState(() {});
+          // debugPrint(e);
           Fluttertoast.showToast(msg: "Connexion echouée, vérifiez vos identifiants");
       })
       ;

@@ -45,9 +45,14 @@ class _StatistiquePageState extends State<StatistiquePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getAnnees();
+  }
+
+  @override
+  void dispose() {
+    getAnnees();
+    super.dispose();
   }
 
   @override
@@ -56,52 +61,109 @@ class _StatistiquePageState extends State<StatistiquePage> {
     getAnnees();
     final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+  backgroundColor: Colors.grey[50],
+  body: SafeArea(
+    child: SingleChildScrollView(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          const SizedBox(height: 16.0),
+          
+          // Image
+          ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.22,
+              color: Colors.white,
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset(
+                "images/stat.png",
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          
+          const SizedBox(height: 24.0),
+          
+          // Progression
+          Text(
+            "Progression générale",
+            style: TextStyle(
+              fontSize: isNotSmallScreen ? 13.0 : 11.0,
+              color: Colors.grey.shade600,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 6.0),
+          Text(
+            "${widget.progression}%",
+            style: TextStyle(
+              fontSize: isNotSmallScreen ? 40.0 : 32.0,
+              color: _mainColor,
+              fontWeight: FontWeight.w800,
+              letterSpacing: -1.0,
+            ),
+          ),
+          
+          const SizedBox(height: 32.0),
+          
+          // Boutons
+          Column(
             children: [
-              const SizedBox(height: 40.0,),
-              Image(
-                  image: const AssetImage("images/stat.png"),
-                height: MediaQuery.of(context).size.height*0.3,
-              ),
-              const SizedBox(height: 25.0,),
-              Text(
-                "Progression générale: ${widget.progression}%",
-                style: TextStyle(
-                  fontSize: isNotSmallScreen?15:11,
-                  color: _mainColor,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              const SizedBox(height: 50.0,),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ButtonWidget(titre: "MES LECTURES VALIDEES", onPressedFunction: lectureValidee,),
-                  ButtonWidget(titre: "NOTE PAR DATE", onPressedFunction: notePage,),
+                  Expanded(
+                    child: ButtonWidget(
+                      titre: "MES LECTURES VALIDEES",
+                      onPressedFunction: (){
+                        if(!context.mounted) return;
+                        lectureValidee();
+                      } ,
+                    ),
+                  ),
+                  const SizedBox(width: 12.0),
+                  Expanded(
+                    child: ButtonWidget(
+                      titre: "NOTE PAR DATE",
+                      onPressedFunction: (){
+                        if(!context.mounted) return;
+                        notePage();
+                      
+                      },
+                    ),
+                  ),
                 ],
               ),
-
-              const SizedBox(height: 25),
-
+              const SizedBox(height: 12.0),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ButtonWidget(titre: "NOTE PAR QUIZ", onPressedFunction: noteQuiz,),
-                  ButtonWidget(titre: "NOTE PAR LIVRE", onPressedFunction: noteLivre,),
+                  Expanded(
+                    child: ButtonWidget(
+                      titre: "NOTE PAR QUIZ",
+                      onPressedFunction: (){
+                        if(!context.mounted) return;
+                        noteQuiz();
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 12.0),
+                  Expanded(
+                    child: ButtonWidget(
+                      titre: "NOTE PAR LIVRE",
+                      onPressedFunction: (){
+                        if(!context.mounted) return;
+                        noteLivre();
+                      },
+                    ),
+                  ),
                 ],
               ),
-
             ],
           ),
-
-        ),
+        ],
       ),
-    );
+    ),
+  ),
+);
   }
 }

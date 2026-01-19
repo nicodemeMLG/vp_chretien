@@ -21,9 +21,12 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final isNotSmallScreen = MediaQuery.of(context).size.width >300;
     return AppBar(
-      leading: IconButton(onPressed: (){
-
-      }, icon: Icon(Icons.menu, color: Colors.grey[600])),
+      leading: IconButton(
+        onPressed: (){
+          Scaffold.of(context).openDrawer();
+        }, 
+        icon: Icon(Icons.menu, color: Colors.grey[600])
+      ),
       backgroundColor: Colors.white,
       title: Text(
         title,
@@ -54,7 +57,14 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
           onSelected: (String value) {
             if(value=='deconnexion'){
               AuthService().signOut();
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const Connexion(actif: false,)));
+
+              if (!context.mounted) return;
+
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (_) => const Connexion(actif: false),
+                ),
+              );
             }
           },
           icon: Icon(Icons.more_vert, color: Colors.grey[600]) , // Icône des trois points verticaux

@@ -17,10 +17,10 @@ class ProgrammePage2 extends StatefulWidget {
 class _ProgrammePage2State extends State<ProgrammePage2> {
   @override
   void initState() {
-    // TODO: implement initState
     // widget.date?['date']=null;
     super.initState();
   }
+
   List<LectureModel> listeProgramme=[];
   Future<List<LectureModel>> getProgrammes() async{
     List<LectureModel> programmes=[];
@@ -35,6 +35,13 @@ class _ProgrammePage2State extends State<ProgrammePage2> {
 
     });
     return programmes;
+  }
+
+  @override
+  void dispose() {
+
+    getProgrammes();
+    super.dispose();
   }
 
   @override

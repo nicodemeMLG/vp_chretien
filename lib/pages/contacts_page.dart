@@ -18,7 +18,9 @@ class ContactsPage extends StatelessWidget {
             color: Colors.white,
           ),),
       ),
-      body: contacts(),
+      body: SingleChildScrollView(
+        child: contacts(),
+      ) ,
     );
   }
 }
@@ -27,7 +29,7 @@ Widget contacts(){
   return Center(
     child: Container(
       // color: Colors.blue,
-      height: 400.0,
+      height: double.maxFinite,
       padding: const EdgeInsets.all(20.0),
       child: Column(
         children: [
@@ -42,7 +44,7 @@ Widget contacts(){
           ),
           ),
           const SizedBox(height: 15.0,),
-          Text("copyright 2023 VERTS PATURAGES" , style: TextStyle(
+          Text("copyright 2023 VERTS PATURAGES" , overflow: TextOverflow.ellipsis, style: TextStyle(
             color: _mainColor,
           ),
           ),

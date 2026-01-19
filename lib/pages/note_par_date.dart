@@ -17,7 +17,6 @@ class _NoteParDateState extends State<NoteParDate> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _textseacrch.text="Montant du : ${laDate.toString().split(" ")[0]}";
   }
@@ -49,7 +48,7 @@ class _NoteParDateState extends State<NoteParDate> {
     return noteParDate;
   }
   void _showDatePicker(){
-    showDatePicker( initialDate: laDate,currentDate: laDate, firstDate: DateTime(2000), lastDate: DateTime(2025), context: context )
+    showDatePicker( initialDate: laDate,currentDate: laDate, firstDate: DateTime(2000), lastDate: DateTime(2050), context: context )
         .then((value) async{
       setState(() {
         laDate=value!;

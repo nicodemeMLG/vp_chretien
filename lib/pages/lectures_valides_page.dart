@@ -37,10 +37,7 @@ class _LecturesValidesPageState extends State<LecturesValidesPage> {
     return lecturesVld;
   }
   @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-  }
+  void dispose() => super.dispose();
 
   @override
   Widget build(BuildContext context) {
